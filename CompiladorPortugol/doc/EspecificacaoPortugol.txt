@@ -1,0 +1,87 @@
+
+Helpers
+
+		all 			= [0 .. 0xffff];
+		letter 			= ['a' .. 'z'] | ['A' .. 'Z'];
+		digit 			= ['0' .. '9'];
+		char			= digit | letter | ' ' | '_';
+
+States 
+
+		normal, comment;
+
+Tokens
+
+		// Palavras reservadas
+		{normal} programa 		= 'programa';
+		{normal} inicio 		= 'inicio';
+		{normal} fim 			= 'fim';
+		{normal} escreva		= 'escreva';
+		{normal} leia			= 'leia';
+		{normal} enquanto 		= 'enquanto';
+		{normal} fim_enquanto	= 'fim enquanto';
+		{normal} se 			= 'se';
+		{normal} entao 			= 'entao';
+		{normal} senao 			= 'senao';
+		{normal} fim_se 		= 'fim se';
+		{normal} para 			= 'para';
+		{normal} de				= 'de';
+		{normal} passo			= 'passo';
+		{normal} fim_para 		= 'fim para';
+		{normal} ate 			= 'ate';
+		{normal} faca 			= 'faca';
+		{normal} repita 		= 'repita';
+		{normal} avalie			= 'avalie';
+		{normal} caso 			= 'caso';
+		{normal} fim_avalie 	= 'fim avalie';
+		{normal} const			= 'const';
+		{normal} tipo 			= 'inteiro' | 'real' | 'caractere';
+
+		// Operadores
+		{normal} mais 			= '+';
+		{normal} menos 			= '-';
+		{normal} divisao 		= '/';
+		{normal} mult 			= '*';
+		{normal} igual			= '=';
+		{normal} diferente		= '<>';
+		{normal} maior			= '>';
+		{normal} menor			= '<';
+		{normal} menor_igual	= '<=';
+		{normal} maior_igual	= '>=';
+		{normal} e				= 'e';
+		{normal} ou				= 'ou';
+		{normal} xor			= 'xor';
+		{normal} nao			= 'nao';
+		{normal} atribuicao		= '<-';
+
+		// Símbolos
+		{normal} par_d 			= '(';
+		{normal} par_e 			= ')';
+		{normal} col_d			= '[';
+		{normal} col_e			= ']';
+		{normal} ponto 			= '.';
+		{normal} virgula		= ',';
+		{normal} dois_pontos 	= ':';
+		{normal} semicolon	 	= ';';
+
+
+		// Identificador
+		{normal} id 			= ('_' | letter)(letter | digit | '_')*('[' digit+ ']')?;
+		
+		// Tipos
+		{normal} n_int 			= '-'? digit+;
+		{normal} n_real 		= '-'? digit+ '.' digit+;
+		{normal} string			= ''' char* ''';
+		
+		// Comentários		
+		{normal} comment_line			   = '//'[all-10]*10;
+		{normal->comment, comment} comment = '/*';
+		{comment} comment_end 			   = '*/'; 
+		{comment} comment_body 			   = [all - ['*' + '/']]*; 
+		{comment} star 					   = '*'; 
+		{comment} slash 				   = '/';
+		
+		{normal} blank 			= (' '| 9 | 10 | 13)+;
+
+Ignored Tokens
+		blank, comment, comment_line;

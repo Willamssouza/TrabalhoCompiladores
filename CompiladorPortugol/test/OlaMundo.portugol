@@ -1,0 +1,16 @@
+programa OlaMundo;
+inteiro : x;
+real	: y;
+caractere : texto[50];
+inicio
+   x <- 10;
+   y <- 2.556;
+   texto <- 'Ola mundo';
+
+   escreva(texto);
+
+   se (x = y)
+   		escreva('Funcionou o SE');
+   fim se;
+
+fim.
