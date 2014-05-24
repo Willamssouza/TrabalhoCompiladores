@@ -351,13 +351,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTNumInt(TNumInt node)
+    public void caseTNInt(TNInt node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTNumReal(TNumReal node)
+    public void caseTNReal(TNReal node)
     {
         defaultCase(node);
     }

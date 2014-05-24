@@ -68,8 +68,8 @@ Tokens
 		{normal} id 			= ('_' | letter)(letter | digit | '_')*('[' digit+ ']')?;
 		
 		// Tipos
-		{normal} num_int 		= ('-' | '+')? digit+;
-		{normal} num_real 		= ('-' | '+')? digit* '.' digit+ ('E' ('-' | '+')? digit+)?;
+		{normal} n_int 			= ('-' | '+')? digit+;
+		{normal} n_real 		= ('-' | '+')? digit* '.' digit+ ('E' ('-' | '+')? digit+)?;
 		{normal} string			= ''' [all - [ 9 + [13 + '''] ]]* ''';
 		
 		// Comentários		

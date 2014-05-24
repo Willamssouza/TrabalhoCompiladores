@@ -58,8 +58,8 @@ public interface Analysis extends Switch
     void caseTDoisPontos(TDoisPontos node);
     void caseTSemicolon(TSemicolon node);
     void caseTId(TId node);
-    void caseTNumInt(TNumInt node);
-    void caseTNumReal(TNumReal node);
+    void caseTNInt(TNInt node);
+    void caseTNReal(TNReal node);
     void caseTString(TString node);
     void caseTCommentLine(TCommentLine node);
     void caseTComment(TComment node);

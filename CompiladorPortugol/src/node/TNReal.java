@@ -5,14 +5,14 @@ package node;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class TNumInt extends Token
+public final class TNReal extends Token
 {
-    public TNumInt(String text)
+    public TNReal(String text)
     {
         setText(text);
     }
 
-    public TNumInt(String text, int line, int pos)
+    public TNReal(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TNumInt extends Token
     @Override
     public Object clone()
     {
-      return new TNumInt(getText(), getLine(), getPos());
+      return new TNReal(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTNumInt(this);
+        ((Analysis) sw).caseTNReal(this);
     }
 }
