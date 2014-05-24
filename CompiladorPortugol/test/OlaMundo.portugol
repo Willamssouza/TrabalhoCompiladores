@@ -4,10 +4,17 @@ real	: y;
 caractere : texto[50];
 inicio
    x <- 10;
-   y <- 2.556;
-   texto <- 'Ola mundo';
+   y <- .556E-50;
+   y <- 1.5;
+   texto <- '"Ola mundo"!';
+   texto <- '!@#$%¨&*(_)+-=^~´`[]{}:;.,';
 
    escreva(texto);
+
+/*
+* Comentários
+*
+*/
 
    se (x = y)
    		escreva('Funcionou o SE');

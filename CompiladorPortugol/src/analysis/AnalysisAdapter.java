@@ -321,18 +321,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTDoisPontos(TDoisPontos node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTSemicolon(TSemicolon node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTPonto(TPonto node)
     {
         defaultCase(node);
@@ -345,19 +333,31 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTDoisPontos(TDoisPontos node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTSemicolon(TSemicolon node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTId(TId node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTNInt(TNInt node)
+    public void caseTNumInt(TNumInt node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTNReal(TNReal node)
+    public void caseTNumReal(TNumReal node)
     {
         defaultCase(node);
     }

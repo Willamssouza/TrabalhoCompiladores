@@ -4,7 +4,6 @@ Helpers
 		all 			= [0 .. 0xffff];
 		letter 			= ['a' .. 'z'] | ['A' .. 'Z'];
 		digit 			= ['0' .. '9'];
-		char			= digit | letter | ' ' | '_';
 
 States 
 
@@ -69,9 +68,9 @@ Tokens
 		{normal} id 			= ('_' | letter)(letter | digit | '_')*('[' digit+ ']')?;
 		
 		// Tipos
-		{normal} n_int 			= '-'? digit+;
-		{normal} n_real 		= '-'? digit+ '.' digit+;
-		{normal} string			= ''' char* ''';
+		{normal} num_int 		= ('-' | '+')? digit+;
+		{normal} num_real 		= ('-' | '+')? digit* '.' digit+ ('E' ('-' | '+')? digit+)?;
+		{normal} string			= ''' [all - [ 9 + [13 + '''] ]]* ''';
 		
 		// Comentários		
 		{normal} comment_line			   = '//'[all-10]*10;

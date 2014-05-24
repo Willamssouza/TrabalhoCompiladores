@@ -53,13 +53,13 @@ public interface Analysis extends Switch
     void caseTParE(TParE node);
     void caseTColD(TColD node);
     void caseTColE(TColE node);
-    void caseTDoisPontos(TDoisPontos node);
-    void caseTSemicolon(TSemicolon node);
     void caseTPonto(TPonto node);
     void caseTVirgula(TVirgula node);
+    void caseTDoisPontos(TDoisPontos node);
+    void caseTSemicolon(TSemicolon node);
     void caseTId(TId node);
-    void caseTNInt(TNInt node);
-    void caseTNReal(TNReal node);
+    void caseTNumInt(TNumInt node);
+    void caseTNumReal(TNumReal node);
     void caseTString(TString node);
     void caseTCommentLine(TCommentLine node);
     void caseTComment(TComment node);
