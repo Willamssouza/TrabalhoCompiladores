@@ -4,12 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PushbackReader;
 
-import node.Token;
+import node.Start;
+import parser.Parser;
 
-public class PortugolMain {
-	
+public class AnaliseSintaticaMain {
 	public static void main(String[] args) {
 		//String arquivoTeste = "./test/OlaMundo.portugol";
+		//String arquivoTeste = "./test/AnaliseSintatica.portugol";
 		//String arquivoTeste = "./test/Comentarios.portugol";
 		String arquivoTeste;
 		
@@ -23,26 +24,11 @@ public class PortugolMain {
 				buffer = new BufferedReader(file);
 				
 				MyLexer lexer = new MyLexer(new PushbackReader(buffer));
+				Parser parser = new Parser(lexer);
+				Start tree = parser.parse();
+
+				System.out.println(tree.toString());
 				
-				while (true) {
-					Token t = lexer.next();
-					String nomeToken = t.getClass().getSimpleName();
-					
-					if (!nomeToken.equals("EOF")) {
-						nomeToken = nomeToken.substring(1);
-					}
-					
-					if (nomeToken.equals("Blank")){
-						System.out.print(t.getText());
-					} else {
-						System.out.print(nomeToken+" ");
-					}
-					
-					if (t.getText().isEmpty()) {
-						System.out.println();
-						break;
-					}
-				}
 			} catch (Exception e) {
 				System.out.println(e);
 			}

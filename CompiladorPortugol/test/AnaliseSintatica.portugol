@@ -1,0 +1,64 @@
+programa novo 
+
+inicio
+	
+	//Teste Declarações
+	inteiro : a, b, c;
+	real : b;
+	caractere : c;
+	
+	
+	//Teste Comandos
+	leia(x,y,z);
+	a <- b;
+	escreva((a+b),y*z,2/1-2);
+	
+	
+	//Teste Se
+	se () entao
+		leia(x);
+		escreva(x+z);
+	senao
+		leia(y);
+		escreva(y+z); 
+	fim se;
+	
+	
+	//Teste Avalie
+	avalie (a)
+		caso 'a' :
+			escreva(a);
+			
+		caso 'b' :
+			escreva(b);
+			
+		senao :
+			escreva('Erro');
+	fim avalie;
+	
+	
+	//Teste Enquanto
+	enquanto () faca
+		escreva(algo);
+	fim enquanto;
+	
+	
+	//Teste Repita
+	repita
+		escreva(algo);
+	ate();
+	
+	
+	//Teste Para
+	para x de 1 ate 5 faca
+		escreva(x);
+	fim para;
+	
+	para x de 1 passo 5 ate 10 faca
+		escreva(x);
+	fim para;
+	
+fim.
+
+
+

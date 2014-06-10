@@ -9,12 +9,12 @@ public final class TColD extends Token
 {
     public TColD()
     {
-        super.setText("[");
+        super.setText("]");
     }
 
     public TColD(int line, int pos)
     {
-        super.setText("[");
+        super.setText("]");
         setLine(line);
         setPos(pos);
     }
