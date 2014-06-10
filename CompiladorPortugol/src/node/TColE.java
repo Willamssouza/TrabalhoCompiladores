@@ -9,12 +9,12 @@ public final class TColE extends Token
 {
     public TColE()
     {
-        super.setText("]");
+        super.setText("[");
     }
 
     public TColE(int line, int pos)
     {
-        super.setText("]");
+        super.setText("[");
         setLine(line);
         setPos(pos);
     }

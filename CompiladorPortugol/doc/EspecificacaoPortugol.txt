@@ -14,7 +14,7 @@ Tokens
 		// Palavras reservadas
 		{normal} programa 		= 'programa';
 		{normal} inicio 		= 'inicio';
-		{normal} fim 			= 'fim';
+		{normal} fim 			= 'fim.';
 		{normal} escreva		= 'escreva';
 		{normal} leia			= 'leia';
 		{normal} enquanto 		= 'enquanto';
@@ -54,10 +54,10 @@ Tokens
 		{normal} atribuicao		= '<-';
 
 		// Símbolos
-		{normal} par_d 			= '(';
-		{normal} par_e 			= ')';
-		{normal} col_d			= '[';
-		{normal} col_e			= ']';
+		{normal} par_d 			= ')';
+		{normal} par_e 			= '(';
+		{normal} col_d			= ']';
+		{normal} col_e			= '[';
 		{normal} ponto 			= '.';
 		{normal} virgula		= ',';
 		{normal} dois_pontos 	= ':';
@@ -65,11 +65,12 @@ Tokens
 
 
 		// Identificador
-		{normal} id 			= ('_' | letter)(letter | digit | '_')*('[' digit+ ']')?;
+		{normal} id 			= ('_' | letter)(letter | digit | '_')*;
+		{normal} id_array 		= ('_' | letter)(letter | digit | '_')*('[' digit+ ']');
 		
 		// Tipos
-		{normal} n_int 			= ('-' | '+')? digit+;
-		{normal} n_real 		= ('-' | '+')? digit* '.' digit+ ('E' ('-' | '+')? digit+)?;
+		{normal} n_int 			= digit+;
+		{normal} n_real 		= digit* '.' digit+ ('E' ('-' | '+')? digit+)?;
 		{normal} string			= ''' [all - [ 9 + [13 + '''] ]]* ''';
 		
 		// Comentários		
@@ -83,4 +84,75 @@ Tokens
 		{normal} blank 			= (' '| 9 | 10 | 13)+;
 
 Ignored Tokens
+
 		blank, comment, comment_line;
+		
+Productions
+
+		start = {start} program;
+		
+		program = {program} programa id inicio decl* command* fim;
+		
+		decl = 
+			{variable} tipo dois_pontos varlist* var semicolon | 
+			{constant} const id valor;
+				
+		var = 
+			{id} id | 
+			{id_array} id_array;
+		
+		varlist = var virgula;
+		
+		valor = 
+			{string} string | 
+			{integer} n_int | 
+			{real} n_real;
+		
+		command = 
+			{attribution} 	var atribuicao exp semicolon |
+			
+			{read} 			leia par_e varlist* var par_d semicolon | 
+			
+			{write}			escreva par_e explist* exp par_d semicolon |
+			
+			{if} 			se par_e explogic par_d entao command+ elsepart? fim_se semicolon |
+			
+			{switch}		avalie par_e exp par_d casepart+ elseswitch? fim_avalie semicolon |
+			
+			{while}			enquanto par_e explogic par_d faca command+ fim_enquanto semicolon |
+			
+			{repeat} 		repita command+ ate par_e explogic par_d semicolon |
+			
+			{for}			para var de [x1]:n_int ate [x2]:n_int faca command+ fim_para semicolon |
+			
+			{for_passo}		para var de [x1]:n_int passo [x2]:n_int ate [x3]:n_int faca command+ fim_para semicolon;
+			
+		
+		elsepart = senao command+;
+		
+		casepart = caso valor dois_pontos command+;
+		
+		elseswitch = senao dois_pontos command+;
+
+		exp =
+			{exp_sum} exp mais term |
+			{exp_sub} exp menos term |
+			{exp_term} term ;
+		
+		explist = exp virgula;
+		
+		term = 
+			{term_mult} term mult factor |
+			{term_div} term divisao factor |
+			{term_factor} factor;
+		
+		factor= 
+			{valor} valor |
+			{var} var |
+			{par_exp} par_e exp par_d |
+			{logic} explogic;
+			
+		explogic = ; //TODO
+			
+
+

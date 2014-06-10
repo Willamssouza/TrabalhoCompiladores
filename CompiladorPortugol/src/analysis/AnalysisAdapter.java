@@ -69,6 +69,216 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStartStart(AStartStart node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProgramProgram(AProgramProgram node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariableDecl(AVariableDecl node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAConstantDecl(AConstantDecl node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdVar(AIdVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdArrayVar(AIdArrayVar node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarlist(AVarlist node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringValor(AStringValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIntegerValor(AIntegerValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARealValor(ARealValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAttributionCommand(AAttributionCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAReadCommand(AReadCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAWriteCommand(AWriteCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfCommand(AIfCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASwitchCommand(ASwitchCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAWhileCommand(AWhileCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARepeatCommand(ARepeatCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAForCommand(AForCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAForPassoCommand(AForPassoCommand node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAElsepart(AElsepart node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACasepart(ACasepart node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAElseswitch(AElseswitch node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpSumExp(AExpSumExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpSubExp(AExpSubExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpTermExp(AExpTermExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExplist(AExplist node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATermMultTerm(ATermMultTerm node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATermDivTerm(ATermDivTerm node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATermFactorTerm(ATermFactorTerm node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAValorFactor(AValorFactor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarFactor(AVarFactor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParExpFactor(AParExpFactor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseALogicFactor(ALogicFactor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExplogic(AExplogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTPrograma(TPrograma node)
     {
         defaultCase(node);
@@ -346,6 +556,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTId(TId node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTIdArray(TIdArray node)
     {
         defaultCase(node);
     }

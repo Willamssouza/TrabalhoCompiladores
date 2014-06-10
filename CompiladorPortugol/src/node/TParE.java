@@ -9,12 +9,12 @@ public final class TParE extends Token
 {
     public TParE()
     {
-        super.setText(")");
+        super.setText("(");
     }
 
     public TParE(int line, int pos)
     {
-        super.setText(")");
+        super.setText("(");
         setLine(line);
         setPos(pos);
     }
