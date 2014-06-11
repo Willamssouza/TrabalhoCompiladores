@@ -44,8 +44,21 @@ public interface Analysis extends Switch
     void caseAValorFactor(AValorFactor node);
     void caseAVarFactor(AVarFactor node);
     void caseAParExpFactor(AParExpFactor node);
-    void caseALogicFactor(ALogicFactor node);
-    void caseAExplogic(AExplogic node);
+    void caseAOrExplogic(AOrExplogic node);
+    void caseAXorExplogic(AXorExplogic node);
+    void caseATermLogicExplogic(ATermLogicExplogic node);
+    void caseAAndTermlogic(AAndTermlogic node);
+    void caseAFactorLogicTermlogic(AFactorLogicTermlogic node);
+    void caseANotFactorlogic(ANotFactorlogic node);
+    void caseAParExpFactorlogic(AParExpFactorlogic node);
+    void caseAExpRelationalFactorlogic(AExpRelationalFactorlogic node);
+    void caseAExprelational(AExprelational node);
+    void caseAIgualOperator(AIgualOperator node);
+    void caseADiferenteOperator(ADiferenteOperator node);
+    void caseAMaiorOperator(AMaiorOperator node);
+    void caseAMenorOperator(AMenorOperator node);
+    void caseAMaiorIgualOperator(AMaiorIgualOperator node);
+    void caseAMenorIgualOperator(AMenorIgualOperator node);
 
     void caseTPrograma(TPrograma node);
     void caseTInicio(TInicio node);
