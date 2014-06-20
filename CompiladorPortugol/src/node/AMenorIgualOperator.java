@@ -5,46 +5,46 @@ package node;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class ALogicFactor extends PFactor
+public final class AMenorIgualOperator extends POperator
 {
-    private PExplogic _explogic_;
+    private TMenorIgual _menorIgual_;
 
-    public ALogicFactor()
+    public AMenorIgualOperator()
     {
         // Constructor
     }
 
-    public ALogicFactor(
-        @SuppressWarnings("hiding") PExplogic _explogic_)
+    public AMenorIgualOperator(
+        @SuppressWarnings("hiding") TMenorIgual _menorIgual_)
     {
         // Constructor
-        setExplogic(_explogic_);
+        setMenorIgual(_menorIgual_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ALogicFactor(
-            cloneNode(this._explogic_));
+        return new AMenorIgualOperator(
+            cloneNode(this._menorIgual_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseALogicFactor(this);
+        ((Analysis) sw).caseAMenorIgualOperator(this);
     }
 
-    public PExplogic getExplogic()
+    public TMenorIgual getMenorIgual()
     {
-        return this._explogic_;
+        return this._menorIgual_;
     }
 
-    public void setExplogic(PExplogic node)
+    public void setMenorIgual(TMenorIgual node)
     {
-        if(this._explogic_ != null)
+        if(this._menorIgual_ != null)
         {
-            this._explogic_.parent(null);
+            this._menorIgual_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ALogicFactor extends PFactor
             node.parent(this);
         }
 
-        this._explogic_ = node;
+        this._menorIgual_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._explogic_);
+            + toString(this._menorIgual_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._explogic_ == child)
+        if(this._menorIgual_ == child)
         {
-            this._explogic_ = null;
+            this._menorIgual_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ALogicFactor extends PFactor
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._explogic_ == oldChild)
+        if(this._menorIgual_ == oldChild)
         {
-            setExplogic((PExplogic) newChild);
+            setMenorIgual((TMenorIgual) newChild);
             return;
         }
 

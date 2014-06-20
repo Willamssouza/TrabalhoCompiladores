@@ -267,13 +267,91 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseALogicFactor(ALogicFactor node)
+    public void caseAOrExplogic(AOrExplogic node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAExplogic(AExplogic node)
+    public void caseAXorExplogic(AXorExplogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATermLogicExplogic(ATermLogicExplogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAndTermlogic(AAndTermlogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFactorLogicTermlogic(AFactorLogicTermlogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANotFactorlogic(ANotFactorlogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParExpFactorlogic(AParExpFactorlogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpRelationalFactorlogic(AExpRelationalFactorlogic node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExprelational(AExprelational node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIgualOperator(AIgualOperator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADiferenteOperator(ADiferenteOperator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorOperator(AMaiorOperator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenorOperator(AMenorOperator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorIgualOperator(AMaiorIgualOperator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenorIgualOperator(AMenorIgualOperator node)
     {
         defaultCase(node);
     }

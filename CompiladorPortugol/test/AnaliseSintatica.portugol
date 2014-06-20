@@ -15,7 +15,7 @@ inicio
 	
 	
 	//Teste Se
-	se () entao
+	se ( x = y ) entao
 		leia(x);
 		escreva(x+z);
 	senao
@@ -38,7 +38,7 @@ inicio
 	
 	
 	//Teste Enquanto
-	enquanto () faca
+	enquanto (x = 1) faca
 		escreva(algo);
 	fim enquanto;
 	
@@ -46,7 +46,7 @@ inicio
 	//Teste Repita
 	repita
 		escreva(algo);
-	ate();
+	ate( nao 1=1 e 1 >= 5 );
 	
 	
 	//Teste Para

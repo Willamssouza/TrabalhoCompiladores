@@ -149,10 +149,33 @@ Productions
 		factor= 
 			{valor} valor |
 			{var} var |
-			{par_exp} par_e exp par_d |
-			{logic} explogic;
+			{par_exp} par_e exp par_d;// |
+			//{logic} explogic;
 			
-		explogic = ; //TODO
+			
+		explogic = 
+				{or} exp ou termlogic | 
+				{xor} exp xor termlogic | 
+				{term_logic} termlogic;
+		
+		termlogic = 
+				{and} termlogic e factorlogic |
+				{factor_logic} factorlogic;
+				
+		factorlogic =
+				{not} nao exprelational |
+				{par_exp} par_e explogic par_d |
+				{exp_relational} exprelational;
+		
+		exprelational = [exp1]:exp operator [exp2]:exp ;
+		
+		operator = 
+				{igual} igual |
+				{diferente} diferente |
+				{maior} maior |
+				{menor} menor |
+				{maior_igual} maior_igual |
+				{menor_igual} menor_igual;
 			
 
 
