@@ -10,7 +10,7 @@ public final class ASwitchCommand extends PCommand
 {
     private TAvalie _avalie_;
     private TParE _parE_;
-    private PExp _exp_;
+    private PExpression _expression_;
     private TParD _parD_;
     private final LinkedList<PCasepart> _casepart_ = new LinkedList<PCasepart>();
     private PElseswitch _elseswitch_;
@@ -25,7 +25,7 @@ public final class ASwitchCommand extends PCommand
     public ASwitchCommand(
         @SuppressWarnings("hiding") TAvalie _avalie_,
         @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PExpression _expression_,
         @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") List<?> _casepart_,
         @SuppressWarnings("hiding") PElseswitch _elseswitch_,
@@ -37,7 +37,7 @@ public final class ASwitchCommand extends PCommand
 
         setParE(_parE_);
 
-        setExp(_exp_);
+        setExpression(_expression_);
 
         setParD(_parD_);
 
@@ -57,7 +57,7 @@ public final class ASwitchCommand extends PCommand
         return new ASwitchCommand(
             cloneNode(this._avalie_),
             cloneNode(this._parE_),
-            cloneNode(this._exp_),
+            cloneNode(this._expression_),
             cloneNode(this._parD_),
             cloneList(this._casepart_),
             cloneNode(this._elseswitch_),
@@ -121,16 +121,16 @@ public final class ASwitchCommand extends PCommand
         this._parE_ = node;
     }
 
-    public PExp getExp()
+    public PExpression getExpression()
     {
-        return this._exp_;
+        return this._expression_;
     }
 
-    public void setExp(PExp node)
+    public void setExpression(PExpression node)
     {
-        if(this._exp_ != null)
+        if(this._expression_ != null)
         {
-            this._exp_.parent(null);
+            this._expression_.parent(null);
         }
 
         if(node != null)
@@ -143,7 +143,7 @@ public final class ASwitchCommand extends PCommand
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._expression_ = node;
     }
 
     public TParD getParD()
@@ -278,7 +278,7 @@ public final class ASwitchCommand extends PCommand
         return ""
             + toString(this._avalie_)
             + toString(this._parE_)
-            + toString(this._exp_)
+            + toString(this._expression_)
             + toString(this._parD_)
             + toString(this._casepart_)
             + toString(this._elseswitch_)
@@ -302,9 +302,9 @@ public final class ASwitchCommand extends PCommand
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._expression_ == child)
         {
-            this._exp_ = null;
+            this._expression_ = null;
             return;
         }
 
@@ -356,9 +356,9 @@ public final class ASwitchCommand extends PCommand
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._expression_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setExpression((PExpression) newChild);
             return;
         }
 

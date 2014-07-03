@@ -89,13 +89,13 @@ Ignored Tokens
 		
 Productions
 
-		start = {start} program;
+		start = program;
 		
-		program = {program} programa id inicio decl* command* fim;
+		program = programa id inicio decl* command* fim;
 		
 		decl = 
 			{variable} tipo dois_pontos varlist* var semicolon | 
-			{constant} const id valor;
+			{constant} const id valor semicolon;
 				
 		var = 
 			{id} id | 
@@ -109,19 +109,19 @@ Productions
 			{real} n_real;
 		
 		command = 
-			{attribution} 	var atribuicao exp semicolon |
+			{attribution} 	var atribuicao expression semicolon |
 			
 			{read} 			leia par_e varlist* var par_d semicolon | 
 			
-			{write}			escreva par_e explist* exp par_d semicolon |
+			{write}			escreva par_e explist* expression par_d semicolon |
 			
-			{if} 			se par_e explogic par_d entao command+ elsepart? fim_se semicolon |
+			{if} 			se par_e exp_logic par_d entao command+ elsepart? fim_se semicolon |
 			
-			{switch}		avalie par_e exp par_d casepart+ elseswitch? fim_avalie semicolon |
+			{switch}		avalie par_e expression par_d casepart+ elseswitch? fim_avalie semicolon |
 			
-			{while}			enquanto par_e explogic par_d faca command+ fim_enquanto semicolon |
+			{while}			enquanto par_e exp_logic par_d faca command+ fim_enquanto semicolon |
 			
-			{repeat} 		repita command+ ate par_e explogic par_d semicolon |
+			{repeat} 		repita command+ ate par_e exp_logic par_d semicolon |
 			
 			{for}			para var de [x1]:n_int ate [x2]:n_int faca command+ fim_para semicolon |
 			
@@ -134,48 +134,57 @@ Productions
 		
 		elseswitch = senao dois_pontos command+;
 
-		exp =
-			{exp_sum} exp mais term |
-			{exp_sub} exp menos term |
-			{exp_term} term ;
+		explist = expression virgula;
 		
-		explist = exp virgula;
+		expression = conditional_or;
 		
-		term = 
-			{term_mult} term mult factor |
-			{term_div} term divisao factor |
-			{term_factor} factor;
+		exp_logic = conditional_or;
 		
-		factor= 
-			{valor} valor |
-			{var} var |
-			{par_exp} par_e exp par_d;// |
-			//{logic} explogic;
-			
-			
-		explogic = 
-				{or} exp ou termlogic | 
-				{xor} exp xor termlogic | 
-				{term_logic} termlogic;
+		conditional_or =
+				{ou} conditional_or ou conditional_and | 
+				{e} conditional_and;
 		
-		termlogic = 
-				{and} termlogic e factorlogic |
-				{factor_logic} factorlogic;
+		conditional_and = 
+				{e} conditional_and e conditional_xor |
+				{xor} conditional_xor;
 				
-		factorlogic =
-				{not} nao exprelational |
-				{par_exp} par_e explogic par_d |
-				{exp_relational} exprelational;
+		conditional_xor =
+				{xor} conditional_xor xor exp_equality |
+				{igual} exp_equality;
 		
-		exprelational = [exp1]:exp operator [exp2]:exp ;
+		exp_equality =
+				{igual} exp_equality igual exp_relational |
+				{diferente} exp_equality diferente exp_relational |
+				{expressao} exp_relational;
+				
+		exp_relational = 
+				{maior} exp_relational maior exp_additive |
+				{menor} exp_relational menor exp_additive |
+				{maior_igual} exp_relational maior_igual exp_additive |
+				{menor_igual} exp_relational menor_igual exp_additive |
+				{expressao} exp_additive ;
+				
+		exp_additive =
+				{soma} exp_additive mais exp_multiplicative |
+				{subtracao} exp_additive menos exp_multiplicative |
+				{multiplicacao} exp_multiplicative ;
 		
-		operator = 
-				{igual} igual |
-				{diferente} diferente |
-				{maior} maior |
-				{menor} menor |
-				{maior_igual} maior_igual |
-				{menor_igual} menor_igual;
+		exp_multiplicative = 
+				{multiplicacao} exp_multiplicative mult exp_unary |
+				{divisao} exp_multiplicative divisao exp_unary |
+				{unario} exp_unary;
+		
+		exp_unary = 
+				{negativo} menos exp_unary |
+				{negacao} nao exp_unary |
+				{primario} primary;
+			
+		primary =
+				{valor} valor |
+				{var} var |
+				{par_exp} par_e expression par_d;
+		
+
 			
 
 

@@ -10,7 +10,7 @@ public final class AWhileCommand extends PCommand
 {
     private TEnquanto _enquanto_;
     private TParE _parE_;
-    private PExplogic _explogic_;
+    private PExpLogic _expLogic_;
     private TParD _parD_;
     private TFaca _faca_;
     private final LinkedList<PCommand> _command_ = new LinkedList<PCommand>();
@@ -25,7 +25,7 @@ public final class AWhileCommand extends PCommand
     public AWhileCommand(
         @SuppressWarnings("hiding") TEnquanto _enquanto_,
         @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExplogic _explogic_,
+        @SuppressWarnings("hiding") PExpLogic _expLogic_,
         @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") TFaca _faca_,
         @SuppressWarnings("hiding") List<?> _command_,
@@ -37,7 +37,7 @@ public final class AWhileCommand extends PCommand
 
         setParE(_parE_);
 
-        setExplogic(_explogic_);
+        setExpLogic(_expLogic_);
 
         setParD(_parD_);
 
@@ -57,7 +57,7 @@ public final class AWhileCommand extends PCommand
         return new AWhileCommand(
             cloneNode(this._enquanto_),
             cloneNode(this._parE_),
-            cloneNode(this._explogic_),
+            cloneNode(this._expLogic_),
             cloneNode(this._parD_),
             cloneNode(this._faca_),
             cloneList(this._command_),
@@ -121,16 +121,16 @@ public final class AWhileCommand extends PCommand
         this._parE_ = node;
     }
 
-    public PExplogic getExplogic()
+    public PExpLogic getExpLogic()
     {
-        return this._explogic_;
+        return this._expLogic_;
     }
 
-    public void setExplogic(PExplogic node)
+    public void setExpLogic(PExpLogic node)
     {
-        if(this._explogic_ != null)
+        if(this._expLogic_ != null)
         {
-            this._explogic_.parent(null);
+            this._expLogic_.parent(null);
         }
 
         if(node != null)
@@ -143,7 +143,7 @@ public final class AWhileCommand extends PCommand
             node.parent(this);
         }
 
-        this._explogic_ = node;
+        this._expLogic_ = node;
     }
 
     public TParD getParD()
@@ -278,7 +278,7 @@ public final class AWhileCommand extends PCommand
         return ""
             + toString(this._enquanto_)
             + toString(this._parE_)
-            + toString(this._explogic_)
+            + toString(this._expLogic_)
             + toString(this._parD_)
             + toString(this._faca_)
             + toString(this._command_)
@@ -302,9 +302,9 @@ public final class AWhileCommand extends PCommand
             return;
         }
 
-        if(this._explogic_ == child)
+        if(this._expLogic_ == child)
         {
-            this._explogic_ = null;
+            this._expLogic_ = null;
             return;
         }
 
@@ -356,9 +356,9 @@ public final class AWhileCommand extends PCommand
             return;
         }
 
-        if(this._explogic_ == oldChild)
+        if(this._expLogic_ == oldChild)
         {
-            setExplogic((PExplogic) newChild);
+            setExpLogic((PExpLogic) newChild);
             return;
         }
 

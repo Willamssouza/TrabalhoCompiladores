@@ -75,13 +75,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAStartStart(AStartStart node)
+    public void caseAStart(AStart node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAProgramProgram(AProgramProgram node)
+    public void caseAProgram(AProgram node)
     {
         defaultCase(node);
     }
@@ -207,151 +207,175 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAExpSumExp(AExpSumExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAExpSubExp(AExpSubExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAExpTermExp(AExpTermExp node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseAExplist(AExplist node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseATermMultTerm(ATermMultTerm node)
+    public void caseAExpression(AExpression node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseATermDivTerm(ATermDivTerm node)
+    public void caseAExpLogic(AExpLogic node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseATermFactorTerm(ATermFactorTerm node)
+    public void caseAOuConditionalOr(AOuConditionalOr node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAValorFactor(AValorFactor node)
+    public void caseAEConditionalOr(AEConditionalOr node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAVarFactor(AVarFactor node)
+    public void caseAEConditionalAnd(AEConditionalAnd node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAParExpFactor(AParExpFactor node)
+    public void caseAXorConditionalAnd(AXorConditionalAnd node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAOrExplogic(AOrExplogic node)
+    public void caseAXorConditionalXor(AXorConditionalXor node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAXorExplogic(AXorExplogic node)
+    public void caseAIgualConditionalXor(AIgualConditionalXor node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseATermLogicExplogic(ATermLogicExplogic node)
+    public void caseAIgualExpEquality(AIgualExpEquality node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAAndTermlogic(AAndTermlogic node)
+    public void caseADiferenteExpEquality(ADiferenteExpEquality node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAFactorLogicTermlogic(AFactorLogicTermlogic node)
+    public void caseAExpressaoExpEquality(AExpressaoExpEquality node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseANotFactorlogic(ANotFactorlogic node)
+    public void caseAMaiorExpRelational(AMaiorExpRelational node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAParExpFactorlogic(AParExpFactorlogic node)
+    public void caseAMenorExpRelational(AMenorExpRelational node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAExpRelationalFactorlogic(AExpRelationalFactorlogic node)
+    public void caseAMaiorIgualExpRelational(AMaiorIgualExpRelational node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAExprelational(AExprelational node)
+    public void caseAMenorIgualExpRelational(AMenorIgualExpRelational node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAIgualOperator(AIgualOperator node)
+    public void caseAExpressaoExpRelational(AExpressaoExpRelational node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseADiferenteOperator(ADiferenteOperator node)
+    public void caseASomaExpAdditive(ASomaExpAdditive node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMaiorOperator(AMaiorOperator node)
+    public void caseASubtracaoExpAdditive(ASubtracaoExpAdditive node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMenorOperator(AMenorOperator node)
+    public void caseAMultiplicacaoExpAdditive(AMultiplicacaoExpAdditive node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMaiorIgualOperator(AMaiorIgualOperator node)
+    public void caseAMultiplicacaoExpMultiplicative(AMultiplicacaoExpMultiplicative node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMenorIgualOperator(AMenorIgualOperator node)
+    public void caseADivisaoExpMultiplicative(ADivisaoExpMultiplicative node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnarioExpMultiplicative(AUnarioExpMultiplicative node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANegativoExpUnary(ANegativoExpUnary node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANegacaoExpUnary(ANegacaoExpUnary node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrimarioExpUnary(APrimarioExpUnary node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAValorPrimary(AValorPrimary node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarPrimary(AVarPrimary node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParExpPrimary(AParExpPrimary node)
     {
         defaultCase(node);
     }

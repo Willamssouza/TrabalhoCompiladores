@@ -11,7 +11,7 @@ public final class AWriteCommand extends PCommand
     private TEscreva _escreva_;
     private TParE _parE_;
     private final LinkedList<PExplist> _explist_ = new LinkedList<PExplist>();
-    private PExp _exp_;
+    private PExpression _expression_;
     private TParD _parD_;
     private TSemicolon _semicolon_;
 
@@ -24,7 +24,7 @@ public final class AWriteCommand extends PCommand
         @SuppressWarnings("hiding") TEscreva _escreva_,
         @SuppressWarnings("hiding") TParE _parE_,
         @SuppressWarnings("hiding") List<?> _explist_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PExpression _expression_,
         @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") TSemicolon _semicolon_)
     {
@@ -35,7 +35,7 @@ public final class AWriteCommand extends PCommand
 
         setExplist(_explist_);
 
-        setExp(_exp_);
+        setExpression(_expression_);
 
         setParD(_parD_);
 
@@ -50,7 +50,7 @@ public final class AWriteCommand extends PCommand
             cloneNode(this._escreva_),
             cloneNode(this._parE_),
             cloneList(this._explist_),
-            cloneNode(this._exp_),
+            cloneNode(this._expression_),
             cloneNode(this._parD_),
             cloneNode(this._semicolon_));
     }
@@ -137,16 +137,16 @@ public final class AWriteCommand extends PCommand
         }
     }
 
-    public PExp getExp()
+    public PExpression getExpression()
     {
-        return this._exp_;
+        return this._expression_;
     }
 
-    public void setExp(PExp node)
+    public void setExpression(PExpression node)
     {
-        if(this._exp_ != null)
+        if(this._expression_ != null)
         {
-            this._exp_.parent(null);
+            this._expression_.parent(null);
         }
 
         if(node != null)
@@ -159,7 +159,7 @@ public final class AWriteCommand extends PCommand
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._expression_ = node;
     }
 
     public TParD getParD()
@@ -219,7 +219,7 @@ public final class AWriteCommand extends PCommand
             + toString(this._escreva_)
             + toString(this._parE_)
             + toString(this._explist_)
-            + toString(this._exp_)
+            + toString(this._expression_)
             + toString(this._parD_)
             + toString(this._semicolon_);
     }
@@ -245,9 +245,9 @@ public final class AWriteCommand extends PCommand
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._expression_ == child)
         {
-            this._exp_ = null;
+            this._expression_ = null;
             return;
         }
 
@@ -300,9 +300,9 @@ public final class AWriteCommand extends PCommand
             }
         }
 
-        if(this._exp_ == oldChild)
+        if(this._expression_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setExpression((PExpression) newChild);
             return;
         }
 

@@ -10,7 +10,8 @@ inicio
 	
 	//Teste Comandos
 	leia(x,y,z);
-	a <- b;
+	a <- 5 + 3 > b;
+	a <- (5 >= 3);
 	escreva((a+b),y*z,2/1-2);
 	
 	

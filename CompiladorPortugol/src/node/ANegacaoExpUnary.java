@@ -5,51 +5,51 @@ package node;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExplist extends PExplist
+public final class ANegacaoExpUnary extends PExpUnary
 {
-    private PExpression _expression_;
-    private TVirgula _virgula_;
+    private TNao _nao_;
+    private PExpUnary _expUnary_;
 
-    public AExplist()
+    public ANegacaoExpUnary()
     {
         // Constructor
     }
 
-    public AExplist(
-        @SuppressWarnings("hiding") PExpression _expression_,
-        @SuppressWarnings("hiding") TVirgula _virgula_)
+    public ANegacaoExpUnary(
+        @SuppressWarnings("hiding") TNao _nao_,
+        @SuppressWarnings("hiding") PExpUnary _expUnary_)
     {
         // Constructor
-        setExpression(_expression_);
+        setNao(_nao_);
 
-        setVirgula(_virgula_);
+        setExpUnary(_expUnary_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExplist(
-            cloneNode(this._expression_),
-            cloneNode(this._virgula_));
+        return new ANegacaoExpUnary(
+            cloneNode(this._nao_),
+            cloneNode(this._expUnary_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExplist(this);
+        ((Analysis) sw).caseANegacaoExpUnary(this);
     }
 
-    public PExpression getExpression()
+    public TNao getNao()
     {
-        return this._expression_;
+        return this._nao_;
     }
 
-    public void setExpression(PExpression node)
+    public void setNao(TNao node)
     {
-        if(this._expression_ != null)
+        if(this._nao_ != null)
         {
-            this._expression_.parent(null);
+            this._nao_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class AExplist extends PExplist
             node.parent(this);
         }
 
-        this._expression_ = node;
+        this._nao_ = node;
     }
 
-    public TVirgula getVirgula()
+    public PExpUnary getExpUnary()
     {
-        return this._virgula_;
+        return this._expUnary_;
     }
 
-    public void setVirgula(TVirgula node)
+    public void setExpUnary(PExpUnary node)
     {
-        if(this._virgula_ != null)
+        if(this._expUnary_ != null)
         {
-            this._virgula_.parent(null);
+            this._expUnary_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class AExplist extends PExplist
             node.parent(this);
         }
 
-        this._virgula_ = node;
+        this._expUnary_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expression_)
-            + toString(this._virgula_);
+            + toString(this._nao_)
+            + toString(this._expUnary_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expression_ == child)
+        if(this._nao_ == child)
         {
-            this._expression_ = null;
+            this._nao_ = null;
             return;
         }
 
-        if(this._virgula_ == child)
+        if(this._expUnary_ == child)
         {
-            this._virgula_ = null;
+            this._expUnary_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class AExplist extends PExplist
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expression_ == oldChild)
+        if(this._nao_ == oldChild)
         {
-            setExpression((PExpression) newChild);
+            setNao((TNao) newChild);
             return;
         }
 
-        if(this._virgula_ == oldChild)
+        if(this._expUnary_ == oldChild)
         {
-            setVirgula((TVirgula) newChild);
+            setExpUnary((PExpUnary) newChild);
             return;
         }
 

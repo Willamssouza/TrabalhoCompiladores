@@ -10,7 +10,7 @@ public final class AIfCommand extends PCommand
 {
     private TSe _se_;
     private TParE _parE_;
-    private PExplogic _explogic_;
+    private PExpLogic _expLogic_;
     private TParD _parD_;
     private TEntao _entao_;
     private final LinkedList<PCommand> _command_ = new LinkedList<PCommand>();
@@ -26,7 +26,7 @@ public final class AIfCommand extends PCommand
     public AIfCommand(
         @SuppressWarnings("hiding") TSe _se_,
         @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExplogic _explogic_,
+        @SuppressWarnings("hiding") PExpLogic _expLogic_,
         @SuppressWarnings("hiding") TParD _parD_,
         @SuppressWarnings("hiding") TEntao _entao_,
         @SuppressWarnings("hiding") List<?> _command_,
@@ -39,7 +39,7 @@ public final class AIfCommand extends PCommand
 
         setParE(_parE_);
 
-        setExplogic(_explogic_);
+        setExpLogic(_expLogic_);
 
         setParD(_parD_);
 
@@ -61,7 +61,7 @@ public final class AIfCommand extends PCommand
         return new AIfCommand(
             cloneNode(this._se_),
             cloneNode(this._parE_),
-            cloneNode(this._explogic_),
+            cloneNode(this._expLogic_),
             cloneNode(this._parD_),
             cloneNode(this._entao_),
             cloneList(this._command_),
@@ -126,16 +126,16 @@ public final class AIfCommand extends PCommand
         this._parE_ = node;
     }
 
-    public PExplogic getExplogic()
+    public PExpLogic getExpLogic()
     {
-        return this._explogic_;
+        return this._expLogic_;
     }
 
-    public void setExplogic(PExplogic node)
+    public void setExpLogic(PExpLogic node)
     {
-        if(this._explogic_ != null)
+        if(this._expLogic_ != null)
         {
-            this._explogic_.parent(null);
+            this._expLogic_.parent(null);
         }
 
         if(node != null)
@@ -148,7 +148,7 @@ public final class AIfCommand extends PCommand
             node.parent(this);
         }
 
-        this._explogic_ = node;
+        this._expLogic_ = node;
     }
 
     public TParD getParD()
@@ -308,7 +308,7 @@ public final class AIfCommand extends PCommand
         return ""
             + toString(this._se_)
             + toString(this._parE_)
-            + toString(this._explogic_)
+            + toString(this._expLogic_)
             + toString(this._parD_)
             + toString(this._entao_)
             + toString(this._command_)
@@ -333,9 +333,9 @@ public final class AIfCommand extends PCommand
             return;
         }
 
-        if(this._explogic_ == child)
+        if(this._expLogic_ == child)
         {
-            this._explogic_ = null;
+            this._expLogic_ = null;
             return;
         }
 
@@ -393,9 +393,9 @@ public final class AIfCommand extends PCommand
             return;
         }
 
-        if(this._explogic_ == oldChild)
+        if(this._expLogic_ == oldChild)
         {
-            setExplogic((PExplogic) newChild);
+            setExpLogic((PExpLogic) newChild);
             return;
         }
 
