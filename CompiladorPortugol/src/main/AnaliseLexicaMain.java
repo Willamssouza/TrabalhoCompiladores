@@ -9,16 +9,16 @@ import node.Token;
 public class AnaliseLexicaMain {
 	
 	public static void main(String[] args) {
-		String arquivoTeste = "./test/AnaliseSintatica.portugol";
+		//String arquivoTeste = "./test/AnaliseSintatica.portugol";
 		//String arquivoTeste = "./test/Comentarios.portugol";
-		//String arquivoTeste;
+		String arquivoTeste;
 		
 		FileReader file;
 		BufferedReader buffer;
 		
 		if (args != null){
 			try {
-				//arquivoTeste = args[0];
+				arquivoTeste = args[0];
 				file = new FileReader(arquivoTeste);
 				buffer = new BufferedReader(file);
 				
