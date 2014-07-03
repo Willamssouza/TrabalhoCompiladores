@@ -10,6 +10,7 @@ public final class AConstantDecl extends PDecl
     private TConst _const_;
     private TId _id_;
     private PValor _valor_;
+    private TSemicolon _semicolon_;
 
     public AConstantDecl()
     {
@@ -19,7 +20,8 @@ public final class AConstantDecl extends PDecl
     public AConstantDecl(
         @SuppressWarnings("hiding") TConst _const_,
         @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") PValor _valor_)
+        @SuppressWarnings("hiding") PValor _valor_,
+        @SuppressWarnings("hiding") TSemicolon _semicolon_)
     {
         // Constructor
         setConst(_const_);
@@ -27,6 +29,8 @@ public final class AConstantDecl extends PDecl
         setId(_id_);
 
         setValor(_valor_);
+
+        setSemicolon(_semicolon_);
 
     }
 
@@ -36,7 +40,8 @@ public final class AConstantDecl extends PDecl
         return new AConstantDecl(
             cloneNode(this._const_),
             cloneNode(this._id_),
-            cloneNode(this._valor_));
+            cloneNode(this._valor_),
+            cloneNode(this._semicolon_));
     }
 
     @Override
@@ -120,13 +125,39 @@ public final class AConstantDecl extends PDecl
         this._valor_ = node;
     }
 
+    public TSemicolon getSemicolon()
+    {
+        return this._semicolon_;
+    }
+
+    public void setSemicolon(TSemicolon node)
+    {
+        if(this._semicolon_ != null)
+        {
+            this._semicolon_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._semicolon_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
             + toString(this._const_)
             + toString(this._id_)
-            + toString(this._valor_);
+            + toString(this._valor_)
+            + toString(this._semicolon_);
     }
 
     @Override
@@ -148,6 +179,12 @@ public final class AConstantDecl extends PDecl
         if(this._valor_ == child)
         {
             this._valor_ = null;
+            return;
+        }
+
+        if(this._semicolon_ == child)
+        {
+            this._semicolon_ = null;
             return;
         }
 
@@ -173,6 +210,12 @@ public final class AConstantDecl extends PDecl
         if(this._valor_ == oldChild)
         {
             setValor((PValor) newChild);
+            return;
+        }
+
+        if(this._semicolon_ == oldChild)
+        {
+            setSemicolon((TSemicolon) newChild);
             return;
         }
 

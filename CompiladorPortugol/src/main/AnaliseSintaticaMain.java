@@ -9,7 +9,6 @@ import parser.Parser;
 
 public class AnaliseSintaticaMain {
 	public static void main(String[] args) {
-		//String arquivoTeste = "./test/OlaMundo.portugol";
 		String arquivoTeste = "./test/AnaliseSintatica.portugol";
 		//String arquivoTeste = "./test/Comentarios.portugol";
 		//String arquivoTeste;

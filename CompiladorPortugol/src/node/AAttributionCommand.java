@@ -9,7 +9,7 @@ public final class AAttributionCommand extends PCommand
 {
     private PVar _var_;
     private TAtribuicao _atribuicao_;
-    private PExp _exp_;
+    private PExpression _expression_;
     private TSemicolon _semicolon_;
 
     public AAttributionCommand()
@@ -20,7 +20,7 @@ public final class AAttributionCommand extends PCommand
     public AAttributionCommand(
         @SuppressWarnings("hiding") PVar _var_,
         @SuppressWarnings("hiding") TAtribuicao _atribuicao_,
-        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") PExpression _expression_,
         @SuppressWarnings("hiding") TSemicolon _semicolon_)
     {
         // Constructor
@@ -28,7 +28,7 @@ public final class AAttributionCommand extends PCommand
 
         setAtribuicao(_atribuicao_);
 
-        setExp(_exp_);
+        setExpression(_expression_);
 
         setSemicolon(_semicolon_);
 
@@ -40,7 +40,7 @@ public final class AAttributionCommand extends PCommand
         return new AAttributionCommand(
             cloneNode(this._var_),
             cloneNode(this._atribuicao_),
-            cloneNode(this._exp_),
+            cloneNode(this._expression_),
             cloneNode(this._semicolon_));
     }
 
@@ -100,16 +100,16 @@ public final class AAttributionCommand extends PCommand
         this._atribuicao_ = node;
     }
 
-    public PExp getExp()
+    public PExpression getExpression()
     {
-        return this._exp_;
+        return this._expression_;
     }
 
-    public void setExp(PExp node)
+    public void setExpression(PExpression node)
     {
-        if(this._exp_ != null)
+        if(this._expression_ != null)
         {
-            this._exp_.parent(null);
+            this._expression_.parent(null);
         }
 
         if(node != null)
@@ -122,7 +122,7 @@ public final class AAttributionCommand extends PCommand
             node.parent(this);
         }
 
-        this._exp_ = node;
+        this._expression_ = node;
     }
 
     public TSemicolon getSemicolon()
@@ -156,7 +156,7 @@ public final class AAttributionCommand extends PCommand
         return ""
             + toString(this._var_)
             + toString(this._atribuicao_)
-            + toString(this._exp_)
+            + toString(this._expression_)
             + toString(this._semicolon_);
     }
 
@@ -176,9 +176,9 @@ public final class AAttributionCommand extends PCommand
             return;
         }
 
-        if(this._exp_ == child)
+        if(this._expression_ == child)
         {
-            this._exp_ = null;
+            this._expression_ = null;
             return;
         }
 
@@ -207,9 +207,9 @@ public final class AAttributionCommand extends PCommand
             return;
         }
 
-        if(this._exp_ == oldChild)
+        if(this._expression_ == oldChild)
         {
-            setExp((PExp) newChild);
+            setExpression((PExpression) newChild);
             return;
         }
 
