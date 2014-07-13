@@ -5,51 +5,51 @@ package node;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExplist extends PExplist
+public final class AEExp extends PExp
 {
-    private PExpression _expression_;
-    private TVirgula _virgula_;
+    private PExp _left_;
+    private PExp _right_;
 
-    public AExplist()
+    public AEExp()
     {
         // Constructor
     }
 
-    public AExplist(
-        @SuppressWarnings("hiding") PExpression _expression_,
-        @SuppressWarnings("hiding") TVirgula _virgula_)
+    public AEExp(
+        @SuppressWarnings("hiding") PExp _left_,
+        @SuppressWarnings("hiding") PExp _right_)
     {
         // Constructor
-        setExpression(_expression_);
+        setLeft(_left_);
 
-        setVirgula(_virgula_);
+        setRight(_right_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExplist(
-            cloneNode(this._expression_),
-            cloneNode(this._virgula_));
+        return new AEExp(
+            cloneNode(this._left_),
+            cloneNode(this._right_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExplist(this);
+        ((Analysis) sw).caseAEExp(this);
     }
 
-    public PExpression getExpression()
+    public PExp getLeft()
     {
-        return this._expression_;
+        return this._left_;
     }
 
-    public void setExpression(PExpression node)
+    public void setLeft(PExp node)
     {
-        if(this._expression_ != null)
+        if(this._left_ != null)
         {
-            this._expression_.parent(null);
+            this._left_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class AExplist extends PExplist
             node.parent(this);
         }
 
-        this._expression_ = node;
+        this._left_ = node;
     }
 
-    public TVirgula getVirgula()
+    public PExp getRight()
     {
-        return this._virgula_;
+        return this._right_;
     }
 
-    public void setVirgula(TVirgula node)
+    public void setRight(PExp node)
     {
-        if(this._virgula_ != null)
+        if(this._right_ != null)
         {
-            this._virgula_.parent(null);
+            this._right_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class AExplist extends PExplist
             node.parent(this);
         }
 
-        this._virgula_ = node;
+        this._right_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expression_)
-            + toString(this._virgula_);
+            + toString(this._left_)
+            + toString(this._right_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expression_ == child)
+        if(this._left_ == child)
         {
-            this._expression_ = null;
+            this._left_ = null;
             return;
         }
 
-        if(this._virgula_ == child)
+        if(this._right_ == child)
         {
-            this._virgula_ = null;
+            this._right_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class AExplist extends PExplist
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expression_ == oldChild)
+        if(this._left_ == oldChild)
         {
-            setExpression((PExpression) newChild);
+            setLeft((PExp) newChild);
             return;
         }
 
-        if(this._virgula_ == oldChild)
+        if(this._right_ == oldChild)
         {
-            setVirgula((TVirgula) newChild);
+            setRight((PExp) newChild);
             return;
         }
 

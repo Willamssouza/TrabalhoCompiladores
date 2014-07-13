@@ -5,46 +5,46 @@ package node;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExpressaoExpRelational extends PExpRelational
+public final class AValorExp extends PExp
 {
-    private PExpAdditive _expAdditive_;
+    private PValor _valor_;
 
-    public AExpressaoExpRelational()
+    public AValorExp()
     {
         // Constructor
     }
 
-    public AExpressaoExpRelational(
-        @SuppressWarnings("hiding") PExpAdditive _expAdditive_)
+    public AValorExp(
+        @SuppressWarnings("hiding") PValor _valor_)
     {
         // Constructor
-        setExpAdditive(_expAdditive_);
+        setValor(_valor_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExpressaoExpRelational(
-            cloneNode(this._expAdditive_));
+        return new AValorExp(
+            cloneNode(this._valor_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExpressaoExpRelational(this);
+        ((Analysis) sw).caseAValorExp(this);
     }
 
-    public PExpAdditive getExpAdditive()
+    public PValor getValor()
     {
-        return this._expAdditive_;
+        return this._valor_;
     }
 
-    public void setExpAdditive(PExpAdditive node)
+    public void setValor(PValor node)
     {
-        if(this._expAdditive_ != null)
+        if(this._valor_ != null)
         {
-            this._expAdditive_.parent(null);
+            this._valor_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AExpressaoExpRelational extends PExpRelational
             node.parent(this);
         }
 
-        this._expAdditive_ = node;
+        this._valor_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expAdditive_);
+            + toString(this._valor_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expAdditive_ == child)
+        if(this._valor_ == child)
         {
-            this._expAdditive_ = null;
+            this._valor_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AExpressaoExpRelational extends PExpRelational
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expAdditive_ == oldChild)
+        if(this._valor_ == oldChild)
         {
-            setExpAdditive((PExpAdditive) newChild);
+            setValor((PValor) newChild);
             return;
         }
 

@@ -5,46 +5,46 @@ package node;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIgualConditionalXor extends PConditionalXor
+public final class AVarExp extends PExp
 {
-    private PExpEquality _expEquality_;
+    private PVar _var_;
 
-    public AIgualConditionalXor()
+    public AVarExp()
     {
         // Constructor
     }
 
-    public AIgualConditionalXor(
-        @SuppressWarnings("hiding") PExpEquality _expEquality_)
+    public AVarExp(
+        @SuppressWarnings("hiding") PVar _var_)
     {
         // Constructor
-        setExpEquality(_expEquality_);
+        setVar(_var_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIgualConditionalXor(
-            cloneNode(this._expEquality_));
+        return new AVarExp(
+            cloneNode(this._var_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIgualConditionalXor(this);
+        ((Analysis) sw).caseAVarExp(this);
     }
 
-    public PExpEquality getExpEquality()
+    public PVar getVar()
     {
-        return this._expEquality_;
+        return this._var_;
     }
 
-    public void setExpEquality(PExpEquality node)
+    public void setVar(PVar node)
     {
-        if(this._expEquality_ != null)
+        if(this._var_ != null)
         {
-            this._expEquality_.parent(null);
+            this._var_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AIgualConditionalXor extends PConditionalXor
             node.parent(this);
         }
 
-        this._expEquality_ = node;
+        this._var_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expEquality_);
+            + toString(this._var_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expEquality_ == child)
+        if(this._var_ == child)
         {
-            this._expEquality_ = null;
+            this._var_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AIgualConditionalXor extends PConditionalXor
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expEquality_ == oldChild)
+        if(this._var_ == oldChild)
         {
-            setExpEquality((PExpEquality) newChild);
+            setVar((PVar) newChild);
             return;
         }
 

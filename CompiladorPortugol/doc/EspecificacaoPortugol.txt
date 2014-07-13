@@ -91,100 +91,186 @@ Productions
 
 		start = program;
 		
-		program = programa id inicio decl* command* fim;
+		program = programa id inicio decl* command* fim {-> New program(id, [decl], [command])};
 		
 		decl = 
-			{variable} tipo dois_pontos varlist* var semicolon | 
-			{constant} const id valor semicolon;
+			  {variable} tipo dois_pontos var_list semicolon	{-> New decl.variable(tipo, [var_list.var])} 
+			| {constant} const id valor semicolon				{-> New decl.constant(id, valor.valor)}
+		;
 				
 		var = 
-			{id} id | 
-			{id_array} id_array;
+			  {id} id 					{-> New var.id(id)} 
+			| {id_array} id_array		{-> New var.id_array(id_array)}
+		;
 		
-		varlist = var virgula;
+		var_list {-> var+} = var var_list_tail*	{-> [var, var_list_tail.var]};
+		
+		var_list_tail {-> var} = virgula var {-> var};
 		
 		valor = 
-			{string} string | 
-			{integer} n_int | 
-			{real} n_real;
+			  {string} string 			{-> New valor.string(string)} 
+			| {integer} n_int 			{-> New valor.integer(n_int)}
+			| {real} n_real				{-> New valor.real(n_real)}
+		;
 		
 		command = 
-			{attribution} 	var atribuicao expression semicolon |
+			  {attribution} var atribuicao expression semicolon 
+			  				{-> New command.attribution(var, expression.exp)}
+			  
+			| {read} leia par_e var_list par_d semicolon 
+							{-> New command.read([var_list.var])}
 			
-			{read} 			leia par_e varlist* var par_d semicolon | 
+			| {write} escreva par_e exp_list par_d semicolon 
+							{-> New command.write([exp_list.exp])}
+							
+			| {if} se par_e exp_logic par_d entao command+ else_part? fim_se semicolon 
+							{-> New command.if(exp_logic.exp, [command], [else_part.command])}
 			
-			{write}			escreva par_e explist* expression par_d semicolon |
+			| {switch} avalie par_e expression par_d case_part+ else_switch? fim_avalie semicolon
+							{-> New command.switch(expression.exp, [case_part.case], [else_switch.command]  )} 
 			
-			{if} 			se par_e exp_logic par_d entao command+ elsepart? fim_se semicolon |
+			| {while} enquanto par_e exp_logic par_d faca command+ fim_enquanto semicolon 
+							{-> New command.while(exp_logic.exp, [command])}
 			
-			{switch}		avalie par_e expression par_d casepart+ elseswitch? fim_avalie semicolon |
+			| {repeat} repita command+ ate par_e exp_logic par_d semicolon 
+							{-> New command.repeat([command], exp_logic.exp)}
+							
+			| {for} para var de [x1]:n_int ate [x2]:n_int faca command+ fim_para semicolon
+							{-> New command.for(x1, x2, [command])}
+			 
 			
-			{while}			enquanto par_e exp_logic par_d faca command+ fim_enquanto semicolon |
-			
-			{repeat} 		repita command+ ate par_e exp_logic par_d semicolon |
-			
-			{for}			para var de [x1]:n_int ate [x2]:n_int faca command+ fim_para semicolon |
-			
-			{for_passo}		para var de [x1]:n_int passo [x2]:n_int ate [x3]:n_int faca command+ fim_para semicolon;
+			| {for_passo} para var de [x1]:n_int passo [x2]:n_int ate [x3]:n_int faca command+ fim_para semicolon
+							{-> New command.for_passo(x1, x2, x3, [command])}
+		;
 			
 		
-		elsepart = senao command+;
+		else_part {-> command+} = senao command+ {-> [command]};
 		
-		casepart = caso valor dois_pontos command+;
+		case_list {-> case+} = case_part+ {-> [case_part.case]};
 		
-		elseswitch = senao dois_pontos command+;
+		case_part {-> case} = caso valor dois_pontos command+ {-> New case(valor, [command])};
+		
+		else_switch {-> command+} = senao dois_pontos command+ {-> [command]};
 
-		explist = expression virgula;
-		
-		expression = conditional_or;
-		
-		exp_logic = conditional_or;
-		
-		conditional_or =
-				{ou} conditional_or ou conditional_and | 
-				{e} conditional_and;
-		
-		conditional_and = 
-				{e} conditional_and e conditional_xor |
-				{xor} conditional_xor;
-				
-		conditional_xor =
-				{xor} conditional_xor xor exp_equality |
-				{igual} exp_equality;
-		
-		exp_equality =
-				{igual} exp_equality igual exp_relational |
-				{diferente} exp_equality diferente exp_relational |
-				{expressao} exp_relational;
-				
-		exp_relational = 
-				{maior} exp_relational maior exp_additive |
-				{menor} exp_relational menor exp_additive |
-				{maior_igual} exp_relational maior_igual exp_additive |
-				{menor_igual} exp_relational menor_igual exp_additive |
-				{expressao} exp_additive ;
-				
-		exp_additive =
-				{soma} exp_additive mais exp_multiplicative |
-				{subtracao} exp_additive menos exp_multiplicative |
-				{multiplicacao} exp_multiplicative ;
-		
-		exp_multiplicative = 
-				{multiplicacao} exp_multiplicative mult exp_unary |
-				{divisao} exp_multiplicative divisao exp_unary |
-				{unario} exp_unary;
-		
-		exp_unary = 
-				{negativo} menos exp_unary |
-				{negacao} nao exp_unary |
-				{primario} primary;
-			
-		primary =
-				{valor} valor |
-				{var} var |
-				{par_exp} par_e expression par_d;
-		
 
+		exp_list {-> exp+} = expression expression_tail* {-> [expression.exp, expression_tail.exp]};
+		
+		expression_tail {-> exp} = virgula expression {-> expression.exp};
+		
+		
+		expression {-> exp} = conditional_or {-> conditional_or.exp};
+		
+		exp_logic {-> exp} = conditional_or {-> conditional_or.exp};
+		
+		conditional_or {-> exp} =
+				  {ou} conditional_or ou conditional_and 	{-> New exp.ou(conditional_or.exp, conditional_and.exp)}
+				| {e} conditional_and						{-> conditional_and.exp}
+		;
+		
+		conditional_and {-> exp} = 
+				  {e} conditional_and e conditional_xor		{-> New exp.e(conditional_and.exp, conditional_xor.exp)} 
+				| {xor} conditional_xor						{-> conditional_xor.exp}
+		;
+				
+		conditional_xor {-> exp} =
+				  {xor} conditional_xor xor exp_equality 	{-> New exp.xor(conditional_xor.exp, exp_equality.exp )}
+				| {igual} exp_equality						{-> exp_equality.exp}
+		;					
+		
+		exp_equality {-> exp} =
+				  {igual} exp_equality igual exp_relational			{-> New exp.igual(exp_equality.exp, exp_relational.exp)} 
+				| {diferente} exp_equality diferente exp_relational {-> New exp.diferente(exp_equality.exp, exp_relational.exp)}
+				| {expressao} exp_relational						{-> exp_relational.exp}
+		;
+				
+		exp_relational {-> exp} = 
+				  {maior} exp_relational maior exp_additive 				{-> New exp.maior(exp_relational.exp, exp_additive.exp)}
+				| {menor} exp_relational menor exp_additive 				{-> New exp.menor(exp_relational.exp, exp_additive.exp)}
+				| {maior_igual} exp_relational maior_igual exp_additive 	{-> New exp.maior_igual(exp_relational.exp, exp_additive.exp)}
+				| {menor_igual} exp_relational menor_igual exp_additive 	{-> New exp.menor_igual(exp_relational.exp, exp_additive.exp)}
+				| {expressao} exp_additive									{-> exp_additive.exp} 
+		;
+				
+		exp_additive {-> exp}  =
+				  {soma} exp_additive mais exp_multiplicative 		{-> New exp.soma(exp_additive.exp, exp_multiplicative.exp)}
+				| {subtracao} exp_additive menos exp_multiplicative {-> New exp.subtracao(exp_additive.exp, exp_multiplicative.exp)}
+				| {multiplicacao} exp_multiplicative 	 			{-> exp_multiplicative.exp} 
+		;
+		
+		exp_multiplicative {-> exp} = 
+				  {multiplicacao} exp_multiplicative mult exp_unary 	{-> New exp.multiplicacao(exp_multiplicative.exp, exp_unary.exp)}
+				| {divisao} exp_multiplicative divisao exp_unary 		{-> New exp.divisao(exp_multiplicative.exp, exp_unary.exp)}
+				| {unario} exp_unary									{-> exp_unary.exp}
+		;
+		
+		exp_unary {-> exp}= 
+				  {negativo} menos exp_unary 		{-> exp_unary.exp}
+				| {negacao} nao exp_unary 			{-> exp_unary.exp}
+				| {primario} primary				{-> primary.exp}
+		;
 			
+			
+		primary {-> exp} =
+				  {valor} valor						{-> New exp.valor(valor)}
+				| {var} var 						{-> New exp.var(var)} 
+				| {par_exp} par_e expression par_d	{-> expression.exp}
+		;
+
+
+Abstract Syntax Tree
+		start = program;
+		
+		program = id decl* command*;
+		
+		decl =
+			  {variable} tipo var*
+			| {constant} id valor
+		;	
+		
+		var = 
+			  {id} id
+			| {id_array} id_array
+		;
+					
+		valor =
+			  {string} string 	
+			| {integer} n_int		 
+			| {real} n_real
+		;
+		
+		command =
+			  {attribution} var exp
+			| {read} 		var*
+			| {write}		exp*
+			| {if}			exp [then]:command* [else]:command*
+			| {switch}		exp case+ [else_switch]:command*
+			| {while}		exp command+
+			| {repeat}		command+ exp
+			| {for}			[x1]:n_int [x2]:n_int command+
+			| {for_passo}	[x1]:n_int [x2]:n_int [x3]:n_int command+
+		;
+		
+		case = valor command+;
+		
+		exp =
+			  {ou} 				 [left]:exp [right]:exp 
+			| {e} 				 [left]:exp [right]:exp 
+			| {xor} 			 [left]:exp [right]:exp 
+			| {igual} 			 [left]:exp [right]:exp 
+			| {diferente} 		 [left]:exp [right]:exp 
+			| {maior} 			 [left]:exp [right]:exp 
+			| {menor} 			 [left]:exp [right]:exp 
+			| {maior_igual} 	 [left]:exp [right]:exp 
+			| {menor_igual} 	 [left]:exp [right]:exp 
+			| {soma} 			 [left]:exp [right]:exp 
+			| {subtracao}		 [left]:exp [right]:exp 
+			| {multiplicacao} 	 [left]:exp [right]:exp 
+			| {divisao} 		 [left]:exp [right]:exp 
+			| {valor}			 valor
+			| {var}				 var
+		;
+	
+			
+		
 
 

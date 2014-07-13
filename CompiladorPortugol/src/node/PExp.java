@@ -2,7 +2,7 @@
 
 package node;
 
-public abstract class PExpLogic extends Node
+public abstract class PExp extends Node
 {
     // Empty body
 }

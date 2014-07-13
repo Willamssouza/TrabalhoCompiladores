@@ -9,10 +9,7 @@ import analysis.*;
 public final class AVariableDecl extends PDecl
 {
     private TTipo _tipo_;
-    private TDoisPontos _doisPontos_;
-    private final LinkedList<PVarlist> _varlist_ = new LinkedList<PVarlist>();
-    private PVar _var_;
-    private TSemicolon _semicolon_;
+    private final LinkedList<PVar> _var_ = new LinkedList<PVar>();
 
     public AVariableDecl()
     {
@@ -21,21 +18,12 @@ public final class AVariableDecl extends PDecl
 
     public AVariableDecl(
         @SuppressWarnings("hiding") TTipo _tipo_,
-        @SuppressWarnings("hiding") TDoisPontos _doisPontos_,
-        @SuppressWarnings("hiding") List<?> _varlist_,
-        @SuppressWarnings("hiding") PVar _var_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") List<?> _var_)
     {
         // Constructor
         setTipo(_tipo_);
 
-        setDoisPontos(_doisPontos_);
-
-        setVarlist(_varlist_);
-
         setVar(_var_);
-
-        setSemicolon(_semicolon_);
 
     }
 
@@ -44,10 +32,7 @@ public final class AVariableDecl extends PDecl
     {
         return new AVariableDecl(
             cloneNode(this._tipo_),
-            cloneNode(this._doisPontos_),
-            cloneList(this._varlist_),
-            cloneNode(this._var_),
-            cloneNode(this._semicolon_));
+            cloneList(this._var_));
     }
 
     @Override
@@ -81,105 +66,30 @@ public final class AVariableDecl extends PDecl
         this._tipo_ = node;
     }
 
-    public TDoisPontos getDoisPontos()
+    public LinkedList<PVar> getVar()
     {
-        return this._doisPontos_;
+        return this._var_;
     }
 
-    public void setDoisPontos(TDoisPontos node)
+    public void setVar(List<?> list)
     {
-        if(this._doisPontos_ != null)
-        {
-            this._doisPontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doisPontos_ = node;
-    }
-
-    public LinkedList<PVarlist> getVarlist()
-    {
-        return this._varlist_;
-    }
-
-    public void setVarlist(List<?> list)
-    {
-        for(PVarlist e : this._varlist_)
+        for(PVar e : this._var_)
         {
             e.parent(null);
         }
-        this._varlist_.clear();
+        this._var_.clear();
 
         for(Object obj_e : list)
         {
-            PVarlist e = (PVarlist) obj_e;
+            PVar e = (PVar) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._varlist_.add(e);
+            this._var_.add(e);
         }
-    }
-
-    public PVar getVar()
-    {
-        return this._var_;
-    }
-
-    public void setVar(PVar node)
-    {
-        if(this._var_ != null)
-        {
-            this._var_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._var_ = node;
-    }
-
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
     }
 
     @Override
@@ -187,10 +97,7 @@ public final class AVariableDecl extends PDecl
     {
         return ""
             + toString(this._tipo_)
-            + toString(this._doisPontos_)
-            + toString(this._varlist_)
-            + toString(this._var_)
-            + toString(this._semicolon_);
+            + toString(this._var_);
     }
 
     @Override
@@ -203,26 +110,8 @@ public final class AVariableDecl extends PDecl
             return;
         }
 
-        if(this._doisPontos_ == child)
+        if(this._var_.remove(child))
         {
-            this._doisPontos_ = null;
-            return;
-        }
-
-        if(this._varlist_.remove(child))
-        {
-            return;
-        }
-
-        if(this._var_ == child)
-        {
-            this._var_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
             return;
         }
 
@@ -239,19 +128,13 @@ public final class AVariableDecl extends PDecl
             return;
         }
 
-        if(this._doisPontos_ == oldChild)
-        {
-            setDoisPontos((TDoisPontos) newChild);
-            return;
-        }
-
-        for(ListIterator<PVarlist> i = this._varlist_.listIterator(); i.hasNext();)
+        for(ListIterator<PVar> i = this._var_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PVarlist) newChild);
+                    i.set((PVar) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;
@@ -261,18 +144,6 @@ public final class AVariableDecl extends PDecl
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._var_ == oldChild)
-        {
-            setVar((PVar) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
-            return;
         }
 
         throw new RuntimeException("Not a child.");

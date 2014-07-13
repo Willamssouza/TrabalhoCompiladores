@@ -36,19 +36,10 @@ public class Parser
         this.lexer = lexer;
     }
 
-    protected void filter() throws ParserException, LexerException, IOException
-    {
-        // Empty body
-    }
-
-    private void push(int numstate, ArrayList<Object> listNode, boolean hidden) throws ParserException, LexerException, IOException
+    @SuppressWarnings({"unchecked","unused"})
+    private void push(int numstate, ArrayList<Object> listNode) throws ParserException, LexerException, IOException
     {
         this.nodeList = listNode;
-
-        if(!hidden)
-        {
-            filter();
-        }
 
         if(!this.stack.hasNext())
         {
@@ -113,7 +104,7 @@ public class Parser
     @SuppressWarnings("unchecked")
     public Start parse() throws ParserException, LexerException, IOException
     {
-        push(0, null, true);
+        push(0, null);
         List<Node> ign = null;
         while(true)
         {
@@ -170,7 +161,7 @@ public class Parser
 		    {
 		        ArrayList<Object> list = new ArrayList<Object>();
 		        list.add(this.lexer.next());
-                        push(this.action[1], list, false);
+                        push(this.action[1], list);
                     }
 		    break;
                 case REDUCE:
@@ -201,415 +192,427 @@ public class Parser
             case 0: /* reduce AStart */
             {
                 ArrayList<Object> list = new0();
-                push(goTo(0), list, false);
+                push(goTo(0), list);
             }
             break;
             case 1: /* reduce AAprogram1Program */
             {
                 ArrayList<Object> list = new1();
-                push(goTo(1), list, false);
+                push(goTo(1), list);
             }
             break;
             case 2: /* reduce AAprogram2Program */
             {
                 ArrayList<Object> list = new2();
-                push(goTo(1), list, false);
+                push(goTo(1), list);
             }
             break;
             case 3: /* reduce AAprogram3Program */
             {
                 ArrayList<Object> list = new3();
-                push(goTo(1), list, false);
+                push(goTo(1), list);
             }
             break;
             case 4: /* reduce AAprogram4Program */
             {
                 ArrayList<Object> list = new4();
-                push(goTo(1), list, false);
+                push(goTo(1), list);
             }
             break;
-            case 5: /* reduce AAvariabledecl1Decl */
+            case 5: /* reduce AVariableDecl */
             {
                 ArrayList<Object> list = new5();
-                push(goTo(2), list, false);
+                push(goTo(2), list);
             }
             break;
-            case 6: /* reduce AAvariabledecl2Decl */
+            case 6: /* reduce AConstantDecl */
             {
                 ArrayList<Object> list = new6();
-                push(goTo(2), list, false);
+                push(goTo(2), list);
             }
             break;
-            case 7: /* reduce AConstantDecl */
+            case 7: /* reduce AIdVar */
             {
                 ArrayList<Object> list = new7();
-                push(goTo(2), list, false);
+                push(goTo(3), list);
             }
             break;
-            case 8: /* reduce AIdVar */
+            case 8: /* reduce AIdArrayVar */
             {
                 ArrayList<Object> list = new8();
-                push(goTo(3), list, false);
+                push(goTo(3), list);
             }
             break;
-            case 9: /* reduce AIdArrayVar */
+            case 9: /* reduce AAvarlist1VarList */
             {
                 ArrayList<Object> list = new9();
-                push(goTo(3), list, false);
+                push(goTo(4), list);
             }
             break;
-            case 10: /* reduce AVarlist */
+            case 10: /* reduce AAvarlist2VarList */
             {
                 ArrayList<Object> list = new10();
-                push(goTo(4), list, false);
+                push(goTo(4), list);
             }
             break;
-            case 11: /* reduce AStringValor */
+            case 11: /* reduce AVarListTail */
             {
                 ArrayList<Object> list = new11();
-                push(goTo(5), list, false);
+                push(goTo(5), list);
             }
             break;
-            case 12: /* reduce AIntegerValor */
+            case 12: /* reduce AStringValor */
             {
                 ArrayList<Object> list = new12();
-                push(goTo(5), list, false);
+                push(goTo(6), list);
             }
             break;
-            case 13: /* reduce ARealValor */
+            case 13: /* reduce AIntegerValor */
             {
                 ArrayList<Object> list = new13();
-                push(goTo(5), list, false);
+                push(goTo(6), list);
             }
             break;
-            case 14: /* reduce AAttributionCommand */
+            case 14: /* reduce ARealValor */
             {
                 ArrayList<Object> list = new14();
-                push(goTo(6), list, false);
+                push(goTo(6), list);
             }
             break;
-            case 15: /* reduce AAreadcommand1Command */
+            case 15: /* reduce AAttributionCommand */
             {
                 ArrayList<Object> list = new15();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 16: /* reduce AAreadcommand2Command */
+            case 16: /* reduce AReadCommand */
             {
                 ArrayList<Object> list = new16();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 17: /* reduce AAwritecommand1Command */
+            case 17: /* reduce AWriteCommand */
             {
                 ArrayList<Object> list = new17();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 18: /* reduce AAwritecommand2Command */
+            case 18: /* reduce AAifcommand1Command */
             {
                 ArrayList<Object> list = new18();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 19: /* reduce AAifcommand1Command */
+            case 19: /* reduce AAifcommand2Command */
             {
                 ArrayList<Object> list = new19();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 20: /* reduce AAifcommand2Command */
+            case 20: /* reduce AAswitchcommand1Command */
             {
                 ArrayList<Object> list = new20();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 21: /* reduce AAswitchcommand1Command */
+            case 21: /* reduce AAswitchcommand2Command */
             {
                 ArrayList<Object> list = new21();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 22: /* reduce AAswitchcommand2Command */
+            case 22: /* reduce AWhileCommand */
             {
                 ArrayList<Object> list = new22();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 23: /* reduce AWhileCommand */
+            case 23: /* reduce ARepeatCommand */
             {
                 ArrayList<Object> list = new23();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 24: /* reduce ARepeatCommand */
+            case 24: /* reduce AForCommand */
             {
                 ArrayList<Object> list = new24();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 25: /* reduce AForCommand */
+            case 25: /* reduce AForPassoCommand */
             {
                 ArrayList<Object> list = new25();
-                push(goTo(6), list, false);
+                push(goTo(7), list);
             }
             break;
-            case 26: /* reduce AForPassoCommand */
+            case 26: /* reduce AElsePart */
             {
                 ArrayList<Object> list = new26();
-                push(goTo(6), list, false);
+                push(goTo(8), list);
             }
             break;
-            case 27: /* reduce AElsepart */
+            case 27: /* reduce ACaseList */
             {
                 ArrayList<Object> list = new27();
-                push(goTo(7), list, false);
+                push(goTo(9), list);
             }
             break;
-            case 28: /* reduce ACasepart */
+            case 28: /* reduce ACasePart */
             {
                 ArrayList<Object> list = new28();
-                push(goTo(8), list, false);
+                push(goTo(10), list);
             }
             break;
-            case 29: /* reduce AElseswitch */
+            case 29: /* reduce AElseSwitch */
             {
                 ArrayList<Object> list = new29();
-                push(goTo(9), list, false);
+                push(goTo(11), list);
             }
             break;
-            case 30: /* reduce AExplist */
+            case 30: /* reduce AAexplist1ExpList */
             {
                 ArrayList<Object> list = new30();
-                push(goTo(10), list, false);
+                push(goTo(12), list);
             }
             break;
-            case 31: /* reduce AExpression */
+            case 31: /* reduce AAexplist2ExpList */
             {
                 ArrayList<Object> list = new31();
-                push(goTo(11), list, false);
+                push(goTo(12), list);
             }
             break;
-            case 32: /* reduce AExpLogic */
+            case 32: /* reduce AExpressionTail */
             {
                 ArrayList<Object> list = new32();
-                push(goTo(12), list, false);
+                push(goTo(13), list);
             }
             break;
-            case 33: /* reduce AOuConditionalOr */
+            case 33: /* reduce AExpression */
             {
                 ArrayList<Object> list = new33();
-                push(goTo(13), list, false);
+                push(goTo(14), list);
             }
             break;
-            case 34: /* reduce AEConditionalOr */
+            case 34: /* reduce AExpLogic */
             {
                 ArrayList<Object> list = new34();
-                push(goTo(13), list, false);
+                push(goTo(15), list);
             }
             break;
-            case 35: /* reduce AEConditionalAnd */
+            case 35: /* reduce AOuConditionalOr */
             {
                 ArrayList<Object> list = new35();
-                push(goTo(14), list, false);
+                push(goTo(16), list);
             }
             break;
-            case 36: /* reduce AXorConditionalAnd */
+            case 36: /* reduce AEConditionalOr */
             {
                 ArrayList<Object> list = new36();
-                push(goTo(14), list, false);
+                push(goTo(16), list);
             }
             break;
-            case 37: /* reduce AXorConditionalXor */
+            case 37: /* reduce AEConditionalAnd */
             {
                 ArrayList<Object> list = new37();
-                push(goTo(15), list, false);
+                push(goTo(17), list);
             }
             break;
-            case 38: /* reduce AIgualConditionalXor */
+            case 38: /* reduce AXorConditionalAnd */
             {
                 ArrayList<Object> list = new38();
-                push(goTo(15), list, false);
+                push(goTo(17), list);
             }
             break;
-            case 39: /* reduce AIgualExpEquality */
+            case 39: /* reduce AXorConditionalXor */
             {
                 ArrayList<Object> list = new39();
-                push(goTo(16), list, false);
+                push(goTo(18), list);
             }
             break;
-            case 40: /* reduce ADiferenteExpEquality */
+            case 40: /* reduce AIgualConditionalXor */
             {
                 ArrayList<Object> list = new40();
-                push(goTo(16), list, false);
+                push(goTo(18), list);
             }
             break;
-            case 41: /* reduce AExpressaoExpEquality */
+            case 41: /* reduce AIgualExpEquality */
             {
                 ArrayList<Object> list = new41();
-                push(goTo(16), list, false);
+                push(goTo(19), list);
             }
             break;
-            case 42: /* reduce AMaiorExpRelational */
+            case 42: /* reduce ADiferenteExpEquality */
             {
                 ArrayList<Object> list = new42();
-                push(goTo(17), list, false);
+                push(goTo(19), list);
             }
             break;
-            case 43: /* reduce AMenorExpRelational */
+            case 43: /* reduce AExpressaoExpEquality */
             {
                 ArrayList<Object> list = new43();
-                push(goTo(17), list, false);
+                push(goTo(19), list);
             }
             break;
-            case 44: /* reduce AMaiorIgualExpRelational */
+            case 44: /* reduce AMaiorExpRelational */
             {
                 ArrayList<Object> list = new44();
-                push(goTo(17), list, false);
+                push(goTo(20), list);
             }
             break;
-            case 45: /* reduce AMenorIgualExpRelational */
+            case 45: /* reduce AMenorExpRelational */
             {
                 ArrayList<Object> list = new45();
-                push(goTo(17), list, false);
+                push(goTo(20), list);
             }
             break;
-            case 46: /* reduce AExpressaoExpRelational */
+            case 46: /* reduce AMaiorIgualExpRelational */
             {
                 ArrayList<Object> list = new46();
-                push(goTo(17), list, false);
+                push(goTo(20), list);
             }
             break;
-            case 47: /* reduce ASomaExpAdditive */
+            case 47: /* reduce AMenorIgualExpRelational */
             {
                 ArrayList<Object> list = new47();
-                push(goTo(18), list, false);
+                push(goTo(20), list);
             }
             break;
-            case 48: /* reduce ASubtracaoExpAdditive */
+            case 48: /* reduce AExpressaoExpRelational */
             {
                 ArrayList<Object> list = new48();
-                push(goTo(18), list, false);
+                push(goTo(20), list);
             }
             break;
-            case 49: /* reduce AMultiplicacaoExpAdditive */
+            case 49: /* reduce ASomaExpAdditive */
             {
                 ArrayList<Object> list = new49();
-                push(goTo(18), list, false);
+                push(goTo(21), list);
             }
             break;
-            case 50: /* reduce AMultiplicacaoExpMultiplicative */
+            case 50: /* reduce ASubtracaoExpAdditive */
             {
                 ArrayList<Object> list = new50();
-                push(goTo(19), list, false);
+                push(goTo(21), list);
             }
             break;
-            case 51: /* reduce ADivisaoExpMultiplicative */
+            case 51: /* reduce AMultiplicacaoExpAdditive */
             {
                 ArrayList<Object> list = new51();
-                push(goTo(19), list, false);
+                push(goTo(21), list);
             }
             break;
-            case 52: /* reduce AUnarioExpMultiplicative */
+            case 52: /* reduce AMultiplicacaoExpMultiplicative */
             {
                 ArrayList<Object> list = new52();
-                push(goTo(19), list, false);
+                push(goTo(22), list);
             }
             break;
-            case 53: /* reduce ANegativoExpUnary */
+            case 53: /* reduce ADivisaoExpMultiplicative */
             {
                 ArrayList<Object> list = new53();
-                push(goTo(20), list, false);
+                push(goTo(22), list);
             }
             break;
-            case 54: /* reduce ANegacaoExpUnary */
+            case 54: /* reduce AUnarioExpMultiplicative */
             {
                 ArrayList<Object> list = new54();
-                push(goTo(20), list, false);
+                push(goTo(22), list);
             }
             break;
-            case 55: /* reduce APrimarioExpUnary */
+            case 55: /* reduce ANegativoExpUnary */
             {
                 ArrayList<Object> list = new55();
-                push(goTo(20), list, false);
+                push(goTo(23), list);
             }
             break;
-            case 56: /* reduce AValorPrimary */
+            case 56: /* reduce ANegacaoExpUnary */
             {
                 ArrayList<Object> list = new56();
-                push(goTo(21), list, false);
+                push(goTo(23), list);
             }
             break;
-            case 57: /* reduce AVarPrimary */
+            case 57: /* reduce APrimarioExpUnary */
             {
                 ArrayList<Object> list = new57();
-                push(goTo(21), list, false);
+                push(goTo(23), list);
             }
             break;
-            case 58: /* reduce AParExpPrimary */
+            case 58: /* reduce AValorPrimary */
             {
                 ArrayList<Object> list = new58();
-                push(goTo(21), list, false);
+                push(goTo(24), list);
             }
             break;
-            case 59: /* reduce ATerminal$Decl */
+            case 59: /* reduce AVarPrimary */
             {
                 ArrayList<Object> list = new59();
-                push(goTo(22), list, true);
+                push(goTo(24), list);
             }
             break;
-            case 60: /* reduce ANonTerminal$Decl */
+            case 60: /* reduce AParExpPrimary */
             {
                 ArrayList<Object> list = new60();
-                push(goTo(22), list, true);
+                push(goTo(24), list);
             }
             break;
-            case 61: /* reduce ATerminal$Command */
+            case 61: /* reduce ATerminal$Decl */
             {
                 ArrayList<Object> list = new61();
-                push(goTo(23), list, true);
+                push(goTo(25), list);
             }
             break;
-            case 62: /* reduce ANonTerminal$Command */
+            case 62: /* reduce ANonTerminal$Decl */
             {
                 ArrayList<Object> list = new62();
-                push(goTo(23), list, true);
+                push(goTo(25), list);
             }
             break;
-            case 63: /* reduce ATerminal$Varlist */
+            case 63: /* reduce ATerminal$Command */
             {
                 ArrayList<Object> list = new63();
-                push(goTo(24), list, true);
+                push(goTo(26), list);
             }
             break;
-            case 64: /* reduce ANonTerminal$Varlist */
+            case 64: /* reduce ANonTerminal$Command */
             {
                 ArrayList<Object> list = new64();
-                push(goTo(24), list, true);
+                push(goTo(26), list);
             }
             break;
-            case 65: /* reduce ATerminal$Explist */
+            case 65: /* reduce ATerminal$VarListTail */
             {
                 ArrayList<Object> list = new65();
-                push(goTo(25), list, true);
+                push(goTo(27), list);
             }
             break;
-            case 66: /* reduce ANonTerminal$Explist */
+            case 66: /* reduce ANonTerminal$VarListTail */
             {
                 ArrayList<Object> list = new66();
-                push(goTo(25), list, true);
+                push(goTo(27), list);
             }
             break;
-            case 67: /* reduce ATerminal$Casepart */
+            case 67: /* reduce ATerminal$CasePart */
             {
                 ArrayList<Object> list = new67();
-                push(goTo(26), list, true);
+                push(goTo(28), list);
             }
             break;
-            case 68: /* reduce ANonTerminal$Casepart */
+            case 68: /* reduce ANonTerminal$CasePart */
             {
                 ArrayList<Object> list = new68();
-                push(goTo(26), list, true);
+                push(goTo(28), list);
+            }
+            break;
+            case 69: /* reduce ATerminal$ExpressionTail */
+            {
+                ArrayList<Object> list = new69();
+                push(goTo(29), list);
+            }
+            break;
+            case 70: /* reduce ANonTerminal$ExpressionTail */
+            {
+                ArrayList<Object> list = new70();
+                push(goTo(29), list);
             }
             break;
         }
@@ -649,24 +652,18 @@ public class Parser
         PProgram pprogramNode1;
         {
             // Block
-        TPrograma tprogramaNode2;
-        TId tidNode3;
-        TInicio tinicioNode4;
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        LinkedList<Object> listNode6 = new LinkedList<Object>();
-        TFim tfimNode7;
-        tprogramaNode2 = (TPrograma)nodeArrayList1.get(0);
-        tidNode3 = (TId)nodeArrayList2.get(0);
-        tinicioNode4 = (TInicio)nodeArrayList3.get(0);
+        TId tidNode2;
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        tidNode2 = (TId)nodeArrayList2.get(0);
         {
             // Block
         }
         {
             // Block
         }
-        tfimNode7 = (TFim)nodeArrayList4.get(0);
 
-        pprogramNode1 = new AProgram(tprogramaNode2, tidNode3, tinicioNode4, listNode5, listNode6, tfimNode7);
+        pprogramNode1 = new AProgram(tidNode2, listNode3, listNode4);
         }
 	nodeList.add(pprogramNode1);
         return nodeList;
@@ -687,30 +684,24 @@ public class Parser
         PProgram pprogramNode1;
         {
             // Block
-        TPrograma tprogramaNode2;
-        TId tidNode3;
-        TInicio tinicioNode4;
-        LinkedList<Object> listNode6 = new LinkedList<Object>();
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        TFim tfimNode8;
-        tprogramaNode2 = (TPrograma)nodeArrayList1.get(0);
-        tidNode3 = (TId)nodeArrayList2.get(0);
-        tinicioNode4 = (TInicio)nodeArrayList3.get(0);
+        TId tidNode2;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        tidNode2 = (TId)nodeArrayList2.get(0);
         {
             // Block
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        listNode5 = (LinkedList)nodeArrayList4.get(0);
-	if(listNode5 != null)
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList4.get(0);
+	if(listNode3 != null)
 	{
-	  listNode6.addAll(listNode5);
+	  listNode4.addAll(listNode3);
 	}
         }
         {
             // Block
         }
-        tfimNode8 = (TFim)nodeArrayList5.get(0);
 
-        pprogramNode1 = new AProgram(tprogramaNode2, tidNode3, tinicioNode4, listNode6, listNode7, tfimNode8);
+        pprogramNode1 = new AProgram(tidNode2, listNode4, listNode5);
         }
 	nodeList.add(pprogramNode1);
         return nodeList;
@@ -731,30 +722,24 @@ public class Parser
         PProgram pprogramNode1;
         {
             // Block
-        TPrograma tprogramaNode2;
-        TId tidNode3;
-        TInicio tinicioNode4;
+        TId tidNode2;
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
         LinkedList<Object> listNode5 = new LinkedList<Object>();
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        TFim tfimNode8;
-        tprogramaNode2 = (TPrograma)nodeArrayList1.get(0);
-        tidNode3 = (TId)nodeArrayList2.get(0);
-        tinicioNode4 = (TInicio)nodeArrayList3.get(0);
+        tidNode2 = (TId)nodeArrayList2.get(0);
         {
             // Block
         }
         {
             // Block
-        LinkedList<Object> listNode6 = new LinkedList<Object>();
-        listNode6 = (LinkedList)nodeArrayList4.get(0);
-	if(listNode6 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList4.get(0);
+	if(listNode4 != null)
 	{
-	  listNode7.addAll(listNode6);
+	  listNode5.addAll(listNode4);
 	}
         }
-        tfimNode8 = (TFim)nodeArrayList5.get(0);
 
-        pprogramNode1 = new AProgram(tprogramaNode2, tidNode3, tinicioNode4, listNode5, listNode7, tfimNode8);
+        pprogramNode1 = new AProgram(tidNode2, listNode3, listNode5);
         }
 	nodeList.add(pprogramNode1);
         return nodeList;
@@ -776,36 +761,30 @@ public class Parser
         PProgram pprogramNode1;
         {
             // Block
-        TPrograma tprogramaNode2;
-        TId tidNode3;
-        TInicio tinicioNode4;
+        TId tidNode2;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
         LinkedList<Object> listNode6 = new LinkedList<Object>();
-        LinkedList<Object> listNode8 = new LinkedList<Object>();
-        TFim tfimNode9;
-        tprogramaNode2 = (TPrograma)nodeArrayList1.get(0);
-        tidNode3 = (TId)nodeArrayList2.get(0);
-        tinicioNode4 = (TInicio)nodeArrayList3.get(0);
+        tidNode2 = (TId)nodeArrayList2.get(0);
+        {
+            // Block
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList4.get(0);
+	if(listNode3 != null)
+	{
+	  listNode4.addAll(listNode3);
+	}
+        }
         {
             // Block
         LinkedList<Object> listNode5 = new LinkedList<Object>();
-        listNode5 = (LinkedList)nodeArrayList4.get(0);
+        listNode5 = (LinkedList)nodeArrayList5.get(0);
 	if(listNode5 != null)
 	{
 	  listNode6.addAll(listNode5);
 	}
         }
-        {
-            // Block
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        listNode7 = (LinkedList)nodeArrayList5.get(0);
-	if(listNode7 != null)
-	{
-	  listNode8.addAll(listNode7);
-	}
-        }
-        tfimNode9 = (TFim)nodeArrayList6.get(0);
 
-        pprogramNode1 = new AProgram(tprogramaNode2, tidNode3, tinicioNode4, listNode6, listNode8, tfimNode9);
+        pprogramNode1 = new AProgram(tidNode2, listNode4, listNode6);
         }
 	nodeList.add(pprogramNode1);
         return nodeList;
@@ -814,7 +793,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new5() /* reduce AAvariabledecl1Decl */
+    ArrayList<Object> new5() /* reduce AVariableDecl */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -826,59 +805,19 @@ public class Parser
         {
             // Block
         TTipo ttipoNode2;
-        TDoisPontos tdoispontosNode3;
         LinkedList<Object> listNode4 = new LinkedList<Object>();
-        PVar pvarNode5;
-        TSemicolon tsemicolonNode6;
         ttipoNode2 = (TTipo)nodeArrayList1.get(0);
-        tdoispontosNode3 = (TDoisPontos)nodeArrayList2.get(0);
         {
             // Block
-        }
-        pvarNode5 = (PVar)nodeArrayList3.get(0);
-        tsemicolonNode6 = (TSemicolon)nodeArrayList4.get(0);
-
-        pdeclNode1 = new AVariableDecl(ttipoNode2, tdoispontosNode3, listNode4, pvarNode5, tsemicolonNode6);
-        }
-	nodeList.add(pdeclNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new6() /* reduce AAvariabledecl2Decl */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PDecl pdeclNode1;
-        {
-            // Block
-        TTipo ttipoNode2;
-        TDoisPontos tdoispontosNode3;
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        PVar pvarNode6;
-        TSemicolon tsemicolonNode7;
-        ttipoNode2 = (TTipo)nodeArrayList1.get(0);
-        tdoispontosNode3 = (TDoisPontos)nodeArrayList2.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        listNode4 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode4 != null)
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode3 != null)
 	{
-	  listNode5.addAll(listNode4);
+	  listNode4.addAll(listNode3);
 	}
         }
-        pvarNode6 = (PVar)nodeArrayList4.get(0);
-        tsemicolonNode7 = (TSemicolon)nodeArrayList5.get(0);
 
-        pdeclNode1 = new AVariableDecl(ttipoNode2, tdoispontosNode3, listNode5, pvarNode6, tsemicolonNode7);
+        pdeclNode1 = new AVariableDecl(ttipoNode2, listNode4);
         }
 	nodeList.add(pdeclNode1);
         return nodeList;
@@ -887,7 +826,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new7() /* reduce AConstantDecl */
+    ArrayList<Object> new6() /* reduce AConstantDecl */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -898,16 +837,12 @@ public class Parser
         PDecl pdeclNode1;
         {
             // Block
-        TConst tconstNode2;
-        TId tidNode3;
-        PValor pvalorNode4;
-        TSemicolon tsemicolonNode5;
-        tconstNode2 = (TConst)nodeArrayList1.get(0);
-        tidNode3 = (TId)nodeArrayList2.get(0);
-        pvalorNode4 = (PValor)nodeArrayList3.get(0);
-        tsemicolonNode5 = (TSemicolon)nodeArrayList4.get(0);
+        TId tidNode2;
+        PValor pvalorNode3;
+        tidNode2 = (TId)nodeArrayList2.get(0);
+        pvalorNode3 = (PValor)nodeArrayList3.get(0);
 
-        pdeclNode1 = new AConstantDecl(tconstNode2, tidNode3, pvalorNode4, tsemicolonNode5);
+        pdeclNode1 = new AConstantDecl(tidNode2, pvalorNode3);
         }
 	nodeList.add(pdeclNode1);
         return nodeList;
@@ -916,7 +851,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new8() /* reduce AIdVar */
+    ArrayList<Object> new7() /* reduce AIdVar */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -936,7 +871,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new9() /* reduce AIdArrayVar */
+    ArrayList<Object> new8() /* reduce AIdArrayVar */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -956,30 +891,73 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new10() /* reduce AVarlist */
+    ArrayList<Object> new9() /* reduce AAvarlist1VarList */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PVarlist pvarlistNode1;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        PVar pvarNode2;
-        TVirgula tvirgulaNode3;
-        pvarNode2 = (PVar)nodeArrayList1.get(0);
-        tvirgulaNode3 = (TVirgula)nodeArrayList2.get(0);
-
-        pvarlistNode1 = new AVarlist(pvarNode2, tvirgulaNode3);
+        PVar pvarNode1;
+        pvarNode1 = (PVar)nodeArrayList1.get(0);
+	if(pvarNode1 != null)
+	{
+	  listNode2.add(pvarNode1);
+	}
         }
-	nodeList.add(pvarlistNode1);
+	nodeList.add(listNode2);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new11() /* reduce AStringValor */
+    ArrayList<Object> new10() /* reduce AAvarlist2VarList */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        {
+            // Block
+        PVar pvarNode1;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        pvarNode1 = (PVar)nodeArrayList1.get(0);
+        listNode2 = (LinkedList)nodeArrayList2.get(0);
+	if(pvarNode1 != null)
+	{
+	  listNode3.add(pvarNode1);
+	}
+	if(listNode2 != null)
+	{
+	  listNode3.addAll(listNode2);
+	}
+        }
+	nodeList.add(listNode3);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new11() /* reduce AVarListTail */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PVar pvarNode1;
+        pvarNode1 = (PVar)nodeArrayList2.get(0);
+	nodeList.add(pvarNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new12() /* reduce AStringValor */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -999,7 +977,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new12() /* reduce AIntegerValor */
+    ArrayList<Object> new13() /* reduce AIntegerValor */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1019,7 +997,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new13() /* reduce ARealValor */
+    ArrayList<Object> new14() /* reduce ARealValor */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1039,7 +1017,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new14() /* reduce AAttributionCommand */
+    ArrayList<Object> new15() /* reduce AAttributionCommand */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1051,15 +1029,11 @@ public class Parser
         {
             // Block
         PVar pvarNode2;
-        TAtribuicao tatribuicaoNode3;
-        PExpression pexpressionNode4;
-        TSemicolon tsemicolonNode5;
+        PExp pexpNode3;
         pvarNode2 = (PVar)nodeArrayList1.get(0);
-        tatribuicaoNode3 = (TAtribuicao)nodeArrayList2.get(0);
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-        tsemicolonNode5 = (TSemicolon)nodeArrayList4.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pcommandNode1 = new AAttributionCommand(pvarNode2, tatribuicaoNode3, pexpressionNode4, tsemicolonNode5);
+        pcommandNode1 = new AAttributionCommand(pvarNode2, pexpNode3);
         }
 	nodeList.add(pcommandNode1);
         return nodeList;
@@ -1068,7 +1042,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new15() /* reduce AAreadcommand1Command */
+    ArrayList<Object> new16() /* reduce AReadCommand */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1080,65 +1054,18 @@ public class Parser
         PCommand pcommandNode1;
         {
             // Block
-        TLeia tleiaNode2;
-        TParE tpareNode3;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        PVar pvarNode5;
-        TParD tpardNode6;
-        TSemicolon tsemicolonNode7;
-        tleiaNode2 = (TLeia)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
         {
             // Block
-        }
-        pvarNode5 = (PVar)nodeArrayList3.get(0);
-        tpardNode6 = (TParD)nodeArrayList4.get(0);
-        tsemicolonNode7 = (TSemicolon)nodeArrayList5.get(0);
-
-        pcommandNode1 = new AReadCommand(tleiaNode2, tpareNode3, listNode4, pvarNode5, tpardNode6, tsemicolonNode7);
-        }
-	nodeList.add(pcommandNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new16() /* reduce AAreadcommand2Command */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PCommand pcommandNode1;
-        {
-            // Block
-        TLeia tleiaNode2;
-        TParE tpareNode3;
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        PVar pvarNode6;
-        TParD tpardNode7;
-        TSemicolon tsemicolonNode8;
-        tleiaNode2 = (TLeia)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        listNode4 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode4 != null)
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        listNode2 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode2 != null)
 	{
-	  listNode5.addAll(listNode4);
+	  listNode3.addAll(listNode2);
 	}
         }
-        pvarNode6 = (PVar)nodeArrayList4.get(0);
-        tpardNode7 = (TParD)nodeArrayList5.get(0);
-        tsemicolonNode8 = (TSemicolon)nodeArrayList6.get(0);
 
-        pcommandNode1 = new AReadCommand(tleiaNode2, tpareNode3, listNode5, pvarNode6, tpardNode7, tsemicolonNode8);
+        pcommandNode1 = new AReadCommand(listNode3);
         }
 	nodeList.add(pcommandNode1);
         return nodeList;
@@ -1147,7 +1074,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new17() /* reduce AAwritecommand1Command */
+    ArrayList<Object> new17() /* reduce AWriteCommand */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1159,65 +1086,18 @@ public class Parser
         PCommand pcommandNode1;
         {
             // Block
-        TEscreva tescrevaNode2;
-        TParE tpareNode3;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        PExpression pexpressionNode5;
-        TParD tpardNode6;
-        TSemicolon tsemicolonNode7;
-        tescrevaNode2 = (TEscreva)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
         {
             // Block
-        }
-        pexpressionNode5 = (PExpression)nodeArrayList3.get(0);
-        tpardNode6 = (TParD)nodeArrayList4.get(0);
-        tsemicolonNode7 = (TSemicolon)nodeArrayList5.get(0);
-
-        pcommandNode1 = new AWriteCommand(tescrevaNode2, tpareNode3, listNode4, pexpressionNode5, tpardNode6, tsemicolonNode7);
-        }
-	nodeList.add(pcommandNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new18() /* reduce AAwritecommand2Command */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PCommand pcommandNode1;
-        {
-            // Block
-        TEscreva tescrevaNode2;
-        TParE tpareNode3;
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        PExpression pexpressionNode6;
-        TParD tpardNode7;
-        TSemicolon tsemicolonNode8;
-        tescrevaNode2 = (TEscreva)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        listNode4 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode4 != null)
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        listNode2 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode2 != null)
 	{
-	  listNode5.addAll(listNode4);
+	  listNode3.addAll(listNode2);
 	}
         }
-        pexpressionNode6 = (PExpression)nodeArrayList4.get(0);
-        tpardNode7 = (TParD)nodeArrayList5.get(0);
-        tsemicolonNode8 = (TSemicolon)nodeArrayList6.get(0);
 
-        pcommandNode1 = new AWriteCommand(tescrevaNode2, tpareNode3, listNode5, pexpressionNode6, tpardNode7, tsemicolonNode8);
+        pcommandNode1 = new AWriteCommand(listNode3);
         }
 	nodeList.add(pcommandNode1);
         return nodeList;
@@ -1226,7 +1106,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new19() /* reduce AAifcommand1Command */
+    ArrayList<Object> new18() /* reduce AAifcommand1Command */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1241,33 +1121,24 @@ public class Parser
         PCommand pcommandNode1;
         {
             // Block
-        TSe tseNode2;
-        TParE tpareNode3;
-        PExpLogic pexplogicNode4;
-        TParD tpardNode5;
-        TEntao tentaoNode6;
-        LinkedList<Object> listNode8 = new LinkedList<Object>();
-        @SuppressWarnings("unused") Object nullNode9 = null;
-        TFimSe tfimseNode10;
-        TSemicolon tsemicolonNode11;
-        tseNode2 = (TSe)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
-        pexplogicNode4 = (PExpLogic)nodeArrayList3.get(0);
-        tpardNode5 = (TParD)nodeArrayList4.get(0);
-        tentaoNode6 = (TEntao)nodeArrayList5.get(0);
+        PExp pexpNode2;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        pexpNode2 = (PExp)nodeArrayList3.get(0);
         {
             // Block
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        listNode7 = (LinkedList)nodeArrayList6.get(0);
-	if(listNode7 != null)
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList6.get(0);
+	if(listNode3 != null)
 	{
-	  listNode8.addAll(listNode7);
+	  listNode4.addAll(listNode3);
 	}
         }
-        tfimseNode10 = (TFimSe)nodeArrayList7.get(0);
-        tsemicolonNode11 = (TSemicolon)nodeArrayList8.get(0);
+        {
+            // Block
+        }
 
-        pcommandNode1 = new AIfCommand(tseNode2, tpareNode3, pexplogicNode4, tpardNode5, tentaoNode6, listNode8, null, tfimseNode10, tsemicolonNode11);
+        pcommandNode1 = new AIfCommand(pexpNode2, listNode4, listNode5);
         }
 	nodeList.add(pcommandNode1);
         return nodeList;
@@ -1276,7 +1147,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new20() /* reduce AAifcommand2Command */
+    ArrayList<Object> new19() /* reduce AAifcommand2Command */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1292,225 +1163,30 @@ public class Parser
         PCommand pcommandNode1;
         {
             // Block
-        TSe tseNode2;
-        TParE tpareNode3;
-        PExpLogic pexplogicNode4;
-        TParD tpardNode5;
-        TEntao tentaoNode6;
-        LinkedList<Object> listNode8 = new LinkedList<Object>();
-        PElsepart pelsepartNode9;
-        TFimSe tfimseNode10;
-        TSemicolon tsemicolonNode11;
-        tseNode2 = (TSe)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
-        pexplogicNode4 = (PExpLogic)nodeArrayList3.get(0);
-        tpardNode5 = (TParD)nodeArrayList4.get(0);
-        tentaoNode6 = (TEntao)nodeArrayList5.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        listNode7 = (LinkedList)nodeArrayList6.get(0);
-	if(listNode7 != null)
-	{
-	  listNode8.addAll(listNode7);
-	}
-        }
-        pelsepartNode9 = (PElsepart)nodeArrayList7.get(0);
-        tfimseNode10 = (TFimSe)nodeArrayList8.get(0);
-        tsemicolonNode11 = (TSemicolon)nodeArrayList9.get(0);
-
-        pcommandNode1 = new AIfCommand(tseNode2, tpareNode3, pexplogicNode4, tpardNode5, tentaoNode6, listNode8, pelsepartNode9, tfimseNode10, tsemicolonNode11);
-        }
-	nodeList.add(pcommandNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new21() /* reduce AAswitchcommand1Command */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PCommand pcommandNode1;
-        {
-            // Block
-        TAvalie tavalieNode2;
-        TParE tpareNode3;
-        PExpression pexpressionNode4;
-        TParD tpardNode5;
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        @SuppressWarnings("unused") Object nullNode8 = null;
-        TFimAvalie tfimavalieNode9;
-        TSemicolon tsemicolonNode10;
-        tavalieNode2 = (TAvalie)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-        tpardNode5 = (TParD)nodeArrayList4.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode6 = new LinkedList<Object>();
-        listNode6 = (LinkedList)nodeArrayList5.get(0);
-	if(listNode6 != null)
-	{
-	  listNode7.addAll(listNode6);
-	}
-        }
-        tfimavalieNode9 = (TFimAvalie)nodeArrayList6.get(0);
-        tsemicolonNode10 = (TSemicolon)nodeArrayList7.get(0);
-
-        pcommandNode1 = new ASwitchCommand(tavalieNode2, tpareNode3, pexpressionNode4, tpardNode5, listNode7, null, tfimavalieNode9, tsemicolonNode10);
-        }
-	nodeList.add(pcommandNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new22() /* reduce AAswitchcommand2Command */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList8 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PCommand pcommandNode1;
-        {
-            // Block
-        TAvalie tavalieNode2;
-        TParE tpareNode3;
-        PExpression pexpressionNode4;
-        TParD tpardNode5;
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        PElseswitch pelseswitchNode8;
-        TFimAvalie tfimavalieNode9;
-        TSemicolon tsemicolonNode10;
-        tavalieNode2 = (TAvalie)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
-        pexpressionNode4 = (PExpression)nodeArrayList3.get(0);
-        tpardNode5 = (TParD)nodeArrayList4.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode6 = new LinkedList<Object>();
-        listNode6 = (LinkedList)nodeArrayList5.get(0);
-	if(listNode6 != null)
-	{
-	  listNode7.addAll(listNode6);
-	}
-        }
-        pelseswitchNode8 = (PElseswitch)nodeArrayList6.get(0);
-        tfimavalieNode9 = (TFimAvalie)nodeArrayList7.get(0);
-        tsemicolonNode10 = (TSemicolon)nodeArrayList8.get(0);
-
-        pcommandNode1 = new ASwitchCommand(tavalieNode2, tpareNode3, pexpressionNode4, tpardNode5, listNode7, pelseswitchNode8, tfimavalieNode9, tsemicolonNode10);
-        }
-	nodeList.add(pcommandNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new23() /* reduce AWhileCommand */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList8 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PCommand pcommandNode1;
-        {
-            // Block
-        TEnquanto tenquantoNode2;
-        TParE tpareNode3;
-        PExpLogic pexplogicNode4;
-        TParD tpardNode5;
-        TFaca tfacaNode6;
-        LinkedList<Object> listNode8 = new LinkedList<Object>();
-        TFimEnquanto tfimenquantoNode9;
-        TSemicolon tsemicolonNode10;
-        tenquantoNode2 = (TEnquanto)nodeArrayList1.get(0);
-        tpareNode3 = (TParE)nodeArrayList2.get(0);
-        pexplogicNode4 = (PExpLogic)nodeArrayList3.get(0);
-        tpardNode5 = (TParD)nodeArrayList4.get(0);
-        tfacaNode6 = (TFaca)nodeArrayList5.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode7 = new LinkedList<Object>();
-        listNode7 = (LinkedList)nodeArrayList6.get(0);
-	if(listNode7 != null)
-	{
-	  listNode8.addAll(listNode7);
-	}
-        }
-        tfimenquantoNode9 = (TFimEnquanto)nodeArrayList7.get(0);
-        tsemicolonNode10 = (TSemicolon)nodeArrayList8.get(0);
-
-        pcommandNode1 = new AWhileCommand(tenquantoNode2, tpareNode3, pexplogicNode4, tpardNode5, tfacaNode6, listNode8, tfimenquantoNode9, tsemicolonNode10);
-        }
-	nodeList.add(pcommandNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new24() /* reduce ARepeatCommand */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PCommand pcommandNode1;
-        {
-            // Block
-        TRepita trepitaNode2;
+        PExp pexpNode2;
         LinkedList<Object> listNode4 = new LinkedList<Object>();
-        TAte tateNode5;
-        TParE tpareNode6;
-        PExpLogic pexplogicNode7;
-        TParD tpardNode8;
-        TSemicolon tsemicolonNode9;
-        trepitaNode2 = (TRepita)nodeArrayList1.get(0);
+        LinkedList<Object> listNode6 = new LinkedList<Object>();
+        pexpNode2 = (PExp)nodeArrayList3.get(0);
         {
             // Block
         LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList2.get(0);
+        listNode3 = (LinkedList)nodeArrayList6.get(0);
 	if(listNode3 != null)
 	{
 	  listNode4.addAll(listNode3);
 	}
         }
-        tateNode5 = (TAte)nodeArrayList3.get(0);
-        tpareNode6 = (TParE)nodeArrayList4.get(0);
-        pexplogicNode7 = (PExpLogic)nodeArrayList5.get(0);
-        tpardNode8 = (TParD)nodeArrayList6.get(0);
-        tsemicolonNode9 = (TSemicolon)nodeArrayList7.get(0);
+        {
+            // Block
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        listNode5 = (LinkedList)nodeArrayList7.get(0);
+	if(listNode5 != null)
+	{
+	  listNode6.addAll(listNode5);
+	}
+        }
 
-        pcommandNode1 = new ARepeatCommand(trepitaNode2, listNode4, tateNode5, tpareNode6, pexplogicNode7, tpardNode8, tsemicolonNode9);
+        pcommandNode1 = new AIfCommand(pexpNode2, listNode4, listNode6);
         }
 	nodeList.add(pcommandNode1);
         return nodeList;
@@ -1519,7 +1195,167 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new25() /* reduce AForCommand */
+    ArrayList<Object> new20() /* reduce AAswitchcommand1Command */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PCommand pcommandNode1;
+        {
+            // Block
+        PExp pexpNode2;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        pexpNode2 = (PExp)nodeArrayList3.get(0);
+        {
+            // Block
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList5.get(0);
+	if(listNode3 != null)
+	{
+	  listNode4.addAll(listNode3);
+	}
+        }
+        {
+            // Block
+        }
+
+        pcommandNode1 = new ASwitchCommand(pexpNode2, listNode4, listNode5);
+        }
+	nodeList.add(pcommandNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new21() /* reduce AAswitchcommand2Command */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList8 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PCommand pcommandNode1;
+        {
+            // Block
+        PExp pexpNode2;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        LinkedList<Object> listNode6 = new LinkedList<Object>();
+        pexpNode2 = (PExp)nodeArrayList3.get(0);
+        {
+            // Block
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList5.get(0);
+	if(listNode3 != null)
+	{
+	  listNode4.addAll(listNode3);
+	}
+        }
+        {
+            // Block
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        listNode5 = (LinkedList)nodeArrayList6.get(0);
+	if(listNode5 != null)
+	{
+	  listNode6.addAll(listNode5);
+	}
+        }
+
+        pcommandNode1 = new ASwitchCommand(pexpNode2, listNode4, listNode6);
+        }
+	nodeList.add(pcommandNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new22() /* reduce AWhileCommand */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList8 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PCommand pcommandNode1;
+        {
+            // Block
+        PExp pexpNode2;
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        pexpNode2 = (PExp)nodeArrayList3.get(0);
+        {
+            // Block
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList6.get(0);
+	if(listNode3 != null)
+	{
+	  listNode4.addAll(listNode3);
+	}
+        }
+
+        pcommandNode1 = new AWhileCommand(pexpNode2, listNode4);
+        }
+	nodeList.add(pcommandNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new23() /* reduce ARepeatCommand */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList7 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList6 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PCommand pcommandNode1;
+        {
+            // Block
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        PExp pexpNode4;
+        {
+            // Block
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        listNode2 = (LinkedList)nodeArrayList2.get(0);
+	if(listNode2 != null)
+	{
+	  listNode3.addAll(listNode2);
+	}
+        }
+        pexpNode4 = (PExp)nodeArrayList5.get(0);
+
+        pcommandNode1 = new ARepeatCommand(listNode3, pexpNode4);
+        }
+	nodeList.add(pcommandNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new24() /* reduce AForCommand */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1536,36 +1372,22 @@ public class Parser
         PCommand pcommandNode1;
         {
             // Block
-        TPara tparaNode2;
-        PVar pvarNode3;
-        TDe tdeNode4;
-        TNInt tnintNode5;
-        TAte tateNode6;
-        TNInt tnintNode7;
-        TFaca tfacaNode8;
-        LinkedList<Object> listNode10 = new LinkedList<Object>();
-        TFimPara tfimparaNode11;
-        TSemicolon tsemicolonNode12;
-        tparaNode2 = (TPara)nodeArrayList1.get(0);
-        pvarNode3 = (PVar)nodeArrayList2.get(0);
-        tdeNode4 = (TDe)nodeArrayList3.get(0);
-        tnintNode5 = (TNInt)nodeArrayList4.get(0);
-        tateNode6 = (TAte)nodeArrayList5.get(0);
-        tnintNode7 = (TNInt)nodeArrayList6.get(0);
-        tfacaNode8 = (TFaca)nodeArrayList7.get(0);
+        TNInt tnintNode2;
+        TNInt tnintNode3;
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        tnintNode2 = (TNInt)nodeArrayList4.get(0);
+        tnintNode3 = (TNInt)nodeArrayList6.get(0);
         {
             // Block
-        LinkedList<Object> listNode9 = new LinkedList<Object>();
-        listNode9 = (LinkedList)nodeArrayList8.get(0);
-	if(listNode9 != null)
+        LinkedList<Object> listNode4 = new LinkedList<Object>();
+        listNode4 = (LinkedList)nodeArrayList8.get(0);
+	if(listNode4 != null)
 	{
-	  listNode10.addAll(listNode9);
+	  listNode5.addAll(listNode4);
 	}
         }
-        tfimparaNode11 = (TFimPara)nodeArrayList9.get(0);
-        tsemicolonNode12 = (TSemicolon)nodeArrayList10.get(0);
 
-        pcommandNode1 = new AForCommand(tparaNode2, pvarNode3, tdeNode4, tnintNode5, tateNode6, tnintNode7, tfacaNode8, listNode10, tfimparaNode11, tsemicolonNode12);
+        pcommandNode1 = new AForCommand(tnintNode2, tnintNode3, listNode5);
         }
 	nodeList.add(pcommandNode1);
         return nodeList;
@@ -1574,7 +1396,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new26() /* reduce AForPassoCommand */
+    ArrayList<Object> new25() /* reduce AForPassoCommand */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1593,40 +1415,24 @@ public class Parser
         PCommand pcommandNode1;
         {
             // Block
-        TPara tparaNode2;
-        PVar pvarNode3;
-        TDe tdeNode4;
-        TNInt tnintNode5;
-        TPasso tpassoNode6;
-        TNInt tnintNode7;
-        TAte tateNode8;
-        TNInt tnintNode9;
-        TFaca tfacaNode10;
-        LinkedList<Object> listNode12 = new LinkedList<Object>();
-        TFimPara tfimparaNode13;
-        TSemicolon tsemicolonNode14;
-        tparaNode2 = (TPara)nodeArrayList1.get(0);
-        pvarNode3 = (PVar)nodeArrayList2.get(0);
-        tdeNode4 = (TDe)nodeArrayList3.get(0);
-        tnintNode5 = (TNInt)nodeArrayList4.get(0);
-        tpassoNode6 = (TPasso)nodeArrayList5.get(0);
-        tnintNode7 = (TNInt)nodeArrayList6.get(0);
-        tateNode8 = (TAte)nodeArrayList7.get(0);
-        tnintNode9 = (TNInt)nodeArrayList8.get(0);
-        tfacaNode10 = (TFaca)nodeArrayList9.get(0);
+        TNInt tnintNode2;
+        TNInt tnintNode3;
+        TNInt tnintNode4;
+        LinkedList<Object> listNode6 = new LinkedList<Object>();
+        tnintNode2 = (TNInt)nodeArrayList4.get(0);
+        tnintNode3 = (TNInt)nodeArrayList6.get(0);
+        tnintNode4 = (TNInt)nodeArrayList8.get(0);
         {
             // Block
-        LinkedList<Object> listNode11 = new LinkedList<Object>();
-        listNode11 = (LinkedList)nodeArrayList10.get(0);
-	if(listNode11 != null)
+        LinkedList<Object> listNode5 = new LinkedList<Object>();
+        listNode5 = (LinkedList)nodeArrayList10.get(0);
+	if(listNode5 != null)
 	{
-	  listNode12.addAll(listNode11);
+	  listNode6.addAll(listNode5);
 	}
         }
-        tfimparaNode13 = (TFimPara)nodeArrayList11.get(0);
-        tsemicolonNode14 = (TSemicolon)nodeArrayList12.get(0);
 
-        pcommandNode1 = new AForPassoCommand(tparaNode2, pvarNode3, tdeNode4, tnintNode5, tpassoNode6, tnintNode7, tateNode8, tnintNode9, tfacaNode10, listNode12, tfimparaNode13, tsemicolonNode14);
+        pcommandNode1 = new AForPassoCommand(tnintNode2, tnintNode3, tnintNode4, listNode6);
         }
 	nodeList.add(pcommandNode1);
         return nodeList;
@@ -1635,38 +1441,52 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new27() /* reduce AElsepart */
+    ArrayList<Object> new26() /* reduce AElsePart */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PElsepart pelsepartNode1;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        TSenao tsenaoNode2;
-        LinkedList<Object> listNode4 = new LinkedList<Object>();
-        tsenaoNode2 = (TSenao)nodeArrayList1.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        listNode3 = (LinkedList)nodeArrayList2.get(0);
-	if(listNode3 != null)
+        LinkedList<Object> listNode1 = new LinkedList<Object>();
+        listNode1 = (LinkedList)nodeArrayList2.get(0);
+	if(listNode1 != null)
 	{
-	  listNode4.addAll(listNode3);
+	  listNode2.addAll(listNode1);
 	}
         }
-
-        pelsepartNode1 = new AElsepart(tsenaoNode2, listNode4);
-        }
-	nodeList.add(pelsepartNode1);
+	nodeList.add(listNode2);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new28() /* reduce ACasepart */
+    ArrayList<Object> new27() /* reduce ACaseList */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        {
+            // Block
+        LinkedList<Object> listNode1 = new LinkedList<Object>();
+        listNode1 = (LinkedList)nodeArrayList1.get(0);
+	if(listNode1 != null)
+	{
+	  listNode2.addAll(listNode1);
+	}
+        }
+	nodeList.add(listNode2);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new28() /* reduce ACasePart */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1674,743 +1494,660 @@ public class Parser
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PCasepart pcasepartNode1;
+        PCase pcaseNode1;
         {
             // Block
-        TCaso tcasoNode2;
-        PValor pvalorNode3;
-        TDoisPontos tdoispontosNode4;
-        LinkedList<Object> listNode6 = new LinkedList<Object>();
-        tcasoNode2 = (TCaso)nodeArrayList1.get(0);
-        pvalorNode3 = (PValor)nodeArrayList2.get(0);
-        tdoispontosNode4 = (TDoisPontos)nodeArrayList3.get(0);
-        {
-            // Block
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        listNode5 = (LinkedList)nodeArrayList4.get(0);
-	if(listNode5 != null)
-	{
-	  listNode6.addAll(listNode5);
-	}
-        }
-
-        pcasepartNode1 = new ACasepart(tcasoNode2, pvalorNode3, tdoispontosNode4, listNode6);
-        }
-	nodeList.add(pcasepartNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new29() /* reduce AElseswitch */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PElseswitch pelseswitchNode1;
-        {
-            // Block
-        TSenao tsenaoNode2;
-        TDoisPontos tdoispontosNode3;
-        LinkedList<Object> listNode5 = new LinkedList<Object>();
-        tsenaoNode2 = (TSenao)nodeArrayList1.get(0);
-        tdoispontosNode3 = (TDoisPontos)nodeArrayList2.get(0);
-        {
-            // Block
+        PValor pvalorNode2;
         LinkedList<Object> listNode4 = new LinkedList<Object>();
-        listNode4 = (LinkedList)nodeArrayList3.get(0);
-	if(listNode4 != null)
+        pvalorNode2 = (PValor)nodeArrayList2.get(0);
+        {
+            // Block
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        listNode3 = (LinkedList)nodeArrayList4.get(0);
+	if(listNode3 != null)
 	{
-	  listNode5.addAll(listNode4);
+	  listNode4.addAll(listNode3);
 	}
         }
 
-        pelseswitchNode1 = new AElseswitch(tsenaoNode2, tdoispontosNode3, listNode5);
+        pcaseNode1 = new ACase(pvalorNode2, listNode4);
         }
-	nodeList.add(pelseswitchNode1);
+	nodeList.add(pcaseNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new30() /* reduce AExplist */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExplist pexplistNode1;
-        {
-            // Block
-        PExpression pexpressionNode2;
-        TVirgula tvirgulaNode3;
-        pexpressionNode2 = (PExpression)nodeArrayList1.get(0);
-        tvirgulaNode3 = (TVirgula)nodeArrayList2.get(0);
-
-        pexplistNode1 = new AExplist(pexpressionNode2, tvirgulaNode3);
-        }
-	nodeList.add(pexplistNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new31() /* reduce AExpression */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpression pexpressionNode1;
-        {
-            // Block
-        PConditionalOr pconditionalorNode2;
-        pconditionalorNode2 = (PConditionalOr)nodeArrayList1.get(0);
-
-        pexpressionNode1 = new AExpression(pconditionalorNode2);
-        }
-	nodeList.add(pexpressionNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new32() /* reduce AExpLogic */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpLogic pexplogicNode1;
-        {
-            // Block
-        PConditionalOr pconditionalorNode2;
-        pconditionalorNode2 = (PConditionalOr)nodeArrayList1.get(0);
-
-        pexplogicNode1 = new AExpLogic(pconditionalorNode2);
-        }
-	nodeList.add(pexplogicNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new33() /* reduce AOuConditionalOr */
+    ArrayList<Object> new29() /* reduce AElseSwitch */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PConditionalOr pconditionalorNode1;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        PConditionalOr pconditionalorNode2;
-        TOu touNode3;
-        PConditionalAnd pconditionalandNode4;
-        pconditionalorNode2 = (PConditionalOr)nodeArrayList1.get(0);
-        touNode3 = (TOu)nodeArrayList2.get(0);
-        pconditionalandNode4 = (PConditionalAnd)nodeArrayList3.get(0);
-
-        pconditionalorNode1 = new AOuConditionalOr(pconditionalorNode2, touNode3, pconditionalandNode4);
+        LinkedList<Object> listNode1 = new LinkedList<Object>();
+        listNode1 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode1 != null)
+	{
+	  listNode2.addAll(listNode1);
+	}
         }
-	nodeList.add(pconditionalorNode1);
+	nodeList.add(listNode2);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new34() /* reduce AEConditionalOr */
+    ArrayList<Object> new30() /* reduce AAexplist1ExpList */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PConditionalOr pconditionalorNode1;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        PConditionalAnd pconditionalandNode2;
-        pconditionalandNode2 = (PConditionalAnd)nodeArrayList1.get(0);
-
-        pconditionalorNode1 = new AEConditionalOr(pconditionalandNode2);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	if(pexpNode1 != null)
+	{
+	  listNode2.add(pexpNode1);
+	}
         }
-	nodeList.add(pconditionalorNode1);
+	nodeList.add(listNode2);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new35() /* reduce AEConditionalAnd */
+    ArrayList<Object> new31() /* reduce AAexplist2ExpList */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        {
+            // Block
+        PExp pexpNode1;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+        listNode2 = (LinkedList)nodeArrayList2.get(0);
+	if(pexpNode1 != null)
+	{
+	  listNode3.add(pexpNode1);
+	}
+	if(listNode2 != null)
+	{
+	  listNode3.addAll(listNode2);
+	}
+        }
+	nodeList.add(listNode3);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new32() /* reduce AExpressionTail */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList2.get(0);
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new33() /* reduce AExpression */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new34() /* reduce AExpLogic */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new35() /* reduce AOuConditionalOr */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PConditionalAnd pconditionalandNode1;
+        PExp pexpNode1;
         {
             // Block
-        PConditionalAnd pconditionalandNode2;
-        TE teNode3;
-        PConditionalXor pconditionalxorNode4;
-        pconditionalandNode2 = (PConditionalAnd)nodeArrayList1.get(0);
-        teNode3 = (TE)nodeArrayList2.get(0);
-        pconditionalxorNode4 = (PConditionalXor)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pconditionalandNode1 = new AEConditionalAnd(pconditionalandNode2, teNode3, pconditionalxorNode4);
+        pexpNode1 = new AOuExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pconditionalandNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new36() /* reduce AXorConditionalAnd */
+    ArrayList<Object> new36() /* reduce AEConditionalOr */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PConditionalAnd pconditionalandNode1;
-        {
-            // Block
-        PConditionalXor pconditionalxorNode2;
-        pconditionalxorNode2 = (PConditionalXor)nodeArrayList1.get(0);
-
-        pconditionalandNode1 = new AXorConditionalAnd(pconditionalxorNode2);
-        }
-	nodeList.add(pconditionalandNode1);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new37() /* reduce AXorConditionalXor */
+    ArrayList<Object> new37() /* reduce AEConditionalAnd */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PConditionalXor pconditionalxorNode1;
+        PExp pexpNode1;
         {
             // Block
-        PConditionalXor pconditionalxorNode2;
-        TXor txorNode3;
-        PExpEquality pexpequalityNode4;
-        pconditionalxorNode2 = (PConditionalXor)nodeArrayList1.get(0);
-        txorNode3 = (TXor)nodeArrayList2.get(0);
-        pexpequalityNode4 = (PExpEquality)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pconditionalxorNode1 = new AXorConditionalXor(pconditionalxorNode2, txorNode3, pexpequalityNode4);
+        pexpNode1 = new AEExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pconditionalxorNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new38() /* reduce AIgualConditionalXor */
+    ArrayList<Object> new38() /* reduce AXorConditionalAnd */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PConditionalXor pconditionalxorNode1;
-        {
-            // Block
-        PExpEquality pexpequalityNode2;
-        pexpequalityNode2 = (PExpEquality)nodeArrayList1.get(0);
-
-        pconditionalxorNode1 = new AIgualConditionalXor(pexpequalityNode2);
-        }
-	nodeList.add(pconditionalxorNode1);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new39() /* reduce AIgualExpEquality */
+    ArrayList<Object> new39() /* reduce AXorConditionalXor */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpEquality pexpequalityNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpEquality pexpequalityNode2;
-        TIgual tigualNode3;
-        PExpRelational pexprelationalNode4;
-        pexpequalityNode2 = (PExpEquality)nodeArrayList1.get(0);
-        tigualNode3 = (TIgual)nodeArrayList2.get(0);
-        pexprelationalNode4 = (PExpRelational)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexpequalityNode1 = new AIgualExpEquality(pexpequalityNode2, tigualNode3, pexprelationalNode4);
+        pexpNode1 = new AXorExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexpequalityNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new40() /* reduce ADiferenteExpEquality */
+    ArrayList<Object> new40() /* reduce AIgualConditionalXor */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new41() /* reduce AIgualExpEquality */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpEquality pexpequalityNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpEquality pexpequalityNode2;
-        TDiferente tdiferenteNode3;
-        PExpRelational pexprelationalNode4;
-        pexpequalityNode2 = (PExpEquality)nodeArrayList1.get(0);
-        tdiferenteNode3 = (TDiferente)nodeArrayList2.get(0);
-        pexprelationalNode4 = (PExpRelational)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexpequalityNode1 = new ADiferenteExpEquality(pexpequalityNode2, tdiferenteNode3, pexprelationalNode4);
+        pexpNode1 = new AIgualExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexpequalityNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new41() /* reduce AExpressaoExpEquality */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpEquality pexpequalityNode1;
-        {
-            // Block
-        PExpRelational pexprelationalNode2;
-        pexprelationalNode2 = (PExpRelational)nodeArrayList1.get(0);
-
-        pexpequalityNode1 = new AExpressaoExpEquality(pexprelationalNode2);
-        }
-	nodeList.add(pexpequalityNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new42() /* reduce AMaiorExpRelational */
+    ArrayList<Object> new42() /* reduce ADiferenteExpEquality */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpRelational pexprelationalNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpRelational pexprelationalNode2;
-        TMaior tmaiorNode3;
-        PExpAdditive pexpadditiveNode4;
-        pexprelationalNode2 = (PExpRelational)nodeArrayList1.get(0);
-        tmaiorNode3 = (TMaior)nodeArrayList2.get(0);
-        pexpadditiveNode4 = (PExpAdditive)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexprelationalNode1 = new AMaiorExpRelational(pexprelationalNode2, tmaiorNode3, pexpadditiveNode4);
+        pexpNode1 = new ADiferenteExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexprelationalNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new43() /* reduce AMenorExpRelational */
+    ArrayList<Object> new43() /* reduce AExpressaoExpEquality */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new44() /* reduce AMaiorExpRelational */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpRelational pexprelationalNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpRelational pexprelationalNode2;
-        TMenor tmenorNode3;
-        PExpAdditive pexpadditiveNode4;
-        pexprelationalNode2 = (PExpRelational)nodeArrayList1.get(0);
-        tmenorNode3 = (TMenor)nodeArrayList2.get(0);
-        pexpadditiveNode4 = (PExpAdditive)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexprelationalNode1 = new AMenorExpRelational(pexprelationalNode2, tmenorNode3, pexpadditiveNode4);
+        pexpNode1 = new AMaiorExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexprelationalNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new44() /* reduce AMaiorIgualExpRelational */
+    ArrayList<Object> new45() /* reduce AMenorExpRelational */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpRelational pexprelationalNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpRelational pexprelationalNode2;
-        TMaiorIgual tmaiorigualNode3;
-        PExpAdditive pexpadditiveNode4;
-        pexprelationalNode2 = (PExpRelational)nodeArrayList1.get(0);
-        tmaiorigualNode3 = (TMaiorIgual)nodeArrayList2.get(0);
-        pexpadditiveNode4 = (PExpAdditive)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexprelationalNode1 = new AMaiorIgualExpRelational(pexprelationalNode2, tmaiorigualNode3, pexpadditiveNode4);
+        pexpNode1 = new AMenorExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexprelationalNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new45() /* reduce AMenorIgualExpRelational */
+    ArrayList<Object> new46() /* reduce AMaiorIgualExpRelational */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpRelational pexprelationalNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpRelational pexprelationalNode2;
-        TMenorIgual tmenorigualNode3;
-        PExpAdditive pexpadditiveNode4;
-        pexprelationalNode2 = (PExpRelational)nodeArrayList1.get(0);
-        tmenorigualNode3 = (TMenorIgual)nodeArrayList2.get(0);
-        pexpadditiveNode4 = (PExpAdditive)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexprelationalNode1 = new AMenorIgualExpRelational(pexprelationalNode2, tmenorigualNode3, pexpadditiveNode4);
+        pexpNode1 = new AMaiorIgualExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexprelationalNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new46() /* reduce AExpressaoExpRelational */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpRelational pexprelationalNode1;
-        {
-            // Block
-        PExpAdditive pexpadditiveNode2;
-        pexpadditiveNode2 = (PExpAdditive)nodeArrayList1.get(0);
-
-        pexprelationalNode1 = new AExpressaoExpRelational(pexpadditiveNode2);
-        }
-	nodeList.add(pexprelationalNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new47() /* reduce ASomaExpAdditive */
+    ArrayList<Object> new47() /* reduce AMenorIgualExpRelational */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpAdditive pexpadditiveNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpAdditive pexpadditiveNode2;
-        TMais tmaisNode3;
-        PExpMultiplicative pexpmultiplicativeNode4;
-        pexpadditiveNode2 = (PExpAdditive)nodeArrayList1.get(0);
-        tmaisNode3 = (TMais)nodeArrayList2.get(0);
-        pexpmultiplicativeNode4 = (PExpMultiplicative)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexpadditiveNode1 = new ASomaExpAdditive(pexpadditiveNode2, tmaisNode3, pexpmultiplicativeNode4);
+        pexpNode1 = new AMenorIgualExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexpadditiveNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new48() /* reduce ASubtracaoExpAdditive */
+    ArrayList<Object> new48() /* reduce AExpressaoExpRelational */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new49() /* reduce ASomaExpAdditive */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpAdditive pexpadditiveNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpAdditive pexpadditiveNode2;
-        TMenos tmenosNode3;
-        PExpMultiplicative pexpmultiplicativeNode4;
-        pexpadditiveNode2 = (PExpAdditive)nodeArrayList1.get(0);
-        tmenosNode3 = (TMenos)nodeArrayList2.get(0);
-        pexpmultiplicativeNode4 = (PExpMultiplicative)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexpadditiveNode1 = new ASubtracaoExpAdditive(pexpadditiveNode2, tmenosNode3, pexpmultiplicativeNode4);
+        pexpNode1 = new ASomaExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexpadditiveNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new49() /* reduce AMultiplicacaoExpAdditive */
-    {
-        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
-
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpAdditive pexpadditiveNode1;
-        {
-            // Block
-        PExpMultiplicative pexpmultiplicativeNode2;
-        pexpmultiplicativeNode2 = (PExpMultiplicative)nodeArrayList1.get(0);
-
-        pexpadditiveNode1 = new AMultiplicacaoExpAdditive(pexpmultiplicativeNode2);
-        }
-	nodeList.add(pexpadditiveNode1);
-        return nodeList;
-    }
-
-
-
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new50() /* reduce AMultiplicacaoExpMultiplicative */
+    ArrayList<Object> new50() /* reduce ASubtracaoExpAdditive */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpMultiplicative pexpmultiplicativeNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpMultiplicative pexpmultiplicativeNode2;
-        TMult tmultNode3;
-        PExpUnary pexpunaryNode4;
-        pexpmultiplicativeNode2 = (PExpMultiplicative)nodeArrayList1.get(0);
-        tmultNode3 = (TMult)nodeArrayList2.get(0);
-        pexpunaryNode4 = (PExpUnary)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexpmultiplicativeNode1 = new AMultiplicacaoExpMultiplicative(pexpmultiplicativeNode2, tmultNode3, pexpunaryNode4);
+        pexpNode1 = new ASubtracaoExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexpmultiplicativeNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new51() /* reduce ADivisaoExpMultiplicative */
+    ArrayList<Object> new51() /* reduce AMultiplicacaoExpAdditive */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new52() /* reduce AMultiplicacaoExpMultiplicative */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpMultiplicative pexpmultiplicativeNode1;
+        PExp pexpNode1;
         {
             // Block
-        PExpMultiplicative pexpmultiplicativeNode2;
-        TDivisao tdivisaoNode3;
-        PExpUnary pexpunaryNode4;
-        pexpmultiplicativeNode2 = (PExpMultiplicative)nodeArrayList1.get(0);
-        tdivisaoNode3 = (TDivisao)nodeArrayList2.get(0);
-        pexpunaryNode4 = (PExpUnary)nodeArrayList3.get(0);
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
 
-        pexpmultiplicativeNode1 = new ADivisaoExpMultiplicative(pexpmultiplicativeNode2, tdivisaoNode3, pexpunaryNode4);
+        pexpNode1 = new AMultiplicacaoExp(pexpNode2, pexpNode3);
         }
-	nodeList.add(pexpmultiplicativeNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new52() /* reduce AUnarioExpMultiplicative */
+    ArrayList<Object> new53() /* reduce ADivisaoExpMultiplicative */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PExp pexpNode1;
+        {
+            // Block
+        PExp pexpNode2;
+        PExp pexpNode3;
+        pexpNode2 = (PExp)nodeArrayList1.get(0);
+        pexpNode3 = (PExp)nodeArrayList3.get(0);
+
+        pexpNode1 = new ADivisaoExp(pexpNode2, pexpNode3);
+        }
+	nodeList.add(pexpNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new54() /* reduce AUnarioExpMultiplicative */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpMultiplicative pexpmultiplicativeNode1;
-        {
-            // Block
-        PExpUnary pexpunaryNode2;
-        pexpunaryNode2 = (PExpUnary)nodeArrayList1.get(0);
-
-        pexpmultiplicativeNode1 = new AUnarioExpMultiplicative(pexpunaryNode2);
-        }
-	nodeList.add(pexpmultiplicativeNode1);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new53() /* reduce ANegativoExpUnary */
+    ArrayList<Object> new55() /* reduce ANegativoExpUnary */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpUnary pexpunaryNode1;
-        {
-            // Block
-        TMenos tmenosNode2;
-        PExpUnary pexpunaryNode3;
-        tmenosNode2 = (TMenos)nodeArrayList1.get(0);
-        pexpunaryNode3 = (PExpUnary)nodeArrayList2.get(0);
-
-        pexpunaryNode1 = new ANegativoExpUnary(tmenosNode2, pexpunaryNode3);
-        }
-	nodeList.add(pexpunaryNode1);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList2.get(0);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new54() /* reduce ANegacaoExpUnary */
+    ArrayList<Object> new56() /* reduce ANegacaoExpUnary */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpUnary pexpunaryNode1;
-        {
-            // Block
-        TNao tnaoNode2;
-        PExpUnary pexpunaryNode3;
-        tnaoNode2 = (TNao)nodeArrayList1.get(0);
-        pexpunaryNode3 = (PExpUnary)nodeArrayList2.get(0);
-
-        pexpunaryNode1 = new ANegacaoExpUnary(tnaoNode2, pexpunaryNode3);
-        }
-	nodeList.add(pexpunaryNode1);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList2.get(0);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new55() /* reduce APrimarioExpUnary */
+    ArrayList<Object> new57() /* reduce APrimarioExpUnary */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PExpUnary pexpunaryNode1;
-        {
-            // Block
-        PPrimary pprimaryNode2;
-        pprimaryNode2 = (PPrimary)nodeArrayList1.get(0);
-
-        pexpunaryNode1 = new APrimarioExpUnary(pprimaryNode2);
-        }
-	nodeList.add(pexpunaryNode1);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new56() /* reduce AValorPrimary */
+    ArrayList<Object> new58() /* reduce AValorPrimary */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PPrimary pprimaryNode1;
+        PExp pexpNode1;
         {
             // Block
         PValor pvalorNode2;
         pvalorNode2 = (PValor)nodeArrayList1.get(0);
 
-        pprimaryNode1 = new AValorPrimary(pvalorNode2);
+        pexpNode1 = new AValorExp(pvalorNode2);
         }
-	nodeList.add(pprimaryNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new57() /* reduce AVarPrimary */
+    ArrayList<Object> new59() /* reduce AVarPrimary */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PPrimary pprimaryNode1;
+        PExp pexpNode1;
         {
             // Block
         PVar pvarNode2;
         pvarNode2 = (PVar)nodeArrayList1.get(0);
 
-        pprimaryNode1 = new AVarPrimary(pvarNode2);
+        pexpNode1 = new AVarExp(pvarNode2);
         }
-	nodeList.add(pprimaryNode1);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new58() /* reduce AParExpPrimary */
+    ArrayList<Object> new60() /* reduce AParExpPrimary */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        PPrimary pprimaryNode1;
-        {
-            // Block
-        TParE tpareNode2;
-        PExpression pexpressionNode3;
-        TParD tpardNode4;
-        tpareNode2 = (TParE)nodeArrayList1.get(0);
-        pexpressionNode3 = (PExpression)nodeArrayList2.get(0);
-        tpardNode4 = (TParD)nodeArrayList3.get(0);
-
-        pprimaryNode1 = new AParExpPrimary(tpareNode2, pexpressionNode3, tpardNode4);
-        }
-	nodeList.add(pprimaryNode1);
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList2.get(0);
+	nodeList.add(pexpNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new59() /* reduce ATerminal$Decl */
+    ArrayList<Object> new61() /* reduce ATerminal$Decl */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2432,7 +2169,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new60() /* reduce ANonTerminal$Decl */
+    ArrayList<Object> new62() /* reduce ANonTerminal$Decl */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2461,7 +2198,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new61() /* reduce ATerminal$Command */
+    ArrayList<Object> new63() /* reduce ATerminal$Command */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2483,7 +2220,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new62() /* reduce ANonTerminal$Command */
+    ArrayList<Object> new64() /* reduce ANonTerminal$Command */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2512,7 +2249,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new63() /* reduce ATerminal$Varlist */
+    ArrayList<Object> new65() /* reduce ATerminal$VarListTail */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2520,11 +2257,11 @@ public class Parser
         LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        PVarlist pvarlistNode1;
-        pvarlistNode1 = (PVarlist)nodeArrayList1.get(0);
-	if(pvarlistNode1 != null)
+        PVar pvarNode1;
+        pvarNode1 = (PVar)nodeArrayList1.get(0);
+	if(pvarNode1 != null)
 	{
-	  listNode2.add(pvarlistNode1);
+	  listNode2.add(pvarNode1);
 	}
         }
 	nodeList.add(listNode2);
@@ -2534,7 +2271,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new64() /* reduce ANonTerminal$Varlist */
+    ArrayList<Object> new66() /* reduce ANonTerminal$VarListTail */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2544,16 +2281,16 @@ public class Parser
         {
             // Block
         LinkedList<Object> listNode1 = new LinkedList<Object>();
-        PVarlist pvarlistNode2;
+        PVar pvarNode2;
         listNode1 = (LinkedList)nodeArrayList1.get(0);
-        pvarlistNode2 = (PVarlist)nodeArrayList2.get(0);
+        pvarNode2 = (PVar)nodeArrayList2.get(0);
 	if(listNode1 != null)
 	{
 	  listNode3.addAll(listNode1);
 	}
-	if(pvarlistNode2 != null)
+	if(pvarNode2 != null)
 	{
-	  listNode3.add(pvarlistNode2);
+	  listNode3.add(pvarNode2);
 	}
         }
 	nodeList.add(listNode3);
@@ -2563,7 +2300,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new65() /* reduce ATerminal$Explist */
+    ArrayList<Object> new67() /* reduce ATerminal$CasePart */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2571,11 +2308,11 @@ public class Parser
         LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        PExplist pexplistNode1;
-        pexplistNode1 = (PExplist)nodeArrayList1.get(0);
-	if(pexplistNode1 != null)
+        PCase pcaseNode1;
+        pcaseNode1 = (PCase)nodeArrayList1.get(0);
+	if(pcaseNode1 != null)
 	{
-	  listNode2.add(pexplistNode1);
+	  listNode2.add(pcaseNode1);
 	}
         }
 	nodeList.add(listNode2);
@@ -2585,7 +2322,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new66() /* reduce ANonTerminal$Explist */
+    ArrayList<Object> new68() /* reduce ANonTerminal$CasePart */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2595,16 +2332,16 @@ public class Parser
         {
             // Block
         LinkedList<Object> listNode1 = new LinkedList<Object>();
-        PExplist pexplistNode2;
+        PCase pcaseNode2;
         listNode1 = (LinkedList)nodeArrayList1.get(0);
-        pexplistNode2 = (PExplist)nodeArrayList2.get(0);
+        pcaseNode2 = (PCase)nodeArrayList2.get(0);
 	if(listNode1 != null)
 	{
 	  listNode3.addAll(listNode1);
 	}
-	if(pexplistNode2 != null)
+	if(pcaseNode2 != null)
 	{
-	  listNode3.add(pexplistNode2);
+	  listNode3.add(pcaseNode2);
 	}
         }
 	nodeList.add(listNode3);
@@ -2614,7 +2351,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new67() /* reduce ATerminal$Casepart */
+    ArrayList<Object> new69() /* reduce ATerminal$ExpressionTail */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2622,11 +2359,11 @@ public class Parser
         LinkedList<Object> listNode2 = new LinkedList<Object>();
         {
             // Block
-        PCasepart pcasepartNode1;
-        pcasepartNode1 = (PCasepart)nodeArrayList1.get(0);
-	if(pcasepartNode1 != null)
+        PExp pexpNode1;
+        pexpNode1 = (PExp)nodeArrayList1.get(0);
+	if(pexpNode1 != null)
 	{
-	  listNode2.add(pcasepartNode1);
+	  listNode2.add(pexpNode1);
 	}
         }
 	nodeList.add(listNode2);
@@ -2636,7 +2373,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new68() /* reduce ANonTerminal$Casepart */
+    ArrayList<Object> new70() /* reduce ANonTerminal$ExpressionTail */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -2646,16 +2383,16 @@ public class Parser
         {
             // Block
         LinkedList<Object> listNode1 = new LinkedList<Object>();
-        PCasepart pcasepartNode2;
+        PExp pexpNode2;
         listNode1 = (LinkedList)nodeArrayList1.get(0);
-        pcasepartNode2 = (PCasepart)nodeArrayList2.get(0);
+        pexpNode2 = (PExp)nodeArrayList2.get(0);
 	if(listNode1 != null)
 	{
 	  listNode3.addAll(listNode1);
 	}
-	if(pcasepartNode2 != null)
+	if(pexpNode2 != null)
 	{
-	  listNode3.add(pcasepartNode2);
+	  listNode3.add(pexpNode2);
 	}
         }
 	nodeList.add(listNode3);
@@ -2682,67 +2419,67 @@ public class Parser
 			{{-1, ERROR, 13}, {39, SHIFT, 29}, },
 			{{-1, ERROR, 14}, {46, SHIFT, 30}, },
 			{{-1, ERROR, 15}, {44, SHIFT, 31}, },
+			{{-1, REDUCE, 7}, },
 			{{-1, REDUCE, 8}, },
-			{{-1, REDUCE, 9}, },
-			{{-1, REDUCE, 59}, },
-			{{-1, ERROR, 19}, {37, SHIFT, 32}, },
 			{{-1, REDUCE, 61}, },
+			{{-1, ERROR, 19}, {37, SHIFT, 32}, },
+			{{-1, REDUCE, 63}, },
 			{{-1, ERROR, 21}, {2, SHIFT, 33}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {21, SHIFT, 14}, {22, SHIFT, 15}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, ERROR, 22}, {2, SHIFT, 36}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, ERROR, 23}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 24}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, ERROR, 25}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 26}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
-			{{-1, ERROR, 27}, {12, SHIFT, 64}, },
-			{{-1, ERROR, 28}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {15, SHIFT, 65}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 27}, {12, SHIFT, 62}, },
+			{{-1, ERROR, 28}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {15, SHIFT, 63}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, ERROR, 29}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 30}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 31}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, ERROR, 32}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, REDUCE, 2}, },
-			{{-1, REDUCE, 60}, },
-			{{-1, ERROR, 35}, {2, SHIFT, 71}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, REDUCE, 3}, },
 			{{-1, REDUCE, 62}, },
+			{{-1, ERROR, 35}, {2, SHIFT, 68}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, REDUCE, 3}, },
+			{{-1, REDUCE, 64}, },
 			{{-1, ERROR, 38}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 39}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 40}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
-			{{-1, REDUCE, 12}, },
 			{{-1, REDUCE, 13}, },
-			{{-1, REDUCE, 11}, },
-			{{-1, REDUCE, 57}, },
-			{{-1, REDUCE, 56}, },
-			{{-1, REDUCE, 65}, },
-			{{-1, ERROR, 47}, {38, SHIFT, 75}, {43, SHIFT, 76}, },
-			{{-1, REDUCE, 31}, {34, SHIFT, 77}, },
-			{{-1, REDUCE, 34}, {33, SHIFT, 78}, },
-			{{-1, REDUCE, 36}, {35, SHIFT, 79}, },
-			{{-1, REDUCE, 38}, {27, SHIFT, 80}, {28, SHIFT, 81}, },
-			{{-1, REDUCE, 41}, {29, SHIFT, 82}, {30, SHIFT, 83}, {31, SHIFT, 84}, {32, SHIFT, 85}, },
-			{{-1, REDUCE, 46}, {23, SHIFT, 86}, {24, SHIFT, 87}, },
-			{{-1, REDUCE, 49}, {25, SHIFT, 88}, {26, SHIFT, 89}, },
-			{{-1, REDUCE, 52}, },
-			{{-1, REDUCE, 55}, },
-			{{-1, ERROR, 57}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
-			{{-1, ERROR, 58}, {38, SHIFT, 92}, {43, SHIFT, 93}, },
-			{{-1, REDUCE, 63}, },
-			{{-1, ERROR, 60}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 61}, {38, SHIFT, 96}, },
-			{{-1, REDUCE, 32}, {34, SHIFT, 77}, },
-			{{-1, ERROR, 63}, {38, SHIFT, 97}, },
-			{{-1, ERROR, 64}, {48, SHIFT, 98}, },
-			{{-1, ERROR, 65}, {39, SHIFT, 99}, },
-			{{-1, ERROR, 66}, {38, SHIFT, 100}, },
-			{{-1, ERROR, 67}, {45, SHIFT, 101}, },
-			{{-1, ERROR, 68}, {43, SHIFT, 93}, {45, SHIFT, 102}, },
-			{{-1, ERROR, 69}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 70}, {45, SHIFT, 104}, },
-			{{-1, REDUCE, 4}, },
-			{{-1, REDUCE, 53}, },
+			{{-1, REDUCE, 14}, },
+			{{-1, REDUCE, 12}, },
+			{{-1, REDUCE, 59}, },
+			{{-1, REDUCE, 58}, },
+			{{-1, ERROR, 46}, {38, SHIFT, 72}, },
+			{{-1, REDUCE, 30}, {43, SHIFT, 73}, },
+			{{-1, REDUCE, 33}, {34, SHIFT, 76}, },
+			{{-1, REDUCE, 36}, {33, SHIFT, 77}, },
+			{{-1, REDUCE, 38}, {35, SHIFT, 78}, },
+			{{-1, REDUCE, 40}, {27, SHIFT, 79}, {28, SHIFT, 80}, },
+			{{-1, REDUCE, 43}, {29, SHIFT, 81}, {30, SHIFT, 82}, {31, SHIFT, 83}, {32, SHIFT, 84}, },
+			{{-1, REDUCE, 48}, {23, SHIFT, 85}, {24, SHIFT, 86}, },
+			{{-1, REDUCE, 51}, {25, SHIFT, 87}, {26, SHIFT, 88}, },
 			{{-1, REDUCE, 54}, },
-			{{-1, ERROR, 74}, {38, SHIFT, 105}, },
-			{{-1, ERROR, 75}, {45, SHIFT, 106}, },
-			{{-1, REDUCE, 30}, },
+			{{-1, REDUCE, 57}, },
+			{{-1, REDUCE, 9}, {43, SHIFT, 89}, },
+			{{-1, ERROR, 58}, {38, SHIFT, 92}, },
+			{{-1, ERROR, 59}, {38, SHIFT, 93}, },
+			{{-1, REDUCE, 34}, {34, SHIFT, 76}, },
+			{{-1, ERROR, 61}, {38, SHIFT, 94}, },
+			{{-1, ERROR, 62}, {48, SHIFT, 95}, },
+			{{-1, ERROR, 63}, {39, SHIFT, 96}, },
+			{{-1, ERROR, 64}, {38, SHIFT, 97}, },
+			{{-1, ERROR, 65}, {45, SHIFT, 98}, },
+			{{-1, ERROR, 66}, {45, SHIFT, 99}, },
+			{{-1, ERROR, 67}, {45, SHIFT, 100}, },
+			{{-1, REDUCE, 4}, },
+			{{-1, REDUCE, 55}, },
+			{{-1, REDUCE, 56}, },
+			{{-1, ERROR, 71}, {38, SHIFT, 101}, },
+			{{-1, ERROR, 72}, {45, SHIFT, 102}, },
+			{{-1, ERROR, 73}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
+			{{-1, REDUCE, 69}, },
+			{{-1, REDUCE, 31}, {43, SHIFT, 73}, },
+			{{-1, ERROR, 76}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 77}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 78}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 79}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
@@ -2755,118 +2492,116 @@ public class Parser
 			{{-1, ERROR, 86}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 87}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
 			{{-1, ERROR, 88}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
-			{{-1, ERROR, 89}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
-			{{-1, REDUCE, 66}, },
-			{{-1, ERROR, 91}, {38, SHIFT, 120}, {43, SHIFT, 76}, },
-			{{-1, ERROR, 92}, {45, SHIFT, 121}, },
-			{{-1, REDUCE, 10}, },
-			{{-1, ERROR, 94}, {38, SHIFT, 122}, {43, SHIFT, 93}, },
-			{{-1, REDUCE, 64}, },
-			{{-1, ERROR, 96}, {16, SHIFT, 123}, },
-			{{-1, ERROR, 97}, {8, SHIFT, 124}, },
-			{{-1, ERROR, 98}, {13, SHIFT, 125}, {15, SHIFT, 126}, },
-			{{-1, ERROR, 99}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
-			{{-1, ERROR, 100}, {19, SHIFT, 128}, },
-			{{-1, REDUCE, 7}, },
-			{{-1, REDUCE, 5}, },
-			{{-1, ERROR, 103}, {43, SHIFT, 93}, {45, SHIFT, 131}, },
-			{{-1, REDUCE, 14}, },
-			{{-1, REDUCE, 58}, },
-			{{-1, REDUCE, 17}, },
-			{{-1, REDUCE, 33}, {33, SHIFT, 78}, },
-			{{-1, REDUCE, 35}, {35, SHIFT, 79}, },
-			{{-1, REDUCE, 37}, {27, SHIFT, 80}, {28, SHIFT, 81}, },
-			{{-1, REDUCE, 39}, {29, SHIFT, 82}, {30, SHIFT, 83}, {31, SHIFT, 84}, {32, SHIFT, 85}, },
-			{{-1, REDUCE, 40}, {29, SHIFT, 82}, {30, SHIFT, 83}, {31, SHIFT, 84}, {32, SHIFT, 85}, },
-			{{-1, REDUCE, 42}, {23, SHIFT, 86}, {24, SHIFT, 87}, },
-			{{-1, REDUCE, 43}, {23, SHIFT, 86}, {24, SHIFT, 87}, },
-			{{-1, REDUCE, 45}, {23, SHIFT, 86}, {24, SHIFT, 87}, },
-			{{-1, REDUCE, 44}, {23, SHIFT, 86}, {24, SHIFT, 87}, },
-			{{-1, REDUCE, 47}, {25, SHIFT, 88}, {26, SHIFT, 89}, },
-			{{-1, REDUCE, 48}, {25, SHIFT, 88}, {26, SHIFT, 89}, },
-			{{-1, REDUCE, 51}, },
-			{{-1, REDUCE, 50}, },
-			{{-1, ERROR, 120}, {45, SHIFT, 132}, },
-			{{-1, REDUCE, 15}, },
-			{{-1, ERROR, 122}, {45, SHIFT, 133}, },
-			{{-1, ERROR, 123}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 124}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 125}, {48, SHIFT, 136}, },
-			{{-1, ERROR, 126}, {48, SHIFT, 137}, },
-			{{-1, ERROR, 127}, {38, SHIFT, 138}, },
-			{{-1, ERROR, 128}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
-			{{-1, REDUCE, 67}, },
-			{{-1, ERROR, 130}, {9, SHIFT, 140}, {19, SHIFT, 128}, {20, SHIFT, 141}, },
+			{{-1, ERROR, 89}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, REDUCE, 65}, },
+			{{-1, REDUCE, 10}, {43, SHIFT, 89}, },
+			{{-1, ERROR, 92}, {45, SHIFT, 120}, },
+			{{-1, ERROR, 93}, {16, SHIFT, 121}, },
+			{{-1, ERROR, 94}, {8, SHIFT, 122}, },
+			{{-1, ERROR, 95}, {13, SHIFT, 123}, {15, SHIFT, 124}, },
+			{{-1, ERROR, 96}, {24, SHIFT, 38}, {36, SHIFT, 39}, {39, SHIFT, 40}, {46, SHIFT, 16}, {47, SHIFT, 17}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
+			{{-1, ERROR, 97}, {19, SHIFT, 126}, },
 			{{-1, REDUCE, 6}, },
-			{{-1, REDUCE, 18}, },
+			{{-1, REDUCE, 5}, },
+			{{-1, REDUCE, 15}, },
+			{{-1, REDUCE, 60}, },
+			{{-1, REDUCE, 17}, },
+			{{-1, REDUCE, 32}, },
+			{{-1, REDUCE, 70}, },
+			{{-1, REDUCE, 35}, {33, SHIFT, 77}, },
+			{{-1, REDUCE, 37}, {35, SHIFT, 78}, },
+			{{-1, REDUCE, 39}, {27, SHIFT, 79}, {28, SHIFT, 80}, },
+			{{-1, REDUCE, 41}, {29, SHIFT, 81}, {30, SHIFT, 82}, {31, SHIFT, 83}, {32, SHIFT, 84}, },
+			{{-1, REDUCE, 42}, {29, SHIFT, 81}, {30, SHIFT, 82}, {31, SHIFT, 83}, {32, SHIFT, 84}, },
+			{{-1, REDUCE, 44}, {23, SHIFT, 85}, {24, SHIFT, 86}, },
+			{{-1, REDUCE, 45}, {23, SHIFT, 85}, {24, SHIFT, 86}, },
+			{{-1, REDUCE, 47}, {23, SHIFT, 85}, {24, SHIFT, 86}, },
+			{{-1, REDUCE, 46}, {23, SHIFT, 85}, {24, SHIFT, 86}, },
+			{{-1, REDUCE, 49}, {25, SHIFT, 87}, {26, SHIFT, 88}, },
+			{{-1, REDUCE, 50}, {25, SHIFT, 87}, {26, SHIFT, 88}, },
+			{{-1, REDUCE, 53}, },
+			{{-1, REDUCE, 52}, },
+			{{-1, REDUCE, 11}, },
+			{{-1, REDUCE, 66}, },
 			{{-1, REDUCE, 16}, },
-			{{-1, ERROR, 134}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {6, SHIFT, 144}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 135}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {9, SHIFT, 145}, {10, SHIFT, 146}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 136}, {15, SHIFT, 148}, },
-			{{-1, ERROR, 137}, {16, SHIFT, 149}, },
-			{{-1, ERROR, 138}, {45, SHIFT, 150}, },
-			{{-1, ERROR, 139}, {44, SHIFT, 151}, },
-			{{-1, ERROR, 140}, {44, SHIFT, 152}, },
-			{{-1, ERROR, 141}, {45, SHIFT, 153}, },
+			{{-1, ERROR, 121}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 122}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 123}, {48, SHIFT, 131}, },
+			{{-1, ERROR, 124}, {48, SHIFT, 132}, },
+			{{-1, ERROR, 125}, {38, SHIFT, 133}, },
+			{{-1, ERROR, 126}, {48, SHIFT, 41}, {49, SHIFT, 42}, {50, SHIFT, 43}, },
+			{{-1, REDUCE, 67}, },
+			{{-1, ERROR, 128}, {9, SHIFT, 135}, {19, SHIFT, 126}, {20, SHIFT, 136}, },
+			{{-1, ERROR, 129}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {6, SHIFT, 139}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 130}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {9, SHIFT, 140}, {10, SHIFT, 141}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 131}, {15, SHIFT, 143}, },
+			{{-1, ERROR, 132}, {16, SHIFT, 144}, },
+			{{-1, ERROR, 133}, {45, SHIFT, 145}, },
+			{{-1, ERROR, 134}, {44, SHIFT, 146}, },
+			{{-1, ERROR, 135}, {44, SHIFT, 147}, },
+			{{-1, ERROR, 136}, {45, SHIFT, 148}, },
 			{{-1, REDUCE, 68}, },
-			{{-1, ERROR, 143}, {20, SHIFT, 154}, },
-			{{-1, ERROR, 144}, {45, SHIFT, 155}, },
-			{{-1, ERROR, 145}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 146}, {45, SHIFT, 157}, },
-			{{-1, ERROR, 147}, {10, SHIFT, 158}, },
-			{{-1, ERROR, 148}, {48, SHIFT, 159}, },
-			{{-1, ERROR, 149}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, REDUCE, 24}, },
-			{{-1, ERROR, 151}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 152}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, REDUCE, 21}, },
-			{{-1, ERROR, 154}, {45, SHIFT, 163}, },
+			{{-1, ERROR, 138}, {20, SHIFT, 149}, },
+			{{-1, ERROR, 139}, {45, SHIFT, 150}, },
+			{{-1, ERROR, 140}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 141}, {45, SHIFT, 152}, },
+			{{-1, ERROR, 142}, {10, SHIFT, 153}, },
+			{{-1, ERROR, 143}, {48, SHIFT, 154}, },
+			{{-1, ERROR, 144}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, REDUCE, 23}, },
-			{{-1, REDUCE, 27}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, REDUCE, 19}, },
-			{{-1, ERROR, 158}, {45, SHIFT, 164}, },
-			{{-1, ERROR, 159}, {16, SHIFT, 165}, },
-			{{-1, ERROR, 160}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {14, SHIFT, 166}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 146}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 147}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, REDUCE, 20}, },
+			{{-1, ERROR, 149}, {45, SHIFT, 158}, },
+			{{-1, REDUCE, 22}, },
+			{{-1, REDUCE, 26}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, REDUCE, 18}, },
+			{{-1, ERROR, 153}, {45, SHIFT, 159}, },
+			{{-1, ERROR, 154}, {16, SHIFT, 160}, },
+			{{-1, ERROR, 155}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {14, SHIFT, 161}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, REDUCE, 28}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
 			{{-1, REDUCE, 29}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, REDUCE, 22}, },
-			{{-1, REDUCE, 20}, },
-			{{-1, ERROR, 165}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
-			{{-1, ERROR, 166}, {45, SHIFT, 168}, },
-			{{-1, ERROR, 167}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {14, SHIFT, 169}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, REDUCE, 21}, },
+			{{-1, REDUCE, 19}, },
+			{{-1, ERROR, 160}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, ERROR, 161}, {45, SHIFT, 163}, },
+			{{-1, ERROR, 162}, {3, SHIFT, 7}, {4, SHIFT, 8}, {5, SHIFT, 9}, {7, SHIFT, 10}, {11, SHIFT, 11}, {14, SHIFT, 164}, {17, SHIFT, 12}, {18, SHIFT, 13}, {46, SHIFT, 16}, {47, SHIFT, 17}, },
+			{{-1, REDUCE, 24}, },
+			{{-1, ERROR, 164}, {45, SHIFT, 165}, },
 			{{-1, REDUCE, 25}, },
-			{{-1, ERROR, 169}, {45, SHIFT, 170}, },
-			{{-1, REDUCE, 26}, },
         };*/
     private static int[][][] gotoTable;
 /*      {
 			{{-1, 2}, },
 			{{-1, 3}, },
 			{{-1, 18}, {21, 34}, },
-			{{-1, 44}, {5, 19}, {11, 27}, {12, 19}, {21, 19}, {22, 19}, {24, 58}, {28, 19}, {31, 68}, {35, 19}, {60, 94}, {69, 103}, {123, 19}, {124, 19}, {134, 19}, {135, 19}, {145, 19}, {149, 19}, {151, 19}, {152, 19}, {156, 19}, {160, 19}, {161, 19}, {162, 19}, {165, 19}, {167, 19}, },
-			{{-1, 59}, {60, 95}, {69, 95}, },
-			{{-1, 45}, {30, 67}, {128, 139}, },
-			{{-1, 20}, {22, 37}, {28, 37}, {35, 37}, {134, 37}, {135, 37}, {156, 37}, {160, 37}, {161, 37}, {162, 37}, {167, 37}, },
-			{{-1, 147}, },
-			{{-1, 129}, {130, 142}, },
-			{{-1, 143}, },
-			{{-1, 46}, {57, 90}, },
-			{{-1, 47}, {29, 66}, {32, 70}, {40, 74}, {57, 91}, },
-			{{-1, 61}, {26, 63}, {99, 127}, },
-			{{-1, 48}, {25, 62}, {26, 62}, {99, 62}, },
-			{{-1, 49}, {77, 107}, },
-			{{-1, 50}, {78, 108}, },
-			{{-1, 51}, {79, 109}, },
-			{{-1, 52}, {80, 110}, {81, 111}, },
-			{{-1, 53}, {82, 112}, {83, 113}, {84, 114}, {85, 115}, },
-			{{-1, 54}, {86, 116}, {87, 117}, },
-			{{-1, 55}, {38, 72}, {39, 73}, {88, 118}, {89, 119}, },
+			{{-1, 44}, {5, 19}, {11, 27}, {12, 19}, {21, 19}, {22, 19}, {24, 57}, {28, 19}, {31, 57}, {35, 19}, {89, 118}, {121, 19}, {122, 19}, {129, 19}, {130, 19}, {140, 19}, {144, 19}, {146, 19}, {147, 19}, {151, 19}, {155, 19}, {156, 19}, {157, 19}, {160, 19}, {162, 19}, },
+			{{-1, 58}, {31, 66}, },
+			{{-1, 90}, {91, 119}, },
+			{{-1, 45}, {30, 65}, {126, 134}, },
+			{{-1, 20}, {22, 37}, {28, 37}, {35, 37}, {129, 37}, {130, 37}, {151, 37}, {155, 37}, {156, 37}, {157, 37}, {162, 37}, },
+			{{-1, 142}, },
+			{{-1, -1}, },
+			{{-1, 127}, {128, 137}, },
+			{{-1, 138}, },
+			{{-1, 46}, },
+			{{-1, 74}, {75, 104}, },
+			{{-1, 47}, {29, 64}, {32, 67}, {40, 71}, {73, 103}, },
+			{{-1, 59}, {26, 61}, {96, 125}, },
+			{{-1, 48}, {25, 60}, {26, 60}, {96, 60}, },
+			{{-1, 49}, {76, 105}, },
+			{{-1, 50}, {77, 106}, },
+			{{-1, 51}, {78, 107}, },
+			{{-1, 52}, {79, 108}, {80, 109}, },
+			{{-1, 53}, {81, 110}, {82, 111}, {83, 112}, {84, 113}, },
+			{{-1, 54}, {85, 114}, {86, 115}, },
+			{{-1, 55}, {38, 69}, {39, 70}, {87, 116}, {88, 117}, },
 			{{-1, 56}, },
 			{{-1, 21}, },
-			{{-1, 22}, {12, 28}, {21, 35}, {123, 134}, {124, 135}, {145, 156}, {149, 160}, {151, 161}, {152, 162}, {165, 167}, },
-			{{-1, 60}, {31, 69}, },
-			{{-1, 57}, },
-			{{-1, 130}, },
+			{{-1, 22}, {12, 28}, {21, 35}, {121, 129}, {122, 130}, {140, 151}, {144, 155}, {146, 156}, {147, 157}, {160, 162}, },
+			{{-1, 91}, },
+			{{-1, 128}, },
+			{{-1, 75}, },
         };*/
     private static String[] errorMessages;
 /*      {
@@ -2889,6 +2624,7 @@ public class Parser
 			"expecting: n int, n real, string",
 			"expecting: '+', '-', '/', '*', '=', '<>', '>', '<', '<=', '>=', 'e', 'ou', 'xor', ')', ',', ':', ';'",
 			"expecting: '+', '-', '/', '*', '=', '<>', '>', '<', '<=', '>=', 'e', 'ou', 'xor', ')', ',', ';'",
+			"expecting: ')'",
 			"expecting: ')', ','",
 			"expecting: 'ou', ')', ',', ';'",
 			"expecting: 'e', 'ou', ')', ',', ';'",
@@ -2896,11 +2632,10 @@ public class Parser
 			"expecting: '=', '<>', 'e', 'ou', 'xor', ')', ',', ';'",
 			"expecting: '=', '<>', '>', '<', '<=', '>=', 'e', 'ou', 'xor', ')', ',', ';'",
 			"expecting: '+', '-', '=', '<>', '>', '<', '<=', '>=', 'e', 'ou', 'xor', ')', ',', ';'",
-			"expecting: ')'",
+			"expecting: ')', ',', ';'",
 			"expecting: 'ou', ')'",
 			"expecting: n int",
 			"expecting: ';'",
-			"expecting: ',', ';'",
 			"expecting: 'faca'",
 			"expecting: 'entao'",
 			"expecting: 'passo', 'ate'",
@@ -2918,7 +2653,7 @@ public class Parser
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 2, 2, 3, 4, 2, 5, 5, 5, 5, 6, 7, 5, 1, 8, 9, 9, 4, 10, 11, 4, 12, 13, 6, 13, 13, 14, 15, 13, 16, 6, 13, 2, 4, 12, 2, 11, 13, 13, 13, 17, 17, 17, 18, 18, 13, 19, 20, 21, 22, 23, 24, 25, 18, 18, 18, 13, 19, 6, 6, 26, 27, 26, 28, 5, 26, 29, 30, 6, 29, 2, 18, 18, 26, 29, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 19, 29, 6, 19, 6, 31, 32, 33, 13, 34, 4, 4, 30, 11, 18, 11, 21, 22, 23, 24, 24, 25, 25, 25, 25, 18, 18, 18, 18, 29, 11, 29, 7, 7, 28, 28, 26, 16, 35, 35, 4, 11, 11, 36, 37, 38, 31, 29, 8, 8, 29, 35, 39, 29, 7, 29, 40, 28, 7, 11, 7, 7, 11, 29, 11, 41, 11, 29, 31, 42, 43, 44, 11, 11, 7, 29, 42, 11, 29, 11, 
+			0, 1, 2, 2, 3, 4, 2, 5, 5, 5, 5, 6, 7, 5, 1, 8, 9, 9, 4, 10, 11, 4, 12, 13, 6, 13, 13, 14, 15, 13, 16, 6, 13, 2, 4, 12, 2, 11, 13, 13, 13, 17, 17, 17, 18, 18, 19, 20, 21, 22, 23, 24, 25, 26, 18, 18, 18, 27, 19, 19, 28, 19, 29, 5, 19, 30, 30, 30, 2, 18, 18, 19, 30, 13, 20, 20, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 6, 27, 27, 30, 31, 32, 33, 13, 34, 4, 4, 11, 18, 11, 20, 20, 22, 23, 24, 25, 25, 26, 26, 26, 26, 18, 18, 18, 18, 27, 27, 11, 7, 7, 29, 29, 19, 16, 35, 35, 36, 37, 38, 31, 30, 8, 8, 30, 35, 39, 30, 7, 30, 40, 29, 7, 11, 7, 7, 11, 30, 11, 41, 11, 30, 31, 42, 43, 44, 11, 11, 7, 30, 42, 11, 30, 11, 
         };*/
 
     static 

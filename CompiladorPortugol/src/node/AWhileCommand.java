@@ -8,14 +8,8 @@ import analysis.*;
 @SuppressWarnings("nls")
 public final class AWhileCommand extends PCommand
 {
-    private TEnquanto _enquanto_;
-    private TParE _parE_;
-    private PExpLogic _expLogic_;
-    private TParD _parD_;
-    private TFaca _faca_;
+    private PExp _exp_;
     private final LinkedList<PCommand> _command_ = new LinkedList<PCommand>();
-    private TFimEnquanto _fimEnquanto_;
-    private TSemicolon _semicolon_;
 
     public AWhileCommand()
     {
@@ -23,31 +17,13 @@ public final class AWhileCommand extends PCommand
     }
 
     public AWhileCommand(
-        @SuppressWarnings("hiding") TEnquanto _enquanto_,
-        @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExpLogic _expLogic_,
-        @SuppressWarnings("hiding") TParD _parD_,
-        @SuppressWarnings("hiding") TFaca _faca_,
-        @SuppressWarnings("hiding") List<?> _command_,
-        @SuppressWarnings("hiding") TFimEnquanto _fimEnquanto_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") List<?> _command_)
     {
         // Constructor
-        setEnquanto(_enquanto_);
-
-        setParE(_parE_);
-
-        setExpLogic(_expLogic_);
-
-        setParD(_parD_);
-
-        setFaca(_faca_);
+        setExp(_exp_);
 
         setCommand(_command_);
-
-        setFimEnquanto(_fimEnquanto_);
-
-        setSemicolon(_semicolon_);
 
     }
 
@@ -55,14 +31,8 @@ public final class AWhileCommand extends PCommand
     public Object clone()
     {
         return new AWhileCommand(
-            cloneNode(this._enquanto_),
-            cloneNode(this._parE_),
-            cloneNode(this._expLogic_),
-            cloneNode(this._parD_),
-            cloneNode(this._faca_),
-            cloneList(this._command_),
-            cloneNode(this._fimEnquanto_),
-            cloneNode(this._semicolon_));
+            cloneNode(this._exp_),
+            cloneList(this._command_));
     }
 
     @Override
@@ -71,16 +41,16 @@ public final class AWhileCommand extends PCommand
         ((Analysis) sw).caseAWhileCommand(this);
     }
 
-    public TEnquanto getEnquanto()
+    public PExp getExp()
     {
-        return this._enquanto_;
+        return this._exp_;
     }
 
-    public void setEnquanto(TEnquanto node)
+    public void setExp(PExp node)
     {
-        if(this._enquanto_ != null)
+        if(this._exp_ != null)
         {
-            this._enquanto_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -93,107 +63,7 @@ public final class AWhileCommand extends PCommand
             node.parent(this);
         }
 
-        this._enquanto_ = node;
-    }
-
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
-    }
-
-    public PExpLogic getExpLogic()
-    {
-        return this._expLogic_;
-    }
-
-    public void setExpLogic(PExpLogic node)
-    {
-        if(this._expLogic_ != null)
-        {
-            this._expLogic_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._expLogic_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
-    public TFaca getFaca()
-    {
-        return this._faca_;
-    }
-
-    public void setFaca(TFaca node)
-    {
-        if(this._faca_ != null)
-        {
-            this._faca_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._faca_ = node;
+        this._exp_ = node;
     }
 
     public LinkedList<PCommand> getCommand()
@@ -222,118 +92,26 @@ public final class AWhileCommand extends PCommand
         }
     }
 
-    public TFimEnquanto getFimEnquanto()
-    {
-        return this._fimEnquanto_;
-    }
-
-    public void setFimEnquanto(TFimEnquanto node)
-    {
-        if(this._fimEnquanto_ != null)
-        {
-            this._fimEnquanto_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fimEnquanto_ = node;
-    }
-
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._enquanto_)
-            + toString(this._parE_)
-            + toString(this._expLogic_)
-            + toString(this._parD_)
-            + toString(this._faca_)
-            + toString(this._command_)
-            + toString(this._fimEnquanto_)
-            + toString(this._semicolon_);
+            + toString(this._exp_)
+            + toString(this._command_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._enquanto_ == child)
+        if(this._exp_ == child)
         {
-            this._enquanto_ = null;
-            return;
-        }
-
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
-        if(this._expLogic_ == child)
-        {
-            this._expLogic_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
-            return;
-        }
-
-        if(this._faca_ == child)
-        {
-            this._faca_ = null;
+            this._exp_ = null;
             return;
         }
 
         if(this._command_.remove(child))
         {
-            return;
-        }
-
-        if(this._fimEnquanto_ == child)
-        {
-            this._fimEnquanto_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
             return;
         }
 
@@ -344,33 +122,9 @@ public final class AWhileCommand extends PCommand
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._enquanto_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setEnquanto((TEnquanto) newChild);
-            return;
-        }
-
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
-        if(this._expLogic_ == oldChild)
-        {
-            setExpLogic((PExpLogic) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
-            return;
-        }
-
-        if(this._faca_ == oldChild)
-        {
-            setFaca((TFaca) newChild);
+            setExp((PExp) newChild);
             return;
         }
 
@@ -390,18 +144,6 @@ public final class AWhileCommand extends PCommand
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._fimEnquanto_ == oldChild)
-        {
-            setFimEnquanto((TFimEnquanto) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
-            return;
         }
 
         throw new RuntimeException("Not a child.");

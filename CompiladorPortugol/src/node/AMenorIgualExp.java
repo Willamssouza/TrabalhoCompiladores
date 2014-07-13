@@ -5,51 +5,51 @@ package node;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVarlist extends PVarlist
+public final class AMenorIgualExp extends PExp
 {
-    private PVar _var_;
-    private TVirgula _virgula_;
+    private PExp _left_;
+    private PExp _right_;
 
-    public AVarlist()
+    public AMenorIgualExp()
     {
         // Constructor
     }
 
-    public AVarlist(
-        @SuppressWarnings("hiding") PVar _var_,
-        @SuppressWarnings("hiding") TVirgula _virgula_)
+    public AMenorIgualExp(
+        @SuppressWarnings("hiding") PExp _left_,
+        @SuppressWarnings("hiding") PExp _right_)
     {
         // Constructor
-        setVar(_var_);
+        setLeft(_left_);
 
-        setVirgula(_virgula_);
+        setRight(_right_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AVarlist(
-            cloneNode(this._var_),
-            cloneNode(this._virgula_));
+        return new AMenorIgualExp(
+            cloneNode(this._left_),
+            cloneNode(this._right_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVarlist(this);
+        ((Analysis) sw).caseAMenorIgualExp(this);
     }
 
-    public PVar getVar()
+    public PExp getLeft()
     {
-        return this._var_;
+        return this._left_;
     }
 
-    public void setVar(PVar node)
+    public void setLeft(PExp node)
     {
-        if(this._var_ != null)
+        if(this._left_ != null)
         {
-            this._var_.parent(null);
+            this._left_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class AVarlist extends PVarlist
             node.parent(this);
         }
 
-        this._var_ = node;
+        this._left_ = node;
     }
 
-    public TVirgula getVirgula()
+    public PExp getRight()
     {
-        return this._virgula_;
+        return this._right_;
     }
 
-    public void setVirgula(TVirgula node)
+    public void setRight(PExp node)
     {
-        if(this._virgula_ != null)
+        if(this._right_ != null)
         {
-            this._virgula_.parent(null);
+            this._right_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class AVarlist extends PVarlist
             node.parent(this);
         }
 
-        this._virgula_ = node;
+        this._right_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._var_)
-            + toString(this._virgula_);
+            + toString(this._left_)
+            + toString(this._right_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._var_ == child)
+        if(this._left_ == child)
         {
-            this._var_ = null;
+            this._left_ = null;
             return;
         }
 
-        if(this._virgula_ == child)
+        if(this._right_ == child)
         {
-            this._virgula_ = null;
+            this._right_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class AVarlist extends PVarlist
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._var_ == oldChild)
+        if(this._left_ == oldChild)
         {
-            setVar((PVar) newChild);
+            setLeft((PExp) newChild);
             return;
         }
 
-        if(this._virgula_ == oldChild)
+        if(this._right_ == oldChild)
         {
-            setVirgula((TVirgula) newChild);
+            setRight((PExp) newChild);
             return;
         }
 

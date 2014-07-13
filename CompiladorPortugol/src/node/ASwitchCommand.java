@@ -8,14 +8,9 @@ import analysis.*;
 @SuppressWarnings("nls")
 public final class ASwitchCommand extends PCommand
 {
-    private TAvalie _avalie_;
-    private TParE _parE_;
-    private PExpression _expression_;
-    private TParD _parD_;
-    private final LinkedList<PCasepart> _casepart_ = new LinkedList<PCasepart>();
-    private PElseswitch _elseswitch_;
-    private TFimAvalie _fimAvalie_;
-    private TSemicolon _semicolon_;
+    private PExp _exp_;
+    private final LinkedList<PCase> _case_ = new LinkedList<PCase>();
+    private final LinkedList<PCommand> _elseSwitch_ = new LinkedList<PCommand>();
 
     public ASwitchCommand()
     {
@@ -23,31 +18,16 @@ public final class ASwitchCommand extends PCommand
     }
 
     public ASwitchCommand(
-        @SuppressWarnings("hiding") TAvalie _avalie_,
-        @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExpression _expression_,
-        @SuppressWarnings("hiding") TParD _parD_,
-        @SuppressWarnings("hiding") List<?> _casepart_,
-        @SuppressWarnings("hiding") PElseswitch _elseswitch_,
-        @SuppressWarnings("hiding") TFimAvalie _fimAvalie_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") List<?> _case_,
+        @SuppressWarnings("hiding") List<?> _elseSwitch_)
     {
         // Constructor
-        setAvalie(_avalie_);
+        setExp(_exp_);
 
-        setParE(_parE_);
+        setCase(_case_);
 
-        setExpression(_expression_);
-
-        setParD(_parD_);
-
-        setCasepart(_casepart_);
-
-        setElseswitch(_elseswitch_);
-
-        setFimAvalie(_fimAvalie_);
-
-        setSemicolon(_semicolon_);
+        setElseSwitch(_elseSwitch_);
 
     }
 
@@ -55,14 +35,9 @@ public final class ASwitchCommand extends PCommand
     public Object clone()
     {
         return new ASwitchCommand(
-            cloneNode(this._avalie_),
-            cloneNode(this._parE_),
-            cloneNode(this._expression_),
-            cloneNode(this._parD_),
-            cloneList(this._casepart_),
-            cloneNode(this._elseswitch_),
-            cloneNode(this._fimAvalie_),
-            cloneNode(this._semicolon_));
+            cloneNode(this._exp_),
+            cloneList(this._case_),
+            cloneList(this._elseSwitch_));
     }
 
     @Override
@@ -71,16 +46,16 @@ public final class ASwitchCommand extends PCommand
         ((Analysis) sw).caseASwitchCommand(this);
     }
 
-    public TAvalie getAvalie()
+    public PExp getExp()
     {
-        return this._avalie_;
+        return this._exp_;
     }
 
-    public void setAvalie(TAvalie node)
+    public void setExp(PExp node)
     {
-        if(this._avalie_ != null)
+        if(this._exp_ != null)
         {
-            this._avalie_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -93,247 +68,87 @@ public final class ASwitchCommand extends PCommand
             node.parent(this);
         }
 
-        this._avalie_ = node;
+        this._exp_ = node;
     }
 
-    public TParE getParE()
+    public LinkedList<PCase> getCase()
     {
-        return this._parE_;
+        return this._case_;
     }
 
-    public void setParE(TParE node)
+    public void setCase(List<?> list)
     {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
-    }
-
-    public PExpression getExpression()
-    {
-        return this._expression_;
-    }
-
-    public void setExpression(PExpression node)
-    {
-        if(this._expression_ != null)
-        {
-            this._expression_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._expression_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
-    public LinkedList<PCasepart> getCasepart()
-    {
-        return this._casepart_;
-    }
-
-    public void setCasepart(List<?> list)
-    {
-        for(PCasepart e : this._casepart_)
+        for(PCase e : this._case_)
         {
             e.parent(null);
         }
-        this._casepart_.clear();
+        this._case_.clear();
 
         for(Object obj_e : list)
         {
-            PCasepart e = (PCasepart) obj_e;
+            PCase e = (PCase) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._casepart_.add(e);
+            this._case_.add(e);
         }
     }
 
-    public PElseswitch getElseswitch()
+    public LinkedList<PCommand> getElseSwitch()
     {
-        return this._elseswitch_;
+        return this._elseSwitch_;
     }
 
-    public void setElseswitch(PElseswitch node)
+    public void setElseSwitch(List<?> list)
     {
-        if(this._elseswitch_ != null)
+        for(PCommand e : this._elseSwitch_)
         {
-            this._elseswitch_.parent(null);
+            e.parent(null);
         }
+        this._elseSwitch_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PCommand e = (PCommand) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._elseSwitch_.add(e);
         }
-
-        this._elseswitch_ = node;
-    }
-
-    public TFimAvalie getFimAvalie()
-    {
-        return this._fimAvalie_;
-    }
-
-    public void setFimAvalie(TFimAvalie node)
-    {
-        if(this._fimAvalie_ != null)
-        {
-            this._fimAvalie_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fimAvalie_ = node;
-    }
-
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._avalie_)
-            + toString(this._parE_)
-            + toString(this._expression_)
-            + toString(this._parD_)
-            + toString(this._casepart_)
-            + toString(this._elseswitch_)
-            + toString(this._fimAvalie_)
-            + toString(this._semicolon_);
+            + toString(this._exp_)
+            + toString(this._case_)
+            + toString(this._elseSwitch_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._avalie_ == child)
+        if(this._exp_ == child)
         {
-            this._avalie_ = null;
+            this._exp_ = null;
             return;
         }
 
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
-        if(this._expression_ == child)
-        {
-            this._expression_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
-            return;
-        }
-
-        if(this._casepart_.remove(child))
+        if(this._case_.remove(child))
         {
             return;
         }
 
-        if(this._elseswitch_ == child)
+        if(this._elseSwitch_.remove(child))
         {
-            this._elseswitch_ = null;
-            return;
-        }
-
-        if(this._fimAvalie_ == child)
-        {
-            this._fimAvalie_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
             return;
         }
 
@@ -344,37 +159,19 @@ public final class ASwitchCommand extends PCommand
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._avalie_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setAvalie((TAvalie) newChild);
+            setExp((PExp) newChild);
             return;
         }
 
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
-        if(this._expression_ == oldChild)
-        {
-            setExpression((PExpression) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
-            return;
-        }
-
-        for(ListIterator<PCasepart> i = this._casepart_.listIterator(); i.hasNext();)
+        for(ListIterator<PCase> i = this._case_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PCasepart) newChild);
+                    i.set((PCase) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;
@@ -386,22 +183,22 @@ public final class ASwitchCommand extends PCommand
             }
         }
 
-        if(this._elseswitch_ == oldChild)
+        for(ListIterator<PCommand> i = this._elseSwitch_.listIterator(); i.hasNext();)
         {
-            setElseswitch((PElseswitch) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PCommand) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._fimAvalie_ == oldChild)
-        {
-            setFimAvalie((TFimAvalie) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

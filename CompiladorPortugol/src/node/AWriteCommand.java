@@ -8,12 +8,7 @@ import analysis.*;
 @SuppressWarnings("nls")
 public final class AWriteCommand extends PCommand
 {
-    private TEscreva _escreva_;
-    private TParE _parE_;
-    private final LinkedList<PExplist> _explist_ = new LinkedList<PExplist>();
-    private PExpression _expression_;
-    private TParD _parD_;
-    private TSemicolon _semicolon_;
+    private final LinkedList<PExp> _exp_ = new LinkedList<PExp>();
 
     public AWriteCommand()
     {
@@ -21,25 +16,10 @@ public final class AWriteCommand extends PCommand
     }
 
     public AWriteCommand(
-        @SuppressWarnings("hiding") TEscreva _escreva_,
-        @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") List<?> _explist_,
-        @SuppressWarnings("hiding") PExpression _expression_,
-        @SuppressWarnings("hiding") TParD _parD_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") List<?> _exp_)
     {
         // Constructor
-        setEscreva(_escreva_);
-
-        setParE(_parE_);
-
-        setExplist(_explist_);
-
-        setExpression(_expression_);
-
-        setParD(_parD_);
-
-        setSemicolon(_semicolon_);
+        setExp(_exp_);
 
     }
 
@@ -47,12 +27,7 @@ public final class AWriteCommand extends PCommand
     public Object clone()
     {
         return new AWriteCommand(
-            cloneNode(this._escreva_),
-            cloneNode(this._parE_),
-            cloneList(this._explist_),
-            cloneNode(this._expression_),
-            cloneNode(this._parD_),
-            cloneNode(this._semicolon_));
+            cloneList(this._exp_));
     }
 
     @Override
@@ -61,205 +36,45 @@ public final class AWriteCommand extends PCommand
         ((Analysis) sw).caseAWriteCommand(this);
     }
 
-    public TEscreva getEscreva()
+    public LinkedList<PExp> getExp()
     {
-        return this._escreva_;
+        return this._exp_;
     }
 
-    public void setEscreva(TEscreva node)
+    public void setExp(List<?> list)
     {
-        if(this._escreva_ != null)
-        {
-            this._escreva_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._escreva_ = node;
-    }
-
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
-    }
-
-    public LinkedList<PExplist> getExplist()
-    {
-        return this._explist_;
-    }
-
-    public void setExplist(List<?> list)
-    {
-        for(PExplist e : this._explist_)
+        for(PExp e : this._exp_)
         {
             e.parent(null);
         }
-        this._explist_.clear();
+        this._exp_.clear();
 
         for(Object obj_e : list)
         {
-            PExplist e = (PExplist) obj_e;
+            PExp e = (PExp) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._explist_.add(e);
+            this._exp_.add(e);
         }
-    }
-
-    public PExpression getExpression()
-    {
-        return this._expression_;
-    }
-
-    public void setExpression(PExpression node)
-    {
-        if(this._expression_ != null)
-        {
-            this._expression_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._expression_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._escreva_)
-            + toString(this._parE_)
-            + toString(this._explist_)
-            + toString(this._expression_)
-            + toString(this._parD_)
-            + toString(this._semicolon_);
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._escreva_ == child)
+        if(this._exp_.remove(child))
         {
-            this._escreva_ = null;
-            return;
-        }
-
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
-        if(this._explist_.remove(child))
-        {
-            return;
-        }
-
-        if(this._expression_ == child)
-        {
-            this._expression_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
             return;
         }
 
@@ -270,25 +85,13 @@ public final class AWriteCommand extends PCommand
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._escreva_ == oldChild)
-        {
-            setEscreva((TEscreva) newChild);
-            return;
-        }
-
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
-        for(ListIterator<PExplist> i = this._explist_.listIterator(); i.hasNext();)
+        for(ListIterator<PExp> i = this._exp_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PExplist) newChild);
+                    i.set((PExp) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;
@@ -298,24 +101,6 @@ public final class AWriteCommand extends PCommand
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._expression_ == oldChild)
-        {
-            setExpression((PExpression) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
-            return;
         }
 
         throw new RuntimeException("Not a child.");

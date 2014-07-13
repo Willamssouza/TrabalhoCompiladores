@@ -8,13 +8,8 @@ import analysis.*;
 @SuppressWarnings("nls")
 public final class ARepeatCommand extends PCommand
 {
-    private TRepita _repita_;
     private final LinkedList<PCommand> _command_ = new LinkedList<PCommand>();
-    private TAte _ate_;
-    private TParE _parE_;
-    private PExpLogic _expLogic_;
-    private TParD _parD_;
-    private TSemicolon _semicolon_;
+    private PExp _exp_;
 
     public ARepeatCommand()
     {
@@ -22,28 +17,13 @@ public final class ARepeatCommand extends PCommand
     }
 
     public ARepeatCommand(
-        @SuppressWarnings("hiding") TRepita _repita_,
         @SuppressWarnings("hiding") List<?> _command_,
-        @SuppressWarnings("hiding") TAte _ate_,
-        @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExpLogic _expLogic_,
-        @SuppressWarnings("hiding") TParD _parD_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setRepita(_repita_);
-
         setCommand(_command_);
 
-        setAte(_ate_);
-
-        setParE(_parE_);
-
-        setExpLogic(_expLogic_);
-
-        setParD(_parD_);
-
-        setSemicolon(_semicolon_);
+        setExp(_exp_);
 
     }
 
@@ -51,44 +31,14 @@ public final class ARepeatCommand extends PCommand
     public Object clone()
     {
         return new ARepeatCommand(
-            cloneNode(this._repita_),
             cloneList(this._command_),
-            cloneNode(this._ate_),
-            cloneNode(this._parE_),
-            cloneNode(this._expLogic_),
-            cloneNode(this._parD_),
-            cloneNode(this._semicolon_));
+            cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseARepeatCommand(this);
-    }
-
-    public TRepita getRepita()
-    {
-        return this._repita_;
-    }
-
-    public void setRepita(TRepita node)
-    {
-        if(this._repita_ != null)
-        {
-            this._repita_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._repita_ = node;
     }
 
     public LinkedList<PCommand> getCommand()
@@ -117,16 +67,16 @@ public final class ARepeatCommand extends PCommand
         }
     }
 
-    public TAte getAte()
+    public PExp getExp()
     {
-        return this._ate_;
+        return this._exp_;
     }
 
-    public void setAte(TAte node)
+    public void setExp(PExp node)
     {
-        if(this._ate_ != null)
+        if(this._exp_ != null)
         {
-            this._ate_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -139,164 +89,29 @@ public final class ARepeatCommand extends PCommand
             node.parent(this);
         }
 
-        this._ate_ = node;
-    }
-
-    public TParE getParE()
-    {
-        return this._parE_;
-    }
-
-    public void setParE(TParE node)
-    {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
-    }
-
-    public PExpLogic getExpLogic()
-    {
-        return this._expLogic_;
-    }
-
-    public void setExpLogic(PExpLogic node)
-    {
-        if(this._expLogic_ != null)
-        {
-            this._expLogic_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._expLogic_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
+        this._exp_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._repita_)
             + toString(this._command_)
-            + toString(this._ate_)
-            + toString(this._parE_)
-            + toString(this._expLogic_)
-            + toString(this._parD_)
-            + toString(this._semicolon_);
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._repita_ == child)
-        {
-            this._repita_ = null;
-            return;
-        }
-
         if(this._command_.remove(child))
         {
             return;
         }
 
-        if(this._ate_ == child)
+        if(this._exp_ == child)
         {
-            this._ate_ = null;
-            return;
-        }
-
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
-        if(this._expLogic_ == child)
-        {
-            this._expLogic_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -307,12 +122,6 @@ public final class ARepeatCommand extends PCommand
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._repita_ == oldChild)
-        {
-            setRepita((TRepita) newChild);
-            return;
-        }
-
         for(ListIterator<PCommand> i = this._command_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
@@ -331,33 +140,9 @@ public final class ARepeatCommand extends PCommand
             }
         }
 
-        if(this._ate_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setAte((TAte) newChild);
-            return;
-        }
-
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
-        if(this._expLogic_ == oldChild)
-        {
-            setExpLogic((PExpLogic) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
+            setExp((PExp) newChild);
             return;
         }
 

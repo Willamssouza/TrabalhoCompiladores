@@ -8,15 +8,9 @@ import analysis.*;
 @SuppressWarnings("nls")
 public final class AIfCommand extends PCommand
 {
-    private TSe _se_;
-    private TParE _parE_;
-    private PExpLogic _expLogic_;
-    private TParD _parD_;
-    private TEntao _entao_;
-    private final LinkedList<PCommand> _command_ = new LinkedList<PCommand>();
-    private PElsepart _elsepart_;
-    private TFimSe _fimSe_;
-    private TSemicolon _semicolon_;
+    private PExp _exp_;
+    private final LinkedList<PCommand> _then_ = new LinkedList<PCommand>();
+    private final LinkedList<PCommand> _else_ = new LinkedList<PCommand>();
 
     public AIfCommand()
     {
@@ -24,34 +18,16 @@ public final class AIfCommand extends PCommand
     }
 
     public AIfCommand(
-        @SuppressWarnings("hiding") TSe _se_,
-        @SuppressWarnings("hiding") TParE _parE_,
-        @SuppressWarnings("hiding") PExpLogic _expLogic_,
-        @SuppressWarnings("hiding") TParD _parD_,
-        @SuppressWarnings("hiding") TEntao _entao_,
-        @SuppressWarnings("hiding") List<?> _command_,
-        @SuppressWarnings("hiding") PElsepart _elsepart_,
-        @SuppressWarnings("hiding") TFimSe _fimSe_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") PExp _exp_,
+        @SuppressWarnings("hiding") List<?> _then_,
+        @SuppressWarnings("hiding") List<?> _else_)
     {
         // Constructor
-        setSe(_se_);
+        setExp(_exp_);
 
-        setParE(_parE_);
+        setThen(_then_);
 
-        setExpLogic(_expLogic_);
-
-        setParD(_parD_);
-
-        setEntao(_entao_);
-
-        setCommand(_command_);
-
-        setElsepart(_elsepart_);
-
-        setFimSe(_fimSe_);
-
-        setSemicolon(_semicolon_);
+        setElse(_else_);
 
     }
 
@@ -59,15 +35,9 @@ public final class AIfCommand extends PCommand
     public Object clone()
     {
         return new AIfCommand(
-            cloneNode(this._se_),
-            cloneNode(this._parE_),
-            cloneNode(this._expLogic_),
-            cloneNode(this._parD_),
-            cloneNode(this._entao_),
-            cloneList(this._command_),
-            cloneNode(this._elsepart_),
-            cloneNode(this._fimSe_),
-            cloneNode(this._semicolon_));
+            cloneNode(this._exp_),
+            cloneList(this._then_),
+            cloneList(this._else_));
     }
 
     @Override
@@ -76,16 +46,16 @@ public final class AIfCommand extends PCommand
         ((Analysis) sw).caseAIfCommand(this);
     }
 
-    public TSe getSe()
+    public PExp getExp()
     {
-        return this._se_;
+        return this._exp_;
     }
 
-    public void setSe(TSe node)
+    public void setExp(PExp node)
     {
-        if(this._se_ != null)
+        if(this._exp_ != null)
         {
-            this._se_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -98,121 +68,21 @@ public final class AIfCommand extends PCommand
             node.parent(this);
         }
 
-        this._se_ = node;
+        this._exp_ = node;
     }
 
-    public TParE getParE()
+    public LinkedList<PCommand> getThen()
     {
-        return this._parE_;
+        return this._then_;
     }
 
-    public void setParE(TParE node)
+    public void setThen(List<?> list)
     {
-        if(this._parE_ != null)
-        {
-            this._parE_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parE_ = node;
-    }
-
-    public PExpLogic getExpLogic()
-    {
-        return this._expLogic_;
-    }
-
-    public void setExpLogic(PExpLogic node)
-    {
-        if(this._expLogic_ != null)
-        {
-            this._expLogic_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._expLogic_ = node;
-    }
-
-    public TParD getParD()
-    {
-        return this._parD_;
-    }
-
-    public void setParD(TParD node)
-    {
-        if(this._parD_ != null)
-        {
-            this._parD_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._parD_ = node;
-    }
-
-    public TEntao getEntao()
-    {
-        return this._entao_;
-    }
-
-    public void setEntao(TEntao node)
-    {
-        if(this._entao_ != null)
-        {
-            this._entao_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._entao_ = node;
-    }
-
-    public LinkedList<PCommand> getCommand()
-    {
-        return this._command_;
-    }
-
-    public void setCommand(List<?> list)
-    {
-        for(PCommand e : this._command_)
+        for(PCommand e : this._then_)
         {
             e.parent(null);
         }
-        this._command_.clear();
+        this._then_.clear();
 
         for(Object obj_e : list)
         {
@@ -223,154 +93,62 @@ public final class AIfCommand extends PCommand
             }
 
             e.parent(this);
-            this._command_.add(e);
+            this._then_.add(e);
         }
     }
 
-    public PElsepart getElsepart()
+    public LinkedList<PCommand> getElse()
     {
-        return this._elsepart_;
+        return this._else_;
     }
 
-    public void setElsepart(PElsepart node)
+    public void setElse(List<?> list)
     {
-        if(this._elsepart_ != null)
+        for(PCommand e : this._else_)
         {
-            this._elsepart_.parent(null);
+            e.parent(null);
         }
+        this._else_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PCommand e = (PCommand) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._else_.add(e);
         }
-
-        this._elsepart_ = node;
-    }
-
-    public TFimSe getFimSe()
-    {
-        return this._fimSe_;
-    }
-
-    public void setFimSe(TFimSe node)
-    {
-        if(this._fimSe_ != null)
-        {
-            this._fimSe_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fimSe_ = node;
-    }
-
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._se_)
-            + toString(this._parE_)
-            + toString(this._expLogic_)
-            + toString(this._parD_)
-            + toString(this._entao_)
-            + toString(this._command_)
-            + toString(this._elsepart_)
-            + toString(this._fimSe_)
-            + toString(this._semicolon_);
+            + toString(this._exp_)
+            + toString(this._then_)
+            + toString(this._else_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._se_ == child)
+        if(this._exp_ == child)
         {
-            this._se_ = null;
+            this._exp_ = null;
             return;
         }
 
-        if(this._parE_ == child)
-        {
-            this._parE_ = null;
-            return;
-        }
-
-        if(this._expLogic_ == child)
-        {
-            this._expLogic_ = null;
-            return;
-        }
-
-        if(this._parD_ == child)
-        {
-            this._parD_ = null;
-            return;
-        }
-
-        if(this._entao_ == child)
-        {
-            this._entao_ = null;
-            return;
-        }
-
-        if(this._command_.remove(child))
+        if(this._then_.remove(child))
         {
             return;
         }
 
-        if(this._elsepart_ == child)
+        if(this._else_.remove(child))
         {
-            this._elsepart_ = null;
-            return;
-        }
-
-        if(this._fimSe_ == child)
-        {
-            this._fimSe_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
             return;
         }
 
@@ -381,37 +159,13 @@ public final class AIfCommand extends PCommand
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._se_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setSe((TSe) newChild);
+            setExp((PExp) newChild);
             return;
         }
 
-        if(this._parE_ == oldChild)
-        {
-            setParE((TParE) newChild);
-            return;
-        }
-
-        if(this._expLogic_ == oldChild)
-        {
-            setExpLogic((PExpLogic) newChild);
-            return;
-        }
-
-        if(this._parD_ == oldChild)
-        {
-            setParD((TParD) newChild);
-            return;
-        }
-
-        if(this._entao_ == oldChild)
-        {
-            setEntao((TEntao) newChild);
-            return;
-        }
-
-        for(ListIterator<PCommand> i = this._command_.listIterator(); i.hasNext();)
+        for(ListIterator<PCommand> i = this._then_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
@@ -429,22 +183,22 @@ public final class AIfCommand extends PCommand
             }
         }
 
-        if(this._elsepart_ == oldChild)
+        for(ListIterator<PCommand> i = this._else_.listIterator(); i.hasNext();)
         {
-            setElsepart((PElsepart) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PCommand) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._fimSe_ == oldChild)
-        {
-            setFimSe((TFimSe) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

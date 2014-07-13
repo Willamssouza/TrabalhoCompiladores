@@ -8,18 +8,10 @@ import analysis.*;
 @SuppressWarnings("nls")
 public final class AForPassoCommand extends PCommand
 {
-    private TPara _para_;
-    private PVar _var_;
-    private TDe _de_;
     private TNInt _x1_;
-    private TPasso _passo_;
     private TNInt _x2_;
-    private TAte _ate_;
     private TNInt _x3_;
-    private TFaca _faca_;
     private final LinkedList<PCommand> _command_ = new LinkedList<PCommand>();
-    private TFimPara _fimPara_;
-    private TSemicolon _semicolon_;
 
     public AForPassoCommand()
     {
@@ -27,43 +19,19 @@ public final class AForPassoCommand extends PCommand
     }
 
     public AForPassoCommand(
-        @SuppressWarnings("hiding") TPara _para_,
-        @SuppressWarnings("hiding") PVar _var_,
-        @SuppressWarnings("hiding") TDe _de_,
         @SuppressWarnings("hiding") TNInt _x1_,
-        @SuppressWarnings("hiding") TPasso _passo_,
         @SuppressWarnings("hiding") TNInt _x2_,
-        @SuppressWarnings("hiding") TAte _ate_,
         @SuppressWarnings("hiding") TNInt _x3_,
-        @SuppressWarnings("hiding") TFaca _faca_,
-        @SuppressWarnings("hiding") List<?> _command_,
-        @SuppressWarnings("hiding") TFimPara _fimPara_,
-        @SuppressWarnings("hiding") TSemicolon _semicolon_)
+        @SuppressWarnings("hiding") List<?> _command_)
     {
         // Constructor
-        setPara(_para_);
-
-        setVar(_var_);
-
-        setDe(_de_);
-
         setX1(_x1_);
-
-        setPasso(_passo_);
 
         setX2(_x2_);
 
-        setAte(_ate_);
-
         setX3(_x3_);
 
-        setFaca(_faca_);
-
         setCommand(_command_);
-
-        setFimPara(_fimPara_);
-
-        setSemicolon(_semicolon_);
 
     }
 
@@ -71,99 +39,16 @@ public final class AForPassoCommand extends PCommand
     public Object clone()
     {
         return new AForPassoCommand(
-            cloneNode(this._para_),
-            cloneNode(this._var_),
-            cloneNode(this._de_),
             cloneNode(this._x1_),
-            cloneNode(this._passo_),
             cloneNode(this._x2_),
-            cloneNode(this._ate_),
             cloneNode(this._x3_),
-            cloneNode(this._faca_),
-            cloneList(this._command_),
-            cloneNode(this._fimPara_),
-            cloneNode(this._semicolon_));
+            cloneList(this._command_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAForPassoCommand(this);
-    }
-
-    public TPara getPara()
-    {
-        return this._para_;
-    }
-
-    public void setPara(TPara node)
-    {
-        if(this._para_ != null)
-        {
-            this._para_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._para_ = node;
-    }
-
-    public PVar getVar()
-    {
-        return this._var_;
-    }
-
-    public void setVar(PVar node)
-    {
-        if(this._var_ != null)
-        {
-            this._var_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._var_ = node;
-    }
-
-    public TDe getDe()
-    {
-        return this._de_;
-    }
-
-    public void setDe(TDe node)
-    {
-        if(this._de_ != null)
-        {
-            this._de_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._de_ = node;
     }
 
     public TNInt getX1()
@@ -191,31 +76,6 @@ public final class AForPassoCommand extends PCommand
         this._x1_ = node;
     }
 
-    public TPasso getPasso()
-    {
-        return this._passo_;
-    }
-
-    public void setPasso(TPasso node)
-    {
-        if(this._passo_ != null)
-        {
-            this._passo_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._passo_ = node;
-    }
-
     public TNInt getX2()
     {
         return this._x2_;
@@ -241,31 +101,6 @@ public final class AForPassoCommand extends PCommand
         this._x2_ = node;
     }
 
-    public TAte getAte()
-    {
-        return this._ate_;
-    }
-
-    public void setAte(TAte node)
-    {
-        if(this._ate_ != null)
-        {
-            this._ate_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._ate_ = node;
-    }
-
     public TNInt getX3()
     {
         return this._x3_;
@@ -289,31 +124,6 @@ public final class AForPassoCommand extends PCommand
         }
 
         this._x3_ = node;
-    }
-
-    public TFaca getFaca()
-    {
-        return this._faca_;
-    }
-
-    public void setFaca(TFaca node)
-    {
-        if(this._faca_ != null)
-        {
-            this._faca_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._faca_ = node;
     }
 
     public LinkedList<PCommand> getCommand()
@@ -342,105 +152,23 @@ public final class AForPassoCommand extends PCommand
         }
     }
 
-    public TFimPara getFimPara()
-    {
-        return this._fimPara_;
-    }
-
-    public void setFimPara(TFimPara node)
-    {
-        if(this._fimPara_ != null)
-        {
-            this._fimPara_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fimPara_ = node;
-    }
-
-    public TSemicolon getSemicolon()
-    {
-        return this._semicolon_;
-    }
-
-    public void setSemicolon(TSemicolon node)
-    {
-        if(this._semicolon_ != null)
-        {
-            this._semicolon_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._semicolon_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._para_)
-            + toString(this._var_)
-            + toString(this._de_)
             + toString(this._x1_)
-            + toString(this._passo_)
             + toString(this._x2_)
-            + toString(this._ate_)
             + toString(this._x3_)
-            + toString(this._faca_)
-            + toString(this._command_)
-            + toString(this._fimPara_)
-            + toString(this._semicolon_);
+            + toString(this._command_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._para_ == child)
-        {
-            this._para_ = null;
-            return;
-        }
-
-        if(this._var_ == child)
-        {
-            this._var_ = null;
-            return;
-        }
-
-        if(this._de_ == child)
-        {
-            this._de_ = null;
-            return;
-        }
-
         if(this._x1_ == child)
         {
             this._x1_ = null;
-            return;
-        }
-
-        if(this._passo_ == child)
-        {
-            this._passo_ = null;
             return;
         }
 
@@ -450,38 +178,14 @@ public final class AForPassoCommand extends PCommand
             return;
         }
 
-        if(this._ate_ == child)
-        {
-            this._ate_ = null;
-            return;
-        }
-
         if(this._x3_ == child)
         {
             this._x3_ = null;
             return;
         }
 
-        if(this._faca_ == child)
-        {
-            this._faca_ = null;
-            return;
-        }
-
         if(this._command_.remove(child))
         {
-            return;
-        }
-
-        if(this._fimPara_ == child)
-        {
-            this._fimPara_ = null;
-            return;
-        }
-
-        if(this._semicolon_ == child)
-        {
-            this._semicolon_ = null;
             return;
         }
 
@@ -492,33 +196,9 @@ public final class AForPassoCommand extends PCommand
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._para_ == oldChild)
-        {
-            setPara((TPara) newChild);
-            return;
-        }
-
-        if(this._var_ == oldChild)
-        {
-            setVar((PVar) newChild);
-            return;
-        }
-
-        if(this._de_ == oldChild)
-        {
-            setDe((TDe) newChild);
-            return;
-        }
-
         if(this._x1_ == oldChild)
         {
             setX1((TNInt) newChild);
-            return;
-        }
-
-        if(this._passo_ == oldChild)
-        {
-            setPasso((TPasso) newChild);
             return;
         }
 
@@ -528,21 +208,9 @@ public final class AForPassoCommand extends PCommand
             return;
         }
 
-        if(this._ate_ == oldChild)
-        {
-            setAte((TAte) newChild);
-            return;
-        }
-
         if(this._x3_ == oldChild)
         {
             setX3((TNInt) newChild);
-            return;
-        }
-
-        if(this._faca_ == oldChild)
-        {
-            setFaca((TFaca) newChild);
             return;
         }
 
@@ -562,18 +230,6 @@ public final class AForPassoCommand extends PCommand
                 oldChild.parent(null);
                 return;
             }
-        }
-
-        if(this._fimPara_ == oldChild)
-        {
-            setFimPara((TFimPara) newChild);
-            return;
-        }
-
-        if(this._semicolon_ == oldChild)
-        {
-            setSemicolon((TSemicolon) newChild);
-            return;
         }
 
         throw new RuntimeException("Not a child.");

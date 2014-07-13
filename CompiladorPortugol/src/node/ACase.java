@@ -6,30 +6,22 @@ import java.util.*;
 import analysis.*;
 
 @SuppressWarnings("nls")
-public final class ACasepart extends PCasepart
+public final class ACase extends PCase
 {
-    private TCaso _caso_;
     private PValor _valor_;
-    private TDoisPontos _doisPontos_;
     private final LinkedList<PCommand> _command_ = new LinkedList<PCommand>();
 
-    public ACasepart()
+    public ACase()
     {
         // Constructor
     }
 
-    public ACasepart(
-        @SuppressWarnings("hiding") TCaso _caso_,
+    public ACase(
         @SuppressWarnings("hiding") PValor _valor_,
-        @SuppressWarnings("hiding") TDoisPontos _doisPontos_,
         @SuppressWarnings("hiding") List<?> _command_)
     {
         // Constructor
-        setCaso(_caso_);
-
         setValor(_valor_);
-
-        setDoisPontos(_doisPontos_);
 
         setCommand(_command_);
 
@@ -38,42 +30,15 @@ public final class ACasepart extends PCasepart
     @Override
     public Object clone()
     {
-        return new ACasepart(
-            cloneNode(this._caso_),
+        return new ACase(
             cloneNode(this._valor_),
-            cloneNode(this._doisPontos_),
             cloneList(this._command_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseACasepart(this);
-    }
-
-    public TCaso getCaso()
-    {
-        return this._caso_;
-    }
-
-    public void setCaso(TCaso node)
-    {
-        if(this._caso_ != null)
-        {
-            this._caso_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._caso_ = node;
+        ((Analysis) sw).caseACase(this);
     }
 
     public PValor getValor()
@@ -99,31 +64,6 @@ public final class ACasepart extends PCasepart
         }
 
         this._valor_ = node;
-    }
-
-    public TDoisPontos getDoisPontos()
-    {
-        return this._doisPontos_;
-    }
-
-    public void setDoisPontos(TDoisPontos node)
-    {
-        if(this._doisPontos_ != null)
-        {
-            this._doisPontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doisPontos_ = node;
     }
 
     public LinkedList<PCommand> getCommand()
@@ -156,9 +96,7 @@ public final class ACasepart extends PCasepart
     public String toString()
     {
         return ""
-            + toString(this._caso_)
             + toString(this._valor_)
-            + toString(this._doisPontos_)
             + toString(this._command_);
     }
 
@@ -166,21 +104,9 @@ public final class ACasepart extends PCasepart
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._caso_ == child)
-        {
-            this._caso_ = null;
-            return;
-        }
-
         if(this._valor_ == child)
         {
             this._valor_ = null;
-            return;
-        }
-
-        if(this._doisPontos_ == child)
-        {
-            this._doisPontos_ = null;
             return;
         }
 
@@ -196,21 +122,9 @@ public final class ACasepart extends PCasepart
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._caso_ == oldChild)
-        {
-            setCaso((TCaso) newChild);
-            return;
-        }
-
         if(this._valor_ == oldChild)
         {
             setValor((PValor) newChild);
-            return;
-        }
-
-        if(this._doisPontos_ == oldChild)
-        {
-            setDoisPontos((TDoisPontos) newChild);
             return;
         }
 

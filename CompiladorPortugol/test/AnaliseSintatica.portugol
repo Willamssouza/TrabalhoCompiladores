@@ -6,6 +6,7 @@ inicio
 	inteiro : a, b, c;
 	real : b;
 	caractere : c;
+	const constante 30;
 	
 	
 	//Teste Comandos
